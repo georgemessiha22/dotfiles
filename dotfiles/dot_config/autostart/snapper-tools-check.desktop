@@ -1,0 +1,8 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Exec=bash -c "grep -q .snapshots /proc/cmdline && sleep 3 && snapper-tools --autostart"
+Icon=timeshift
+Name=BTRFS Assistant Snapper check
+Type=Application
+X-GNOME-Autostart-enabled=true
+X-KDE-autostart-after=panel

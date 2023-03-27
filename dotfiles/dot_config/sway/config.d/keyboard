@@ -1,0 +1,4 @@
+# enable numlock by default
+input type:keyboard xkb_numlock enabled 
+input type:keyboard xkb_layout "us
+# input type:keyboard xkb_options caps:swapescape

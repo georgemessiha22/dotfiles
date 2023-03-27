@@ -1,0 +1,13 @@
+# Auth with polkit-gnome:
+exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+
+# gnome keyring
+set $keyring "gnome-keyring-daemon --daemonize --start --components=gpg,pkcs11,secrets,ssh"
+
+exec $keyring
+
+# KDE Wallet
+# exec --no-startup-id /usr/lib/pam_kwallet_init
+
+# SSH-Agent
+exec ~/.config/sway/scripts/ssh_agent.sh

@@ -1,0 +1,8 @@
+{
+    "redhat.telemetry.enabled": false,
+    "go.toolsManagement.autoUpdate": true,
+    "editor.gotoLocation.alternativeDefinitionCommand": "",
+    "editor.gotoLocation.alternativeDeclarationCommand": "",
+    "go.inferGopath": true,
+    "terminal.integrated.inheritEnv": false,
+}

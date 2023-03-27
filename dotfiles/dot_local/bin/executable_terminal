@@ -1,0 +1,36 @@
+#!/bin/bash
+# Spawn a new instance of Alacritty using the CWD of the currently focused
+# Alacritty process.
+#
+# This is useful in environment like i3 where terminals are opened using a
+# key-combination while another terminal is already focused.
+#
+# If the script is run with a non-Alacritty window in focus or a non-compliant
+# version of Alacritty, an instance will be spawned in the user's $HOME.
+
+ACTIVE_WM_CLASS=$(swaymsg -t get_tree | jq '.. | (.nodes? // empty)[] | select(.focused==true) | {app_id, pid} | [.[]][0]')
+ACTIVE_WINDOW_PID=$(swaymsg -t get_tree | jq '.. | (.nodes? // empty)[] | select(.focused==true) | {app_id, pid} | [.[]][1] ')
+
+if [[ $ACTIVE_WM_CLASS == *"Alacritty"* ]]
+then
+    # Get PID. If _NET_WM_PID isn't set, bail.
+    if [[ "$ACTIVE_WINDOW_PID" == "" ]]
+    then
+        alacritty
+    fi
+    # Get first child of terminal
+    CHILD_PID=$(pgrep -P $ACTIVE_WINDOW_PID)
+    if [[ "$CHILD_PID" == "" ]]
+    then
+        alacritty
+    fi
+    # Get current directory of child. The first child should be the shell.
+    pushd "/proc/${CHILD_PID}/cwd"
+    SHELL_CWD=$(pwd -P)
+    popd
+    # Start alacritty with the working directory
+    alacritty --working-directory $SHELL_CWD
+else
+    alacritty
+fi
+

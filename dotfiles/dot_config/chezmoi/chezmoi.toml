@@ -1,0 +1,4 @@
+sourceDir = "~/backup/linux-workspace/dotfiles"
+encryption = "gpg"
+[gpg]
+    symmetric = true

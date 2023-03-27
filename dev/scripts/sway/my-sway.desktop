@@ -1,0 +1,6 @@
+# # /usr/share/wayland-sessions/
+[Desktop Entry]
+Name=My Sway
+Comment=An i3-compatible Wayland Custom compositor
+Exec=/usr/local/bin/my_sway
+Type=Application

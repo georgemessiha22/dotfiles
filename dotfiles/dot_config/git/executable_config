@@ -1,0 +1,24 @@
+[user]
+	email = georgemessiha22@gmail.com
+	name = George Messiha
+	signingkey = 38978058BF4371AF
+[core]
+	editor = "nano"
+[push]
+	autoSetupRemote = true
+[init]
+    defaultBranch = main
+
+[url "git@github.com:"]
+	insteadOf = https://github.com/
+
+[url "git@gitlab.com:"]
+   insteadOf = https://gitlab.com/
+
+# [url "ssh://git@github.com/"]
+#   insteadOf = "https://github.com/"
+
+#[url "ssh://git@gitlab.com/"]
+#   insteadOf = "https://gitlab.com/"
+[status]
+	submodulesummary = 1

@@ -1,0 +1,71 @@
+### Variables
+#
+# font
+#
+# font MeslosLHS\ NF\  Regular 29
+# Logo key. Use Mod1 for Alt.
+set $mod Mod4
+
+# Home row direction keys, like vim
+set $left h
+set $down j
+set $up k
+set $right l
+
+# Your preferred terminal emulator
+set $term alacritty
+
+# Your preferred terminal emulators
+set $term-float alarcitty
+
+# Your preferred application launcher
+# Note: pass the final command to swaymsg so that the resulting window can be opened
+# on the original workspace that the command was run on.
+# set $menu dmenu_path | dmenu | xargs swaymsg exec --
+set $menu wofi -c ~/.config/wofi/config -Ia
+ 
+set $launcher nwg-drawer -c 7 -is 70 -spacing 23
+
+set $powermenu nwgbar
+
+#
+# expose environments
+#
+
+# GTK3 applications
+exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP DBUS_SESSION_BUS_ADDRESS XDG_CONFIG_HOME I3SOCK NOTIFY_SOCKET
+
+exec export GPG_TTY=$(tty)
+
+# Import the WAYLAND_DISPLAY env var from sway into the systemd user session.
+exec hash dbus-update-activation-environment 2>/dev/null && \
+     dbus-update-activation-environment --systemd  DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP DBUS_SESSION_BUS_ADDRESS XDG_CONFIG_HOME I3SOCK NOTIFY_SOCKET
+
+
+# exec notify-send -a "sway" -c "shell" "Set Env" "DISPLAY=${DISPLAY}, WAYLAND_DISPLAY=${WAYLAND_DISPLAY}, XDG_CURRENT_DESKTOP=${XDG_CURRENT_DESKTOP}, SWAYSOCK=${SWAYSOCK}, XAUTHORITY=${XAUTHORITY}, XDG_SESSION_TYPE=${XDG_SESSION_TYPE} DBUS_SESSION_BUS_ADDRESS=${DBUS_SESSION_BUS_ADDRESS}"
+
+
+# nm-applet
+exec nm-applet --indicator
+
+# Welcome
+exec dex -a -s /etc/xdg/autostart/:~/.config/autostart/
+
+# Wob
+exec mkfifo $SWAYSOCK.wob
+exec tail -f $SWAYSOCK.wob | wob -c $HOME/.config/wob/config.ini
+
+# nm-applet
+exec nm-applet --indicator
+
+# for Touchpad gestures
+exec libinput-gestures-setup start
+
+# Tracker daemon for gnome apps
+exec tracker daemon -s
+
+# nwg-drawer
+exec_always nwg-drawer -r 
+
+# swayrd
+exec_always swayrd

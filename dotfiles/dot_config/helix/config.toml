@@ -1,0 +1,29 @@
+theme = "catppuccin_frappe"
+
+[editor]
+line-number = "absolute"
+mouse = false
+cursorline = true
+cursorcolumn = true
+auto-save = true
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.file-picker]
+hidden = false
+
+[editor.statusline]
+right = ["diagnostics", "selections", "position", "file-encoding", "file-line-ending", "file-type"]
+
+[editor.lsp]
+enable=true
+display-messages=true
+
+[editor.soft-wrap]
+enable = true
+max-wrap = 60 # increase value to reduce forced mid-word wrapping
+max-indent-retain = 0
+wrap-indicator = ""  # set wrap-indicator to "" to hide it

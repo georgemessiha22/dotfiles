@@ -1,0 +1,21 @@
+# monitor order setup
+set $laptop eDP-1
+
+output $laptop {
+    pos 1920 0
+}
+
+output DP-1 {
+    scale 1
+    res 1920x1080
+    pos 0 0
+}
+
+focus output DP-1
+
+# Clamshell Mode
+bindswitch --reload --locked lid:on output $laptop disable
+bindswitch --reload --locked lid:off output $laptop enable
+
+# closing laptop lid screen
+exec_always $HOME/.config/sway/scripts/clamshell.sh

@@ -1,0 +1,185 @@
+# Config for sworkstyle
+#
+# You can rename workspaces based on the exact application names or by generic pattern.
+# When it could not match anything it will use the fallback.
+#
+# format:
+#
+#   '{pattern}' = '{icon}'
+#
+# pattern: Can either be the exact "app_name" (app_id/class) of the window or a regex string in the format of `"/{regex}/"` which will match the window "title".
+# icon: Your beatifull icon
+#
+# verbose format:
+# 
+#   '{pattern}' = { type = 'generic' | 'exact', value = '{icon}'  }
+#
+#
+# If it couldn't match something it will print:
+# 
+# WARN [sworkstyle:config] No match for '{app_name}' with title '{title}' 
+#
+# You can use {title} to do a generic matching 
+# You can use {app_name} to do an exact match
+
+fallback = ''
+
+[matching]
+# Custom
+'Google-chrome' = ''
+'brave-browser' = ''
+'Brave-browser' = ''
+'brave' = '' 
+'Chromium' = ''
+'jetbrains-studio' = ''
+'jetbrains-pycharm' = ''
+'jetbrains-goland' = ''
+'jetbrains-fleet' = ''
+"transmission-remote-gtk" = ""
+'GitHub Desktop' = ''
+'/(?i)^Github.*Firefox/' = ''
+'/nvim ?\w*/' = ''
+'/(?i)^ rust' = ''
+'discord' = ''
+'balena-etcher' = ''
+'conky' = ''
+'Chia Blockchain' = ''
+'Steam' = ''
+'vlc' = ''
+'org.qbittorrent.qBittorrent' = ''
+'Thunderbird' = ''
+'thunderbird' = ''
+'Postman' = ''
+'Insomnia' = ''
+'Bitwarden' = ''
+'Slack' = ''
+'Code' = ''
+'code-oss' = ''
+'lapce' = ''
+'Spotify' = ''
+'/NVIM ?\w*/' = ''
+'/npm/' = ''
+'/node/' = ''
+'/yarn/' = ''
+'Alacritty' = ''
+'telegramdesktop' = ''
+'Telegram' = ''
+'Wfica' = ''
+'org.remmina.Remmina' = ''
+'SchildiChat' = ''
+'Element' = ''
+'nheko' = ''
+'/Firefox .*Private Browsing/' = ''
+'/(?i)Google Drive.*Firefox/' = ''
+'/(?i)Google Calendar.*Firefox/' = ''
+'/(?i)MAX.*Iridium/' = ''
+'/(?i)MAX.*Chromium/' = ''
+'/(?i)Dashboards -.*Iridium/' = ''
+'/(?i)Dashboards -.*Chromium/' = ''
+'/Twitter/' = ''
+'/eBay/' = ''
+'/(?i)reddit.*Firefox/' = ''
+'/(?i)drive.*Firefox/' = ''
+'/(?i)play.*Firefox/' = ''
+'/(?i)Github/' = ''
+'/Google/' = ''
+'/.exe/' = '︁'
+'yakyak' = '🙷'
+'copyq' = ''
+'Microsoft Teams - Preview' = '🗩︁'
+'Microsoft Teams - Insiders' = '🗩︁'
+'teams-for-linux' = '🗩︁'
+'clonehero' = '︁'
+'/trash:/ .*Dolphin/' = '︁'
+#'/home/.*Documents – Dolphin/' = ''
+'org.kde.dolphin' = ''
+'/pcmanfm/' = ''
+'pcmanfm-qt' = ''
+'pcmanfm-gtk3' = ''
+'/home/.*Dolphin/' = ''
+'org.kde.ark' = ''
+'firefox' = ''
+'Nightly' = ''
+'firefoxdeveloperedition' = ''
+'org.kde.kcharselect' = ''
+'Zim' = ''
+'image-roll' = ''
+'pavucontrol' = ''
+'obs' = ''
+'galculator' = '🖩'
+'mpv' = '🎞︁'
+'yuzu' = '︁'
+'rpcs3' = '︁'
+'blueberry.py' = '' 
+'com.github.wwmm.easyeffects' = ''
+'citra' = '︁'
+'wdisplays' = '🖵'
+'Pinta' = '🖌'
+'dolphin-emu' = '︁'
+'GParted' = '🖴︁'
+'/GParted/' = '🖴︁'
+'stoken-gui' = ''
+'polkit-gnome-authentication-agent-1' = '︁'
+'gcr-prompter' = '︁'
+'org.inkscape.Inkscape' = '🖋'
+'audacity' = '︁'
+'anki' = { type = 'generic', value = ''}
+'/(?i)settings*/' = { type = 'generic', value = ''}
+'/(?i)calendar*/' = { type = 'generic', value = ''}
+'foot' = ''
+'/YouTube/' = ''
+'org.qutebrowser.qutebrowser' = ''
+'whatsapp-for-linux' = ''
+'Ardour-6.9.0' = '🎵'
+'/Pcmanfm/' = ''
+'dota2' = '⚔'
+'Gimp' = ''
+'/pdf/' = ''
+'nm-connection-editor' = ''
+'yad' = ''
+'thunar' = '🗄'
+'electron' = ''
+'Electron' = ''
+'Atom' = ''
+'evince' = '🕮'
+'protonvpn' = ''
+#do all the dolphin folders
+#❄︁
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#☁
+#︁
+#
+#
+#
+#
+#
+#
+#
+#
+#☎︁
+#︁
+#✉︁
+#🗩︁
+#︁
+#︁
+#︁
+#⚙︁
+#︁
+#︁
+#︁
+#︁
+#︁
+#︁
+#🖌︁
+#︁
+
