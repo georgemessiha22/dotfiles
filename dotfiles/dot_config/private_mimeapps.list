@@ -1,0 +1,11 @@
+[Default Applications]
+x-scheme-handler/jetbrains=jetbrains-toolbox.desktop
+x-scheme-handler/fleet=jetbrains-fleet.desktop
+x-scheme-handler/webcal=brave-browser.desktop
+
+[Added Associations]
+text/x-makefile=org.gnome.gedit.desktop;
+application/pdf=org.gnome.Evince.desktop;com.github.babluboy.bookworm.desktop;
+text/plain=org.gnome.gedit.desktop;
+image/png=org.gnome.eog.desktop;
+image/jpeg=org.gnome.eog.desktop;

@@ -1,0 +1,6 @@
+
+# Start notification daemon
+# exec mako
+
+exec swaync #sway-notification-center
+

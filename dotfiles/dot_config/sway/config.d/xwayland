@@ -1,0 +1,4 @@
+# enable xwayland
+xwayland enable
+
+# exec_always /bin/bash ~/.config/sway/scripts/pipewire.sh

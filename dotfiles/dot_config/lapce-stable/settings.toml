@@ -1,0 +1,25 @@
+
+[core]
+modal = false
+icon-theme = "Material Icons"
+color-theme = "Dark+"
+
+[terminal]
+shell = "fish"
+
+[lapce-go]
+"gopls.experimentalWorkspaceModule" = true
+
+[editor]
+font-family = "'JetBrains Mono','FantasqueSansMono Nerd Font','Droid Sans Mono', 'monospace', monospace"
+font-size = 18
+show-bread-crumbs = true
+show-tab = true
+scroll-beyond-last-line = true
+
+[ui]
+font-family = ""
+icon-size = 0
+
+[lapce-rust]
+serverPath = "/usr/lib/rustup/bin/rust-analyzer"

@@ -1,0 +1,31 @@
+[user]
+	email = georgemessiha22@gmail.com
+	name = George Messiha
+	signingkey = DFC444BC38AF229D
+[core]
+	editor = "nvim"
+	excludesfile = ~/.config/.gitignore_global
+[commit]
+	gpgsign = true
+[push]
+	autoSetupRemote = true
+[init]
+    defaultBranch = main
+
+[url "git@github.com:"]
+	insteadOf = https://github.com/
+
+[url "git@gitlab.com:"]
+	insteadOf = https://gitlab.com/
+
+[url "https://github.com/rust-lang/crates.io-index"]
+	insteadOf = https://github.com/rust-lang/crates.io-index
+# [url "ssh://git@github.com/"]
+#   insteadOf = "https://github.com/"
+
+#[url "ssh://git@gitlab.com/"]
+#   insteadOf = "https://gitlab.com/"
+[status]
+	submoduleSummary = false
+[pull]
+	rebase = false
