@@ -4,10 +4,10 @@ return {
 	hl_add = {},
 	hl_override = {},
 	changed_themes = {},
-	theme_toggle = { "catppuccin_mocha", "catppuccin_macchiato" },
-	theme = "catppuccin_macchiato", -- default theme
+	theme_toggle = { "oceanic", "catppuccin_macchiato" },
+	theme = "oceanic",          -- default theme
 	transparency = false,
-	lsp_semantic_tokens = false,   -- needs nvim v0.9, just adds highlight groups for lsp semantic tokens
+	lsp_semantic_tokens = false, -- needs nvim v0.9, just adds highlight groups for lsp semantic tokens
 	termguicolors = true,
 
 	-- cmp themeing
