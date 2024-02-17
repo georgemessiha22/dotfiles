@@ -40,7 +40,7 @@ if test -d ~/.local/go/bin
     if not contains -- ~/.local/go/bin $PATH
         set -p PATH ~/.local/go/bin
         set -p PATH ~/.local/gopkgs/bin
-        set GOPATH ~/.local/gopkgs
+        set -x GOPATH ~/.local/gopkgs
     end
 end
 
