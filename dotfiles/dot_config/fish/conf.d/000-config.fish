@@ -110,11 +110,18 @@ end
 
 ## Useful aliases
 # Replace ls with exa
-alias ls='exa -agxT -L 1' # preferred listing
-alias la='exa -algxT -L 1' # all files and dirs
-alias ll='exa -lgxT -L 1' # long format
-alias lt='exa -aT -L 1' # tree listing
-alias l.='exa -ald' # show only dotfiles
+# alias ls='exa -agxT -L 1' # preferred listing
+# alias la='exa -algxT -L 1' # all files and dirs
+# alias ll='exa -lgxT -L 1' # long format
+# alias lt='exa -aT -L 1' # tree listing
+# alias l.='exa -ald' # show only dotfiles
+# Replace ls with lsd
+alias ls='lsd ' # preferred listing
+alias la='lsd ' # all files and dirs
+alias ll='lsd ' # long format
+alias lt='lsd ' # tree listing
+alias l.='lsd ' # show only dotfiles
+# ip table coloured
 alias ip='ip -color'
 
 # Replace some more things with better alternatives
