@@ -12,6 +12,7 @@ return {
 		"williamboman/mason-lspconfig.nvim",
 		"neovim/nvim-lspconfig",
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
+		{ "j-hui/fidget.nvim", opt = {} },
 	},
 	config = function()
 		local mason = require("mason")
@@ -30,27 +31,27 @@ return {
 		})
 		mason_lspconfig.setup({
 			ensure_installed = {
-				"lua_ls",                      -- LSP for Lua language
-				"tsserver",                    -- LSP for Typescript and Javascript
-				"emmet_ls",                    -- LSP for Emmet (Vue, HTML, CSS)
-				"cssls",                       -- LSP for CSS
-				"ruff_lsp",                    -- LSP for Python
-				"gopls",                       -- LSP for Go
-				"svelte",                      -- LSP for Svelte
-				"tailwindcss",                 -- LSP for TailWindCss
-				"marksman",                    -- LSP for Markdown
-				"dockerls",                    -- LSP for Dockerfile
+				"lua_ls", -- LSP for Lua language
+				"tsserver", -- LSP for Typescript and Javascript
+				"emmet_ls", -- LSP for Emmet (Vue, HTML, CSS)
+				"cssls", -- LSP for CSS
+				"ruff_lsp", -- LSP for Python
+				"gopls", -- LSP for Go
+				"svelte", -- LSP for Svelte
+				"tailwindcss", -- LSP for TailWindCss
+				"marksman", -- LSP for Markdown
+				"dockerls", -- LSP for Dockerfile
 				"docker_compose_language_service", -- LSP for Docker-compose
-				"bashls",                      -- LSP for Bash
-				"denols",                      -- LSP for deno
-				"yamlls",                      -- LSP yaml
+				"bashls", -- LSP for Bash
+				"denols", -- LSP for deno
+				"yamlls", -- LSP yaml
 				-- "rust_analyzer", -- LSP Rust rust_analyzer, disable if rustacean enabled
-				"jsonls",                      -- LSP json
-				"html",                        -- LSP html
-				"eslint",                      -- LSP eslint
-				"pyright",                     -- LSP python
+				"jsonls", -- LSP json
+				"html", -- LSP html
+				"eslint", -- LSP eslint
+				"pyright", -- LSP python
 				"texlab",
-				"taplo",                       -- LSP TOML
+				"taplo", -- LSP TOML
 			},
 		})
 

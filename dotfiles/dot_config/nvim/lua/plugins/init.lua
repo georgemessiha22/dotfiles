@@ -36,8 +36,8 @@ return {
 	--}}}
 
 	-- Bars
-	require("plugins.installer.bufferline"),
 	require("plugins.installer.lualine"),
+	require("plugins.installer.bufferline"),
 	-- require("plugins.installer.nvimhardline"),
 	require("plugins.installer.dashboard"),
 

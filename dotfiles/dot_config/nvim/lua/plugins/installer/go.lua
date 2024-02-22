@@ -15,6 +15,8 @@ return {
 		local on_attach = require("go.lsp").gopls_on_attach
 		local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 		require("go").setup({
+			luasnip = true,
+			trouble = true,
 			gofmt = "gofumpt",
 			goimport = "gopls",
 			lsp_cfg = {
