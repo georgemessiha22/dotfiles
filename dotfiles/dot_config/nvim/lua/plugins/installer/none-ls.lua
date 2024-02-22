@@ -29,6 +29,7 @@ return {
 				null_ls.builtins.formatting.deno_fmt.with({
 					filetypes = { "markdown" }, -- only runs `deno fmt` for markdown
 				}),
+				null_ls.builtins.formatting.yamlfmt,
 
 				-- Diagnostics
 				null_ls.builtins.diagnostics.golangci_lint,
@@ -38,6 +39,11 @@ return {
 				null_ls.builtins.diagnostics.yamllint,
 				null_ls.builtins.diagnostics.ruff,
 				null_ls.builtins.diagnostics.zsh,
+				null_ls.builtins.diagnostics.codespell,
+				null_ls.builtins.diagnostics.commitlint,
+				null_ls.builtins.diagnostics.dotenv_linter,
+				null_ls.builtins.diagnostics.fish,
+				null_ls.builtins.diagnostics.rubocop,
 
 				-- Code Actions
 				null_ls.builtins.code_actions.gomodifytags,
