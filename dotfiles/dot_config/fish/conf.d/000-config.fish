@@ -255,8 +255,8 @@ switch (uname)
         end
 
 				if test -d $HOME/.docker/cli-plugins/
-					if not test -f $HOME/.docker/cli-plugins/docker-compose
-						curl -SL https://github.com/docker/compose/releases/download/v2.23.3/docker-compose-darwin-x86_64 -o $HOME/.docker/cli-plugins/docker-compose
+					if not test -e $HOME/.docker/cli-plugins/docker-compose && not test -L $HOME/.docker/cli-plugins/docker-compose
+						curl -SL https://github.com/docker/compose/releases/download/v2.24.6/docker-compose-darwin-x86_64 -o $HOME/.docker/cli-plugins/docker-compose
 						chmod +x $HOME/.docker/cli-plugins/docker-compose
 					end
 				end
