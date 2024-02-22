@@ -48,14 +48,14 @@ return {
 					},
 				},
 				tabline = {
-					lualine_c = { "buffers" },
-					lualine_x = { { "tabs" } },
+					-- lualine_c = { "buffers" },
+					-- lualine_x = { { "tabs" } },
 					-- lualine_y = { "windows" },
 				},
 				-- winbar = { lualine_a = { "windows" } },
 				options = {
 					-- theme = "nord",
-					theme = ui.statusline.theme,
+					theme = "auto",
 					-- globalstatus = true,
 					disabled_filetypes = {
 						"neo-tree",

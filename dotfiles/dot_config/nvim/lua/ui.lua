@@ -5,7 +5,7 @@ return {
 	hl_override = {},
 	changed_themes = {},
 	theme_toggle = { "oceanic", "catppuccin_macchiato" },
-	theme = "oceanic",          -- default theme
+	theme = "sonokai", -- default theme
 	transparency = false,
 	lsp_semantic_tokens = false, -- needs nvim v0.9, just adds highlight groups for lsp semantic tokens
 	termguicolors = true,
@@ -14,8 +14,8 @@ return {
 	cmp = {
 		icons = true,
 		lspkind_text = true,
-		style = "default",          -- default/flat_light/flat_dark/atom/atom_colored
-		border_color = "grey_fg",   -- only applicable for "default" style, use color names from base30 variables
+		style = "default", -- default/flat_light/flat_dark/atom/atom_colored
+		border_color = "grey_fg", -- only applicable for "default" style, use color names from base30 variables
 		selected_item_bg = "colored", -- colored / simple
 	},
 
@@ -82,7 +82,7 @@ return {
 	lsp = {
 		-- show function signatures i.e args as you type
 		signature = {
-			disabled = false,
+			disabled = true,
 			silent = true, -- silences 'no signature help available' message from appearing
 		},
 	},

@@ -14,6 +14,7 @@ return {
 		dependencies = {
 			"nvim-treesitter/nvim-tree-docs",
 			"nvim-treesitter/nvim-treesitter-refactor",
+			"nvim-treesitter/nvim-treesitter-textobjects",
 			"folke/twilight.nvim",
 			"windwp/nvim-ts-autotag",
 		},
