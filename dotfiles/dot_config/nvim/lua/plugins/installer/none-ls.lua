@@ -26,6 +26,9 @@ return {
 				null_ls.builtins.formatting.shellharden,
 				null_ls.builtins.formatting.shfmt,
 				null_ls.builtins.formatting.beautysh,
+				null_ls.builtins.formatting.deno_fmt.with({
+					filetypes = { "markdown" }, -- only runs `deno fmt` for markdown
+				}),
 
 				-- Diagnostics
 				null_ls.builtins.diagnostics.golangci_lint,
