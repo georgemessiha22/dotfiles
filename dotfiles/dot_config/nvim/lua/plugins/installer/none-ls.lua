@@ -29,14 +29,14 @@ return {
 				null_ls.builtins.formatting.deno_fmt.with({
 					filetypes = { "markdown" }, -- only runs `deno fmt` for markdown
 				}),
-				null_ls.builtins.formatting.yamlfmt,
+				-- null_ls.builtins.formatting.yamlfmt,
 
 				-- Diagnostics
 				null_ls.builtins.diagnostics.golangci_lint,
 				-- null_ls.builtins.diagnostics.gospel,
 				-- null_ls.builtins.diagnostics.gitlint,
 				null_ls.builtins.diagnostics.shellcheck,
-				null_ls.builtins.diagnostics.yamllint,
+				-- null_ls.builtins.diagnostics.yamllint,
 				null_ls.builtins.diagnostics.ruff,
 				null_ls.builtins.diagnostics.zsh,
 				null_ls.builtins.diagnostics.codespell,
