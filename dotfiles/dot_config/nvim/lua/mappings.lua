@@ -67,6 +67,7 @@ M.general = {
 		["<Leader>sv"] = { "<cmd>vsplit<CR>", "Split screen vertically" },
 		["<Leader>sh"] = { "<CMD>split h<CR>", "Split screen horizontally" },
 
+		-- formatting
 		["<leader>fm"] = {
 			function()
 				vim.lsp.buf.format({ async = true })
