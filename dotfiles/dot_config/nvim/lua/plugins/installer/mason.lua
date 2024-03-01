@@ -9,12 +9,21 @@ return {
 	"williamboman/mason.nvim",
 	build = ":MasonUpdate",
 	dependencies = {
+		{ "VonHeikemen/lsp-zero.nvim", branch = "v3.x" },
 		"williamboman/mason-lspconfig.nvim",
 		"neovim/nvim-lspconfig",
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
-		{ "j-hui/fidget.nvim", opt = {} },
+		{ "j-hui/fidget.nvim",         opt = {} },
 	},
 	config = function()
+		local lsp_zero = require("lsp-zero")
+		lsp_zero.extend_lspconfig()
+
+		lsp_zero.on_attach(function(client, bufnr)
+			-- see :help lsp-zero-keybindings
+			-- to learn the available actions
+			lsp_zero.default_keymaps({ buffer = bufnr })
+		end)
 		local mason = require("mason")
 		local mason_lspconfig = require("mason-lspconfig")
 		local lspconfig = require("lspconfig")
@@ -31,39 +40,35 @@ return {
 		})
 		mason_lspconfig.setup({
 			ensure_installed = {
-				"lua_ls", -- LSP for Lua language
-				"tsserver", -- LSP for Typescript and Javascript
-				"emmet_ls", -- LSP for Emmet (Vue, HTML, CSS)
-				"cssls", -- LSP for CSS
-				"ruff_lsp", -- LSP for Python
-				"gopls", -- LSP for Go
-				"svelte", -- LSP for Svelte
-				"tailwindcss", -- LSP for TailWindCss
-				"marksman", -- LSP for Markdown
-				"dockerls", -- LSP for Dockerfile
+				"lua_ls",                      -- LSP for Lua language
+				"tsserver",                    -- LSP for Typescript and Javascript
+				"emmet_ls",                    -- LSP for Emmet (Vue, HTML, CSS)
+				"cssls",                       -- LSP for CSS
+				"ruff_lsp",                    -- LSP for Python
+				"gopls",                       -- LSP for Go
+				"svelte",                      -- LSP for Svelte
+				"tailwindcss",                 -- LSP for TailWindCss
+				"marksman",                    -- LSP for Markdown
+				"dockerls",                    -- LSP for Dockerfile
 				"docker_compose_language_service", -- LSP for Docker-compose
-				"bashls", -- LSP for Bash
-				"denols", -- LSP for deno
-				"yamlls", -- LSP yaml
+				"bashls",                      -- LSP for Bash
+				"denols",                      -- LSP for deno
+				"yamlls",                      -- LSP yaml
 				-- "rust_analyzer", -- LSP Rust rust_analyzer, disable if rustacean enabled
-				"jsonls", -- LSP json
-				"html", -- LSP html
-				"eslint", -- LSP eslint
-				"pyright", -- LSP python
+				"jsonls",                      -- LSP json
+				"html",                        -- LSP html
+				"eslint",                      -- LSP eslint
+				"pyright",                     -- LSP python
 				"texlab",
-				"taplo", -- LSP TOML
+				"taplo",                       -- LSP TOML
 			},
 		})
-
-		-- Setup every needed language server in lspconfig
-		---@diagnostic disable-next-line: undefined-global
-		local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 		mason_lspconfig.setup_handlers({
 			function(server_name)
 				if server_name == "gopls" then
 					lspconfig.gopls.setup({
-						capabilities = capabilities,
+						capabilities = lsp_zero.get_capabilities(),
 						filetypes = { "go", "gomod" },
 						fillstruct = "gopls",
 						settings = {
@@ -80,15 +85,11 @@ return {
 				elseif server_name == "lua_ls" then
 					-- skip
 				else
-					lspconfig[server_name].setup({
-						capabilities = capabilities,
-					})
+					require('lsp-zero.server').setup(server_name, { capabilities = lsp_zero.get_capabilities() })
 				end
 			end,
 		})
 
-		-- ensure install some packages
-		-- package_installer()
 
 		-- auto installer {{{
 		require("mason-tool-installer").setup({

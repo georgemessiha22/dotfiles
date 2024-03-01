@@ -5,11 +5,11 @@ return {
 	require("plugins.installer.gitsigns"),
 
 	-- LSP, Formatter, Diagnositcs {{{
-	require("plugins.installer.lsp_kind"),
 	require("plugins.installer.mason"),
-	require("plugins.installer.none-ls"),
+	require("plugins.installer.lsp_kind"),
+	-- require("plugins.installer.none-ls"),
 	require("plugins.installer.neodev"),
-	require("plugins.installer.nushell"),
+	-- require("plugins.installer.nushell"),
 
 	-- LSP, language specific
 	require("plugins.installer.go"),
