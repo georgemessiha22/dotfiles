@@ -2,7 +2,11 @@ return {
 	"nvim-lua/plenary.nvim",
 	require("plugins.installer.theme"),
 	require("plugins.installer.cmp"),
+
+	-- Git plugins {{{
 	require("plugins.installer.gitsigns"),
+	require("plugins.installer.lazygit"),
+	-- }}}
 
 	-- LSP, Formatter, Diagnositcs {{{
 	require("plugins.installer.mason"),
@@ -35,11 +39,12 @@ return {
 	require("plugins.installer.comment"),
 	--}}}
 
-	-- Bars
+	-- Bars {{{
 	require("plugins.installer.lualine"),
 	require("plugins.installer.bufferline"),
 	-- require("plugins.installer.nvimhardline"),
 	require("plugins.installer.dashboard"),
+	-- }}}
 
 	-- Helpers
 	require("plugins.installer.whichkey"),
