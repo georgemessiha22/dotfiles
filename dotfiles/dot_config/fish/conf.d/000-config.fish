@@ -254,17 +254,23 @@ switch (uname)
             set -gx PKG_CONFIG_PATH /opt/homebrew/opt/readline/lib/pkgconfig
         end
 
-				if test -d $HOME/.docker/cli-plugins/
-					if not test -e $HOME/.docker/cli-plugins/docker-compose && not test -L $HOME/.docker/cli-plugins/docker-compose
-						curl -SL https://github.com/docker/compose/releases/download/v2.24.6/docker-compose-darwin-x86_64 -o $HOME/.docker/cli-plugins/docker-compose
-						chmod +x $HOME/.docker/cli-plugins/docker-compose
-					end
-				end
+				# if test -d $HOME/.docker/cli-plugins/
+				# 	if not test -e $HOME/.docker/cli-plugins/docker-compose && not test -L $HOME/.docker/cli-plugins/docker-compose
+				# 		curl -SL https://github.com/docker/compose/releases/download/v2.24.6/docker-compose-darwin-x86_64 -o $HOME/.docker/cli-plugins/docker-compose
+				# 		chmod +x $HOME/.docker/cli-plugins/docker-compose
+				# 	end
+				# end
+
         # adding go path
         fish_add_path -a /Users/george/go/bin/
 
         # docker add to path
-        fish_add_path -a "/Users/george/.docker/bin"
+        # fish_add_path -a "/Users/george/.docker/bin"
+				# replace docker with podman
+				# alias --save docker=podman
+				# alias --save docker-compose="podman compose"
+				# consider using podman-mac-helper https://podman-desktop.io/docs/migrating-from-docker/using-podman-mac-helper
+				set -gx DOCKER_HOST unix:/$(podman machine inspect --format '{{.ConnectionInfo.PodmanSocket.Path}}')
 
         # Add home dir XDG
         set -gx XDG_CONFIG_HOME "/Users/george/.config"
