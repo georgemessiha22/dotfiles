@@ -270,7 +270,7 @@ switch (uname)
 				# alias --save docker=podman
 				# alias --save docker-compose="podman compose"
 				# consider using podman-mac-helper https://podman-desktop.io/docs/migrating-from-docker/using-podman-mac-helper
-				set -gx DOCKER_HOST unix:/$(podman machine inspect --format '{{.ConnectionInfo.PodmanSocket.Path}}')
+				# set -gx DOCKER_HOST unix://$(podman machine inspect --format '{{.ConnectionInfo.PodmanSocket.Path}}')
 
         # Add home dir XDG
         set -gx XDG_CONFIG_HOME "/Users/george/.config"
