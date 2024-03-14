@@ -9,19 +9,15 @@ return {
 	"williamboman/mason.nvim",
 	build = ":MasonUpdate",
 	dependencies = {
-		{ "VonHeikemen/lsp-zero.nvim", branch = "v3.x" },
 		"williamboman/mason-lspconfig.nvim",
 		"neovim/nvim-lspconfig",
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
-		{ "j-hui/fidget.nvim",         opt = {} },
+		{ "j-hui/fidget.nvim", opt = {} },
 	},
 	config = function()
 		local lsp_zero = require("lsp-zero")
 		lsp_zero.extend_lspconfig()
-
 		lsp_zero.on_attach(function(client, bufnr)
-			-- see :help lsp-zero-keybindings
-			-- to learn the available actions
 			lsp_zero.default_keymaps({ buffer = bufnr })
 		end)
 		local mason = require("mason")
@@ -40,6 +36,7 @@ return {
 		})
 		mason_lspconfig.setup({
 			ensure_installed = {
+				"bashls",                      -- LSP for bash shell
 				"lua_ls",                      -- LSP for Lua language
 				"tsserver",                    -- LSP for Typescript and Javascript
 				"emmet_ls",                    -- LSP for Emmet (Vue, HTML, CSS)
@@ -58,9 +55,11 @@ return {
 				"jsonls",                      -- LSP json
 				"html",                        -- LSP html
 				"eslint",                      -- LSP eslint
-				"pyright",                     -- LSP python
 				"texlab",
 				"taplo",                       -- LSP TOML
+			},
+			handlers = {
+				lsp_zero.default_setup,
 			},
 		})
 
@@ -85,11 +84,10 @@ return {
 				elseif server_name == "lua_ls" then
 					-- skip
 				else
-					require('lsp-zero.server').setup(server_name, { capabilities = lsp_zero.get_capabilities() })
+					lspconfig[server_name].setup({})
 				end
 			end,
 		})
-
 
 		-- auto installer {{{
 		require("mason-tool-installer").setup({
@@ -123,6 +121,7 @@ return {
 				"shfmt",
 				"shellcheck",
 				"markdownlint",
+				"deno-fmt",
 			},
 			auto_update = true,
 			run_on_start = true,
