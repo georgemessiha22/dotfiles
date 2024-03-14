@@ -15,29 +15,13 @@ return {
 			sources = {
 				-- formatters
 				null_ls.builtins.formatting.stylua,
-				null_ls.builtins.formatting.autopep8,
-				-- null_ls.builtins.formatting.gofumpt,
-				-- null_ls.builtins.formatting.goimports_reviser,
 				null_ls.builtins.formatting.rubocop,
-				null_ls.builtins.formatting.ruff,
-				null_ls.builtins.formatting.rustfmt,
 				null_ls.builtins.formatting.sqlfmt,
-				null_ls.builtins.formatting.taplo,
 				null_ls.builtins.formatting.shellharden,
 				null_ls.builtins.formatting.shfmt,
-				null_ls.builtins.formatting.beautysh,
-				null_ls.builtins.formatting.deno_fmt.with({
-					filetypes = { "markdown" }, -- only runs `deno fmt` for markdown
-				}),
-				-- null_ls.builtins.formatting.yamlfmt,
 
 				-- Diagnostics
 				null_ls.builtins.diagnostics.golangci_lint,
-				-- null_ls.builtins.diagnostics.gospel,
-				-- null_ls.builtins.diagnostics.gitlint,
-				null_ls.builtins.diagnostics.shellcheck,
-				-- null_ls.builtins.diagnostics.yamllint,
-				null_ls.builtins.diagnostics.ruff,
 				null_ls.builtins.diagnostics.zsh,
 				null_ls.builtins.diagnostics.codespell,
 				null_ls.builtins.diagnostics.commitlint,
@@ -49,7 +33,6 @@ return {
 				null_ls.builtins.code_actions.gomodifytags,
 				null_ls.builtins.code_actions.gitsigns,
 				null_ls.builtins.code_actions.impl,
-				null_ls.builtins.code_actions.shellcheck,
 
 				-- completion
 				null_ls.builtins.completion.spell,
