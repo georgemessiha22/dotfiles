@@ -199,6 +199,11 @@ if test -d $HOME/.local/neovim
     fish_add_path $HOME/.local/neovim/bin
 end
 
+# Add gcloud auth
+if test -d $HOME/google-cloud-sdk/bin
+	export PATH="$HOME/google-cloud-sdk/bin:$PATH"
+end
+
 # Some default behaviour on mac vs linux
 switch (uname)
     case Darwin
@@ -215,8 +220,8 @@ switch (uname)
         set --export GPG_TTY $(tty)
 
         # The next line updates PATH for the Google Cloud SDK.
-        if [ -f '/Users/george/google-cloud-sdk/path.fish.inc' ]
-            . /Users/george/google-cloud-sdk/path.fish.inc
+        if test -f '$(brew --prefix)/share/google-cloud-sdk/path.fish.inc'
+						source "$(brew --prefix)/share/google-cloud-sdk/path.fish.inc"
         end
 
         # The next line for ruby
@@ -248,38 +253,33 @@ switch (uname)
             set -gx CPPFLAGS -I/opt/homebrew/opt/llvm/include
             fish_add_path -a /opt/homebrew/opt/llvm/bin
         end
+
         if test -d /opt/homebrew/opt/readline/
             set -gx LDFLAGS -L/opt/homebrew/opt/readline/lib
             set -gx CPPFLAGS -I/opt/homebrew/opt/readline/include
             set -gx PKG_CONFIG_PATH /opt/homebrew/opt/readline/lib/pkgconfig
         end
 
-				# if test -d $HOME/.docker/cli-plugins/
-				# 	if not test -e $HOME/.docker/cli-plugins/docker-compose && not test -L $HOME/.docker/cli-plugins/docker-compose
-				# 		curl -SL https://github.com/docker/compose/releases/download/v2.24.6/docker-compose-darwin-x86_64 -o $HOME/.docker/cli-plugins/docker-compose
-				# 		chmod +x $HOME/.docker/cli-plugins/docker-compose
-				# 	end
-				# end
-
         # adding go path
         fish_add_path -a /Users/george/go/bin/
-
-        # docker add to path
-        # fish_add_path -a "/Users/george/.docker/bin"
-				# replace docker with podman
-				# alias --save docker=podman
-				# alias --save docker-compose="podman compose"
-				# consider using podman-mac-helper https://podman-desktop.io/docs/migrating-from-docker/using-podman-mac-helper
-				# set -gx DOCKER_HOST unix://$(podman machine inspect --format '{{.ConnectionInfo.PodmanSocket.Path}}')
 
         # Add home dir XDG
         set -gx XDG_CONFIG_HOME "/Users/george/.config"
 
         set -gx RUBY_CONFIGURE_OPTS "--with-openssl-dir=$(brew --prefix openssl@1.1)"
+				if test -d ~/.rbenv/bin/
+					status --is-interactive; and ~/.rbenv/bin/rbenv init - fish | source
+				end
 
-        alias colima-start="colima start --cpu 6 --memory 10 --vm-type=vz --vz-rosetta --mount-type=virtiofs --kubernetes --profile k8s"
+				alias colima-start="colima start --cpu 6 --memory 10 --vm-type=vz --vz-rosetta --mount-type=virtiofs --kubernetes --profile k8s"
         # copy gpg
         alias gpg-pass="printf '%s' (cat ~/Documents/recovery/gpg) | pbcopy"
+				
+				# Yabai logs
+				alias yabaiLogs="tail -f /tmp/yabai_$USER.out.log | sed 's/^/out: /' & tail -f /tmp/yabai_$USER.err.log | sed 's/^/err: /'"
+
+				# skhd logs
+				alias skhdLogs="tail -f /tmp/skhd_$USER.out.log | sed 's/^/out: /' & tail -f /tmp/skhd_$USER.err.log | sed 's/^/err: /'"
 
     case '*'
         # copy gpg

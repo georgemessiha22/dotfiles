@@ -8,10 +8,11 @@ return {
 	require("plugins.installer.lazygit"),
 	-- }}}
 
-	-- LSP, Formatter, Diagnositcs {{{
+	-- LSP, Formatter, Diagnostics {{{
+	require("plugins.installer.lsp_zero"),
 	require("plugins.installer.mason"),
 	require("plugins.installer.lsp_kind"),
-	-- require("plugins.installer.none-ls"),
+	require("plugins.installer.none-ls"),
 	require("plugins.installer.neodev"),
 	-- require("plugins.installer.nushell"),
 

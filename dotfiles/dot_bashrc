@@ -2,23 +2,37 @@
 [[ $- != *i* ]] && return
 
 # Load starship prompt if starship is installed
-if  [ -x /usr/bin/starship ]; then
-    __main() {
-        local major="${BASH_VERSINFO[0]}"
-        local minor="${BASH_VERSINFO[1]}"
+if [ -x /usr/bin/starship ]; then
+	__main() {
+		local major="${BASH_VERSINFO[0]}"
+		local minor="${BASH_VERSINFO[1]}"
 
-        if ((major > 4)) || { ((major == 4)) && ((minor >= 1)); }; then
-            source <("/usr/bin/starship" init bash --print-full-init)
-        else
-            source /dev/stdin <<<"$("/usr/bin/starship" init bash --print-full-init)"
-        fi
-    }
-    __main
-    unset -f __main
+		if ((major > 4)) || { ((major == 4)) && ((minor >= 1)); }; then
+			source <("/usr/bin/starship" init bash --print-full-init)
+		else
+			source /dev/stdin <<<"$("/usr/bin/starship" init bash --print-full-init)"
+		fi
+	}
+	__main
+	unset -f __main
+fi
+if [ -x /opt/homebrew/bin/starship ]; then
+	__main() {
+		local major="${BASH_VERSINFO[0]}"
+		local minor="${BASH_VERSINFO[1]}"
+
+		if ((major > 4)) || { ((major == 4)) && ((minor >= 1)); }; then
+			source <("/opt/homebrew/bin/starship" init bash --print-full-init)
+		else
+			source /dev/stdin <<<"$("/opt/homebrew/bin/starship" init bash --print-full-init)"
+		fi
+	}
+	__main
+	unset -f __main
 fi
 
 # Advanced command-not-found hook
-source /usr/share/doc/find-the-command/ftc.bash
+[[ -x /usr/share/doc/find-the-command/ftc.bash ]] && source /usr/share/doc/find-the-command/ftc.bash
 
 # Aliases
 alias dir='dir --color=auto'
@@ -50,10 +64,13 @@ alias cleanup='sudo pacman -Rns `pacman -Qtdq`'
 # Get the error messages from journalctl
 alias jctl="journalctl -p 3 -xb"
 
+# Add gcloud auth
+[[ -d $HOME/google-cloud-sdk/bin ]] && export PATH="$HOME/google-cloud-sdk/bin:$PATH"
+
 # Recent installed packages
 alias rip="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -200 | nl"
 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+[[ -x ~/.fzf.bash ]] && source ~/.fzf.bash
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"

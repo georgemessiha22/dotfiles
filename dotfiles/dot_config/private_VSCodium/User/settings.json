@@ -1,8 +1,47 @@
 {
+    "workbench.iconTheme": "vscode-icons",
     "redhat.telemetry.enabled": false,
-    "go.toolsManagement.autoUpdate": true,
-    "editor.gotoLocation.alternativeDefinitionCommand": "",
-    "editor.gotoLocation.alternativeDeclarationCommand": "",
-    "go.inferGopath": true,
-    "terminal.integrated.inheritEnv": false,
+    "window.zoomLevel": 1,
+    "workbench.startupEditor": "none",
+    "[ruby]": {
+        "editor.defaultFormatter": "Shopify.ruby-lsp",
+        "editor.formatOnSave": true,
+        "editor.formatOnType": true,
+        "editor.tabSize": 2,
+        "editor.insertSpaces": true,
+        "files.trimTrailingWhitespace": true,
+        "files.insertFinalNewline": true,
+        "files.trimFinalNewlines": true,
+        "editor.rulers": [
+            120
+        ],
+        "editor.semanticHighlighting.enabled": true
+    },
+    "rubyLsp.enabledFeatures": {
+        "codeActions": true,
+        "diagnostics": true,
+        "documentHighlights": true,
+        "documentLink": true,
+        "documentSymbols": true,
+        "foldingRanges": true,
+        "formatting": true,
+        "hover": true,
+        "inlayHint": true,
+        "onTypeFormatting": true,
+        "selectionRanges": true,
+        "semanticHighlighting": true,
+        "completion": true,
+        "codeLens": true,
+        "definition": true,
+        "workspaceSymbol": true,
+        "references": true
+    },
+    "solargraph.commandPath": "/Users/george/.rbenv/shims/solargraph",
+    "editor.fontFamily": "JetBrainsMono Nerd Font",
+    "files.autoSave": "onWindowChange",
+    "tabnine.experimentalAutoImports": true,
+    "vsicons.dontShowNewVersionMessage": true,
+    "terminal.external.osxExec": "Alacritty.app",
+    "terminal.integrated.accessibleViewFocusOnCommandExecution": true,
+    "terminal.external.linuxExec": "alacritty"
 }
