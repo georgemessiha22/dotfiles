@@ -13,17 +13,17 @@ precmd_functions+=(set_win_title)
 
 ## Plugins section: Enable fish style features
 # Use syntax highlighting
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+[[ -x /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] && source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Use autosuggestion
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+[[ -x /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]] && source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # Use history substring search
-source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
+[[ -x /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh ]] && source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
 
 # Use fzf
-source /usr/share/fzf/key-bindings.zsh
-source /usr/share/fzf/completion.zsh
+[[ -x /usr/share/fzf/key-bindings.zsh ]] && source /usr/share/fzf/key-bindings.zsh
+[[ -x /usr/share/fzf/completion.zsh ]] && source /usr/share/fzf/completion.zsh
 
 # Arch Linux command-not-found support, you must have package pkgfile installed
 # https://wiki.archlinux.org/index.php/Pkgfile#.22Command_not_found.22_hook
@@ -294,6 +294,9 @@ eval "$(mcfly init zsh)"
 # fastfetch
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Add gcloud auth
+[[ -d $HOME/google-cloud-sdk/bin ]] && export PATH="$HOME/google-cloud-sdk/bin:$PATH"
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"

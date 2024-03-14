@@ -1,6 +1,15 @@
 command_timeout = 9999
+format = '$os$all$dienv$character'
+
+[shell]
+disabled = false
+fish_indicator = "󰈺"
+zsh_indicator = "󰫫"
+bash_indicator = ""
+
 [aws]
 symbol = "  "
+disabled = true
 
 [buf]
 symbol = " "
@@ -13,6 +22,9 @@ symbol = " "
 
 [dart]
 symbol = " "
+
+[direnv]
+disabled = false
 
 [directory]
 read_only = " 󰌾"
@@ -30,6 +42,7 @@ symbol = " "
 symbol = " "
 
 [git_branch]
+format = "[$symbol$branch(:$remote_branch)]($style) "
 symbol = " "
 
 [golang]
@@ -37,6 +50,9 @@ symbol = " "
 
 [guix_shell]
 symbol = " "
+
+[gcloud]
+disabled = true
 
 [haskell]
 symbol = " "
@@ -73,6 +89,10 @@ symbol = " "
 
 [nodejs]
 symbol = " "
+
+[os]
+format = '[$symbol]($style)'
+disabled = false
 
 [os.symbols]
 Alpaquita = " "
