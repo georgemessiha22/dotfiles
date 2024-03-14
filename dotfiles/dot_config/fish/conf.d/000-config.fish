@@ -277,8 +277,6 @@ switch (uname)
 
         set -gx RUBY_CONFIGURE_OPTS "--with-openssl-dir=$(brew --prefix openssl@1.1)"
 
-        status --is-interactive; and rbenv init - fish | source
-
         alias colima-start="colima start --cpu 6 --memory 10 --vm-type=vz --vz-rosetta --mount-type=virtiofs --kubernetes --profile k8s"
         # copy gpg
         alias gpg-pass="printf '%s' (cat ~/Documents/recovery/gpg) | pbcopy"
@@ -288,8 +286,10 @@ switch (uname)
         alias gpg-pass="printf '%s' (cat ~/Documents/recovery/gpg) | wl-copy"
         alias hx="helix"
 
-				# opam configuration
-				source /home/gmessiha/.opam/opam-init/init.fish > /dev/null 2> /dev/null; or true
+				# opam configuration oCaml
+				if test /home/gmessiha/.opam/opam-init/init.fish 
+					source /home/gmessiha/.opam/opam-init/init.fish > /dev/null 2> /dev/null; or true
+				end
 end
 
 # FZF because everyone is fuzzy about it.
