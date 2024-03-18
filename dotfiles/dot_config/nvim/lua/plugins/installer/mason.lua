@@ -36,27 +36,27 @@ return {
 		})
 		mason_lspconfig.setup({
 			ensure_installed = {
-				"bashls",                      -- LSP for bash shell
-				"lua_ls",                      -- LSP for Lua language
-				"tsserver",                    -- LSP for Typescript and Javascript
-				"emmet_ls",                    -- LSP for Emmet (Vue, HTML, CSS)
-				"cssls",                       -- LSP for CSS
-				"ruff_lsp",                    -- LSP for Python
-				"gopls",                       -- LSP for Go
-				"svelte",                      -- LSP for Svelte
-				"tailwindcss",                 -- LSP for TailWindCss
-				"marksman",                    -- LSP for Markdown
-				"dockerls",                    -- LSP for Dockerfile
+				"bashls", -- LSP for bash shell
+				"lua_ls", -- LSP for Lua language
+				"tsserver", -- LSP for Typescript and Javascript
+				"emmet_ls", -- LSP for Emmet (Vue, HTML, CSS)
+				"cssls", -- LSP for CSS
+				"ruff_lsp", -- LSP for Python
+				"gopls", -- LSP for Go
+				"svelte", -- LSP for Svelte
+				"tailwindcss", -- LSP for TailWindCss
+				"marksman", -- LSP for Markdown
+				"dockerls", -- LSP for Dockerfile
 				"docker_compose_language_service", -- LSP for Docker-compose
-				"bashls",                      -- LSP for Bash
-				"denols",                      -- LSP for deno
-				"yamlls",                      -- LSP yaml
+				"bashls", -- LSP for Bash
+				"denols", -- LSP for deno
+				"yamlls", -- LSP yaml
 				-- "rust_analyzer", -- LSP Rust rust_analyzer, disable if rustacean enabled
-				"jsonls",                      -- LSP json
-				"html",                        -- LSP html
-				"eslint",                      -- LSP eslint
+				"jsonls", -- LSP json
+				"html", -- LSP html
+				"eslint", -- LSP eslint
 				"texlab",
-				"taplo",                       -- LSP TOML
+				"taplo", -- LSP TOML
 			},
 			handlers = {
 				lsp_zero.default_setup,
@@ -109,7 +109,6 @@ return {
 				"gofumpt",
 				"golangci-lint",
 				"goimports",
-				"rubocop",
 				"ruff",
 				"sqlfmt",
 				"yamllint",
