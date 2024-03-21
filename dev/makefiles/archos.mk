@@ -46,7 +46,7 @@ install-tools:
 install-packages:
 	@echo "📦 Installing Needed packages for Developer workspace"
 	paru -Syuu --noconfirm
-	paru -S --noconfirm `cat /home/gmessiha/backup/linux-workspace/install/arch/packages.txt`
+	paru -S --noconfirm `cat ${HOME}/backup/linux-workspace/install/arch/packages.txt`
 	@echo "✅ Tools Installation Finished"
 
 ## Applying Workspace configurations
