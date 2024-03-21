@@ -42,4 +42,3 @@ for_window [app_id="protonvpn"] floating enable
 for_window [app_id="firedragon"] inhibit_idle fullscreen
 for_window [app_id="Chromium"] inhibit_idle fullscreen
 
-for_window [title="conky"] floating enable, resize set width 30 ppt height 90 ppt, move position 0 px 0 px

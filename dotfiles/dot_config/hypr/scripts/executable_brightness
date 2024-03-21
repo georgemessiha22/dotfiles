@@ -1,14 +1,14 @@
 #!/bin/sh
 
 down() {
-	light -U 2
-	brightness=$(light -g)
+	brightnessctl s 2%- -q
+	brightness=$(brightnessctl -m | cut -d',' -f4)
 	dunstify -a "BRIGHTNESS" "Decreasing to $brightness%" -h int:value:"$brightness" -i ~/.config/dunst/assets/ui/brightness-low.svg -r 2593 -u normal
 }
 
 up() {
-	light -A 2
-	brightness=$(light -g)
+	brightnessctl s +2% -q
+	brightness=$(brightnessctl -m | cut -d',' -f4)
 	dunstify -a "BRIGHTNESS" "Increasing to $brightness%" -h int:value:"$brightness" -i ~/.config/dunst/assets/ui/brightness-high.svg -r 2593 -u normal
 }
 

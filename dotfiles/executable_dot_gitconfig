@@ -29,3 +29,5 @@
 	submoduleSummary = false
 [pull]
 	rebase = false
+[credential]
+	helper = /usr/lib/git-core/git-credential-libsecret

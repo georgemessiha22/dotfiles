@@ -16,3 +16,8 @@ OS supported:
 mkdir -p ${HOME}/backup
 git clone https://github.com/georgemessiha22/dotfiles.git ${HOME}/backup/linux-workspace
 ```
+
+For help
+```bash
+make help
+```
