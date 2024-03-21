@@ -192,7 +192,7 @@ alias dockerd-start="sudo systemctl start docker"
 alias dockerd-status="sudo systemctl status docker"
 alias dockerd-stop="sudo systemctl stop docker && sudo systemctl status docker"
 
-set -x SSH_AUTH_SOCK {$XDG_RUNTIME_DIR}/ssh-agent.socket
+set -x SSH_AUTH_SOCK {$XDG_RUNTIME_DIR}/gcr/ssh
 
 # if using custom build of neovim
 if test -d $HOME/.local/neovim

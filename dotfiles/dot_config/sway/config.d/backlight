@@ -1,5 +1,5 @@
 #
 # Backlight
 #
-    bindsym XF86MonBrightnessUp exec light -A 2 && light -G | cut -d'.' -f1 > $SWAYSOCK.wob
-    bindsym XF86MonBrightnessDown exec light -U 2 && light -G | cut -d'.' -f1 > $SWAYSOCK.wob
+    bindsym XF86MonBrightnessUp exec brightnessctl s +2% -q && brightnessctl -m | cut -d',' -f4 | cut -d'%' -f1 > $SWAYSOCK.wob
+    bindsym XF86MonBrightnessDown exec brightnessctl s 2%- -q && brightnessctl -m | cut -d',' -f4  | cut -d'%' -f1 > $SWAYSOCK.wob
