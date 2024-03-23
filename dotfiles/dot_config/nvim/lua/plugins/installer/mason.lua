@@ -9,6 +9,10 @@ return {
 	"williamboman/mason.nvim",
 	build = ":MasonUpdate",
 	dependencies = {
+		{
+			"VonHeikemen/lsp-zero.nvim",
+			branch = "v3.x",
+		},
 		"williamboman/mason-lspconfig.nvim",
 		"neovim/nvim-lspconfig",
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
@@ -36,25 +40,26 @@ return {
 		})
 		mason_lspconfig.setup({
 			ensure_installed = {
-				"bashls", -- LSP for bash shell
-				"lua_ls", -- LSP for Lua language
-				"tsserver", -- LSP for Typescript and Javascript
-				"emmet_ls", -- LSP for Emmet (Vue, HTML, CSS)
-				"cssls", -- LSP for CSS
-				"ruff_lsp", -- LSP for Python
-				"gopls", -- LSP for Go
-				"svelte", -- LSP for Svelte
-				"tailwindcss", -- LSP for TailWindCss
-				"marksman", -- LSP for Markdown
-				"dockerls", -- LSP for Dockerfile
+				"bashls",                      -- LSP for bash shell
+				"lua_ls",                      -- LSP for Lua language
+				"tsserver",                    -- LSP for Typescript and Javascript
+				"emmet_ls",                    -- LSP for Emmet (Vue, HTML, CSS)
+				"cssls",                       -- LSP for CSS
+				"ruff_lsp",                    -- LSP for Python
+				"gopls",                       -- LSP for Go
+				"svelte",                      -- LSP for Svelte
+				"tailwindcss",                 -- LSP for TailWindCss
+				"marksman",                    -- LSP for Markdown
+				"dockerls",                    -- LSP for Dockerfile
 				"docker_compose_language_service", -- LSP for Docker-compose
-				"bashls", -- LSP for Bash
-				"denols", -- LSP for deno
-				"yamlls", -- LSP yaml
-				-- "rust_analyzer", -- LSP Rust rust_analyzer, disable if rustacean enabled
-				"jsonls", -- LSP json
-				"html", -- LSP html
-				"eslint", -- LSP eslint
+				"bashls",                      -- LSP for Bash
+				"denols",                      -- LSP for deno
+				"yamlls",                      -- LSP yaml
+				"rust_analyzer",               -- LSP Rust rust_analyzer
+				"jsonls",                      -- LSP json
+				"html",                        -- LSP html
+				"eslint",                      -- LSP eslint
+
 				"texlab",
 				"taplo", -- LSP TOML
 			},
@@ -82,12 +87,48 @@ return {
 						},
 					})
 				elseif server_name == "lua_ls" then
-					-- skip
-				else
-					lspconfig[server_name].setup({})
+					local capabilities =
+							require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+
+					lspconfig.lua_ls.setup({
+						-- on_attach = on_attach,
+						capabilities = capabilities,
+						settings = {
+							Lua = {
+								completion = {
+									callSnippet = "Replace",
+								},
+							},
+						},
+					})
 				end
+				-- else
+				-- 	lspconfig[server_name].setup(lsp_zero.default_setup)
+				-- end
 			end,
 		})
+
+		-- Check if solargraph is installed and run the configurations.
+		local solargraphLocation = os.getenv("HOME") .. "/.rbenv/shims/solargraph"
+		local file = io.open(solargraphLocation, "r")
+		if file ~= nil then
+			io.close(file)
+			lspconfig.solargraph.setup({
+				cmd = { solargraphLocation, "stdio" },
+				root_dir = lspconfig.util.root_pattern("Gemfile", ".git", "."),
+				settings = {
+					solargraph = {
+						autoformat = true,
+						completion = true,
+						diagnostic = true,
+						folding = true,
+						references = true,
+						rename = true,
+						symbols = true,
+					},
+				},
+			})
+		end
 
 		-- auto installer {{{
 		require("mason-tool-installer").setup({

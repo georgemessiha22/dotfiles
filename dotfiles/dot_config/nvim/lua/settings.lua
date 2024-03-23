@@ -111,17 +111,15 @@ local format_sync_grp = vim.api.nvim_create_augroup("Format", {})
 -- format on save all files
 autocmd("BufWritePre", {
 	pattern = "*",
-	-- exclude = {"*.go"},
+	-- exclude = { "*.rb" },
 	callback = function()
-		--    vim.notify("Formater")
-		vim.lsp.buf.format()
-	end,
-	group = format_sync_grp,
-})
-autocmd("BufWritePre", {
-	pattern = "*.go",
-	callback = function()
-		require("go.format").gofmt()
+		--    vim.notify("Formatter")
+		-- Never request solargaph for formatting
+		vim.lsp.buf.format({
+			filter = function(client)
+				return client.name ~= "solargraph"
+			end,
+		})
 	end,
 	group = format_sync_grp,
 })
@@ -165,12 +163,12 @@ autocmd("BufWritePost", {
 
 -- Default Plugins {{{
 local disabled_built_ins = {
-	-- "netrw",
-	-- "netrwPlugin",
-	-- "netrwSettings",
-	-- "netrwFileHandlers",
-	-- "gzip",
-	-- "zip",
+	--	"netrw",
+	--	"netrwPlugin",
+	--	"netrwSettings",
+	--	"netrwFileHandlers",
+	"gzip",
+	"zip",
 	"zipPlugin",
 	"tar",
 	"tarPlugin",

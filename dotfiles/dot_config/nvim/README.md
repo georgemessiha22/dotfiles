@@ -2,29 +2,54 @@
 
 # Structure
 
-```
-├── init.lua            # calling base functions
+```bash
+.
+├── init.lua
+├── lazy-lock.json
 ├── LICENSE
 ├── lua
-│  ├── config.lua       # config functinos
-│  ├── icons.lua        # Icons configurations
-│  ├── mappings.lua     # keyboard mappings including plugins
-│  ├── plugins
-│  │  ├── init.lua      # only install what is included
-│  │  └── installer     # configuration per plugin
-│  ├── settings.lua     # General VIM settings
-│  └── ui.lua           # UI configurations map
+│   ├── config.lua
+│   ├── icons.lua
+│   ├── mappings.lua
+│   ├── plugins
+│   │   ├── init.lua
+│   │   └── installer
+│   │       ├── blankline.lua
+│   │       ├── bufferline.lua
+│   │       ├── cmp.lua
+│   │       ├── colorizer.lua
+│   │       ├── comment.lua
+│   │       ├── dashboard.lua
+│   │       ├── dressing.lua
+│   │       ├── fzf.lua
+│   │       ├── gitsigns.lua
+│   │       ├── go.lua
+│   │       ├── iconpicker.lua
+│   │       ├── lazygit.lua
+│   │       ├── lsp_kind.lua
+│   │       ├── lualine.lua
+│   │       ├── mason.lua
+│   │       ├── neodev.lua
+│   │       ├── neotree.lua
+│   │       ├── none-ls.lua
+│   │       ├── rustacean.lua
+│   │       ├── telescope.lua
+│   │       ├── theme.lua
+│   │       ├── todo-comment.lua
+│   │       ├── treesitter.lua
+│   │       ├── trouble.lua
+│   │       └── whichkey.lua
+│   ├── settings.lua
+│   └── ui.lua
 ├── README.md
 └── spell
-   ├── en.utf-8.add
-   └── en.utf-8.add.spl
+    ├── en.utf-8.add
+    └── en.utf-8.add.spl
 ```
 
 # Lazy Plugins
 
 - [nvim-lua/plenary.nvim](https://github.com/nvim-lua/plenary.nvim)
-- [rafamadriz/neon](https://github.com/rafamadriz/neon)
-- [hrsh7th/nvim-cmp](https://github.com/hrsh7th/nvim-cmp)
 - [lewis6991/gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)
 - [onsails/lspkind-nvim](https://github.com/onsails/lspkind-nvim)
 - [williamboman/mason.nvim](https://github.com/williamboman/mason.nvim)
