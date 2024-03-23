@@ -175,6 +175,8 @@ alias rip="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -200 | nl"
 
 alias edit="nvim" # set favorite editor
 alias e="nvim"
+alias gogo="NVIM_APPNAME=nvim-gogo nvim"
+alias gogo-clean="rm -rf $HOME/.cache/nvim-gogo/ $HOME/.local/share/nvim-gogo $HOME/.lcoal/state/nvim-goog"
 alias zshconfig="edit ~/.zshrc"
 alias ohmyzsh="edit ~/.local/share/oh-my-zsh"
 alias swayconfig="edit ~/.config/sway"
