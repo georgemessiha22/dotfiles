@@ -9,16 +9,14 @@ return {
 	-- }}}
 
 	-- LSP, Formatter, Diagnostics {{{
-	require("plugins.installer.lsp_zero"),
 	require("plugins.installer.mason"),
 	require("plugins.installer.lsp_kind"),
 	require("plugins.installer.none-ls"),
-	require("plugins.installer.neodev"),
-	-- require("plugins.installer.nushell"),
 
 	-- LSP, language specific
-	require("plugins.installer.go"),
 	require("plugins.installer.rustacean"),
+	require("plugins.installer.go"),
+	require("plugins.installer.neodev"),
 	-- }}}
 
 	-- Find
@@ -43,14 +41,12 @@ return {
 	-- Bars {{{
 	require("plugins.installer.lualine"),
 	require("plugins.installer.bufferline"),
-	-- require("plugins.installer.nvimhardline"),
 	require("plugins.installer.dashboard"),
 	-- }}}
 
 	-- Helpers
 	require("plugins.installer.whichkey"),
 	"rcarriga/nvim-notify",
-	require("plugins.installer.ts_autotag"),
 	require("plugins.installer.iconpicker"),
 	require("plugins.installer.colorizer"),
 }

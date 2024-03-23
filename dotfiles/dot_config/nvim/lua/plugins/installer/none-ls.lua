@@ -19,6 +19,7 @@ return {
 				null_ls.builtins.formatting.sqlfmt,
 				null_ls.builtins.formatting.shellharden,
 				null_ls.builtins.formatting.shfmt,
+				null_ls.builtins.formatting.fish_indent,
 
 				-- Diagnostics
 				null_ls.builtins.diagnostics.golangci_lint,

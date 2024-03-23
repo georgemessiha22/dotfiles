@@ -20,18 +20,18 @@ return {
 			},
 		})
 
-		local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
-
-		require("lspconfig").lua_ls.setup({
-			-- on_attach = on_attach,
-			capabilities = capabilities,
-			settings = {
-				Lua = {
-					completion = {
-						callSnippet = "Replace",
-					},
-				},
-			},
-		})
+		-- local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+		--
+		-- require("lspconfig").lua_ls.setup({
+		-- 	-- on_attach = on_attach,
+		-- 	capabilities = capabilities,
+		-- 	settings = {
+		-- 		Lua = {
+		-- 			completion = {
+		-- 				callSnippet = "Replace",
+		-- 			},
+		-- 		},
+		-- 	},
+		-- })
 	end,
 }

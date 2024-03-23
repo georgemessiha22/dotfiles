@@ -18,7 +18,7 @@ return {
 			luasnip = true,
 			trouble = true,
 			gofmt = "gofumpt",
-			goimport = "gopls",
+			goimports = "gopls",
 			lsp_cfg = {
 				capabilities = capabilities,
 				filetypes = { "go", "gomod" },
