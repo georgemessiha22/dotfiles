@@ -34,7 +34,8 @@ end
 
 M.SetupPlugins = function()
 	-- Load Plugins {{{
-	require("lazy").setup(require("plugins"))
+	vim.g.mapleader = require("ui").leader
+	require("lazy").setup({ import = "plugins" })
 	-- }}}
 end
 
@@ -44,11 +45,12 @@ M.load_mapping = function(section)
 			if values.plugin then -- bypass plugins section
 				return
 			end
-			values.plugin = nil                              -- this to garauntee all values are pair
+			values.plugin = nil -- this to garauntee all values are pair
 
-			for mode, mode_values in pairs(values) do        -- first layer is modes i, v, t, x
+			for mode, mode_values in pairs(values) do -- first layer is modes i, v, t, x
 				for keybind, mapping_info in pairs(mode_values) do -- second layer is key = {command, description}
-					local opts = merge_table("force", { desc = mapping_info[2], noremap = true }, mapping_info.opts or {})
+					local opts =
+						merge_table("force", { desc = mapping_info[2], noremap = true }, mapping_info.opts or {})
 					mapkey(mode, keybind, mapping_info[1], opts)
 				end
 			end

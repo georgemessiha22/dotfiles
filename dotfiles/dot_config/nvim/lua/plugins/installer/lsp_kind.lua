@@ -1,6 +1,6 @@
 --[[
   File: lspkind.lua
-  Description: LSP Kind plugin configuration
+  Description: LSP Kind plugin configuration, showing the functions ability after the dot
   See: https://github.com/onsails/lspkind.nvim
 ]]
 -- LSP Kind {{{

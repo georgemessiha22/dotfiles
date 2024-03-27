@@ -59,7 +59,7 @@ exec tail -f $SWAYSOCK.wob | wob -c $HOME/.config/wob/config.ini
 exec nm-applet --indicator
 
 # for Touchpad gestures
-exec libinput-gestures-setup start
+# exec libinput-gestures-setup start
 
 # Tracker daemon for gnome apps
 exec tracker daemon -s

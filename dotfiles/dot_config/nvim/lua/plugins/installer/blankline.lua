@@ -32,9 +32,24 @@ return {
 
 		vim.g.rainbow_delimiters = { highlight = highlight }
 		require("ibl").setup({
-			scope = { highlight = highlight },
+			indent = {
+				char = "│",
+				tab_char = "│",
+			},
+			scope = { enabled = true, highlight = highlight },
 			exclude = {
 				filetypes = {
+					"help",
+					"alpha",
+					"dashboard",
+					"neo-tree",
+					"Trouble",
+					"trouble",
+					"lazy",
+					"mason",
+					"notify",
+					"toggleterm",
+					"lazyterm",
 					"lspinfo",
 					"packer",
 					"checkhealth",

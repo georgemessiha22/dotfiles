@@ -45,16 +45,14 @@ if test -d ~/.local/go/bin
 end
 
 ## Add rust from .local
-if test -d ~/.cargo/bin
-    if not contains -- ~/.cargo/bin $PATH
-        set -p PATH ~/.cargo/bin
-    end
+if test -f $HOME/.cargo/env.fish
+    source $HOME/.cargo/env.fish
 end
 
 ## Add bun
 set --export BUN_INSTALL "$HOME/.bun"
-if test -d $BUN_INSTALL/bin 
-	fish_add_path -a $BUN_INSTALL/bin
+if test -d $BUN_INSTALL/bin
+    fish_add_path -a $BUN_INSTALL/bin
 end
 
 ## Functions
@@ -116,11 +114,11 @@ end
 # alias lt='exa -aT -L 1' # tree listing
 # alias l.='exa -ald' # show only dotfiles
 # Replace ls with lsd
-alias ls='lsd ' # preferred listing
-alias la='lsd ' # all files and dirs
-alias ll='lsd ' # long format
-alias lt='lsd ' # tree listing
-alias l.='lsd ' # show only dotfiles
+# alias ls='lsd ' # preferred listing
+# alias la='lsd ' # all files and dirs
+# alias ll='lsd ' # long format
+# alias lt='lsd ' # tree listing
+# alias l.='lsd ' # show only dotfiles
 # ip table coloured
 alias ip='ip -color'
 
@@ -176,7 +174,11 @@ alias rip="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -200 | nl"
 alias edit="nvim" # set favorite editor
 alias e="nvim"
 alias gogo="NVIM_APPNAME=nvim-gogo nvim"
-alias gogo-clean="rm -rf $HOME/.cache/nvim-gogo/ $HOME/.local/share/nvim-gogo $HOME/.lcoal/state/nvim-goog"
+alias gogo-clean="rm -rf $HOME/.local/share/nvim-gogo $HOME/.local/state/nvim-gogo $HOME/.cache/nvim-gogo"
+# if using custom build of neovim
+if test -d $HOME/.local/neovim
+    fish_add_path $HOME/.local/neovim/bin
+end
 alias zshconfig="edit ~/.zshrc"
 alias ohmyzsh="edit ~/.local/share/oh-my-zsh"
 alias swayconfig="edit ~/.config/sway"
@@ -196,14 +198,9 @@ alias dockerd-stop="sudo systemctl stop docker && sudo systemctl status docker"
 
 set -x SSH_AUTH_SOCK {$XDG_RUNTIME_DIR}/gcr/ssh
 
-# if using custom build of neovim
-if test -d $HOME/.local/neovim
-    fish_add_path $HOME/.local/neovim/bin
-end
-
 # Add gcloud auth
 if test -d $HOME/google-cloud-sdk/bin
-	export PATH="$HOME/google-cloud-sdk/bin:$PATH"
+    export PATH="$HOME/google-cloud-sdk/bin:$PATH"
 end
 
 # Some default behaviour on mac vs linux
@@ -223,19 +220,12 @@ switch (uname)
 
         # The next line updates PATH for the Google Cloud SDK.
         if test -f '$(brew --prefix)/share/google-cloud-sdk/path.fish.inc'
-						source "$(brew --prefix)/share/google-cloud-sdk/path.fish.inc"
+            source "$(brew --prefix)/share/google-cloud-sdk/path.fish.inc"
         end
 
         # The next line for ruby
         # set CC compiler location this causes so many troubles
         set -gx CC /usr/bin/gcc
-
-        if test -d /opt/homebrew/opt/ruby/bin/
-            fish_add_path -a /opt/homebrew/opt/ruby/bin/
-            fish_add_path -a $(gem environment gemdir)"/bin"
-            set -gx CPPFLAGS -I/opt/homebrew/opt/ruby/include
-            set -gx LDFLAGS -L/opt/homebrew/opt/ruby/lib
-        end
 
         # OpenSSL postinstall
         if test -d /opt/homebrew/opt/openssl@1.1/
@@ -263,35 +253,48 @@ switch (uname)
         end
 
         # adding go path
-        fish_add_path -a /Users/george/go/bin/
+        if test -d $HOME/go/bin
+            fish_add_path -a $HOME/go/bin/
+        end
 
         # Add home dir XDG
         set -gx XDG_CONFIG_HOME "/Users/george/.config"
 
         set -gx RUBY_CONFIGURE_OPTS "--with-openssl-dir=$(brew --prefix openssl@1.1)"
-				if test -d ~/.rbenv/bin/
-					status --is-interactive; and ~/.rbenv/bin/rbenv init - fish | source
-				end
 
-				alias colima-start="colima start --cpu 6 --memory 10 --vm-type=vz --vz-rosetta --mount-type=virtiofs --kubernetes --profile k8s"
+        if test -d $HOME/.rbenv/versions/
+            status --is-interactive; and rbenv init - fish | source
+        end
+        if test -d $HOME/.gem/ruby/2.7.0/bin
+            fish_add_path -a $HOME/.gem/ruby/2.7.0/bin
+        end
+
+        if test -d /opt/homebrew/opt/ruby/bin/
+            fish_add_path -a /opt/homebrew/opt/ruby/bin/
+            fish_add_path -a $(gem environment gemdir)"/bin"
+            set -gx CPPFLAGS -I/opt/homebrew/opt/ruby/include
+            set -gx LDFLAGS -L/opt/homebrew/opt/ruby/lib
+        end
+
+        alias colima-start="colima start --cpu 6 --memory 10 --vm-type=vz --vz-rosetta --mount-type=virtiofs --kubernetes --profile k8s"
         # copy gpg
         alias gpg-pass="printf '%s' (cat ~/Documents/recovery/gpg) | pbcopy"
-				
-				# Yabai logs
-				alias yabaiLogs="tail -f /tmp/yabai_$USER.out.log | sed 's/^/out: /' & tail -f /tmp/yabai_$USER.err.log | sed 's/^/err: /'"
 
-				# skhd logs
-				alias skhdLogs="tail -f /tmp/skhd_$USER.out.log | sed 's/^/out: /' & tail -f /tmp/skhd_$USER.err.log | sed 's/^/err: /'"
+        # Yabai logs
+        alias yabaiLogs="tail -f /tmp/yabai_$USER.out.log | sed 's/^/out: /' & tail -f /tmp/yabai_$USER.err.log | sed 's/^/err: /'"
+
+        # skhd logs
+        alias skhdLogs="tail -f /tmp/skhd_$USER.out.log | sed 's/^/out: /' & tail -f /tmp/skhd_$USER.err.log | sed 's/^/err: /'"
 
     case '*'
         # copy gpg
         alias gpg-pass="printf '%s' (cat ~/Documents/recovery/gpg) | wl-copy"
         alias hx="helix"
 
-				# opam configuration oCaml
-				if test /home/gmessiha/.opam/opam-init/init.fish 
-					source /home/gmessiha/.opam/opam-init/init.fish > /dev/null 2> /dev/null; or true
-				end
+        # opam configuration oCaml
+        if test /home/gmessiha/.opam/opam-init/init.fish
+            source /home/gmessiha/.opam/opam-init/init.fish >/dev/null 2>/dev/null; or true
+        end
 end
 
 # FZF because everyone is fuzzy about it.
@@ -306,4 +309,3 @@ starship init fish | source
 if status --is-interactive && type -q fastfetch
     fastfetch
 end
-
