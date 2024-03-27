@@ -1,4 +1,6 @@
 return {
+	leader = " ",
+	font = "JetBrainsMonoNL Nerd Font",
 	------------------------------- base46 -------------------------------------
 	-- hl = highlights
 	hl_add = {},

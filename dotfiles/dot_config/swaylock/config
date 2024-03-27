@@ -2,12 +2,19 @@
 # no-unlock-indicator
 # daemonize
 indicator-caps-lock
+indicator-idle-visible
 # datestr=%A
 image=$HOME/.config/swaylock/swaylock.png
 scaling=fill
-font=UbuntuMono
+font=Jetbrains Nerd Mono
 font-size=20
-
+color=#B2AC88
+clock
+effect-blur=10x10
+screenshots
+timestr=%-l:%M %p
+datestr=%a, %B %-e, %Y
+grace=1
 
 # Ring
 indicator-radius=360
