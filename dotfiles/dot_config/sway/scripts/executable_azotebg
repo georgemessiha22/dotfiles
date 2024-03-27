@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 pkill swaybg
-swaybg -o 'DP-2' -i "/home/gmessiha/Pictures/bg.jpg" -m fill &
-swaybg -o 'DP-1' -i "/home/gmessiha/Pictures/bg.jpg" -m fill &
-swaybg -o 'eDP-1' -i "/home/gmessiha/Pictures/bg.jpg" -m fill &
+
+swaybg -o 'DP-2' -i "$(find /usr/share/wallpapers/garuda-wallpapers/ -type f | shuf -n1)" -m fill &
+swaybg -o 'DP-1' -i "$(find /usr/share/wallpapers/garuda-wallpapers/ -type f | shuf -n1)" -m fill &
+swaybg -o 'eDP-1' -i "$(find /usr/share/wallpapers/garuda-wallpapers/ -type f | shuf -n1)" -m fill &

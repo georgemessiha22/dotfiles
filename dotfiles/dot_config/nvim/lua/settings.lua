@@ -5,7 +5,7 @@
 ]]
 
 local cmd = vim.cmd -- Command function
-local g = vim.g     -- Vim globals
+local g = vim.g -- Vim globals
 local opt = vim.opt -- Vim optionals
 
 local config = require("config")
@@ -15,10 +15,11 @@ cmd("color " .. config.ui.theme)
 
 vim.notify = require("notify")
 
-g.mapleader = " "
+g.mapleader = config.ui.leader
 g.toggle_theme_icon = "   "
 g.neon_transparent = config.ui.transparency
 g.neon_style = config.ui.theme_toggle[1]
+vim.guifont = config.ui.font
 
 -------------------------------------- options ------------------------------------------
 opt.laststatus = 2 -- global statusline
@@ -60,10 +61,10 @@ opt.ruler = true
 -- }}}
 
 -- Search {{{
-opt.ignorecase = true  -- Ignore case if all characters in lower case
+opt.ignorecase = true -- Ignore case if all characters in lower case
 opt.joinspaces = false -- Join multiple spaces in search
-opt.smartcase = true   -- When there is a one capital letter search for exact match
-opt.showmatch = true   -- Highlight search instances
+opt.smartcase = true -- When there is a one capital letter search for exact match
+opt.showmatch = true -- Highlight search instances
 -- }}}
 
 -- Window {{{
@@ -111,17 +112,15 @@ local format_sync_grp = vim.api.nvim_create_augroup("Format", {})
 -- format on save all files
 autocmd("BufWritePre", {
 	pattern = "*",
-	-- exclude = {"*.go"},
+	-- exclude = { "*.rb" },
 	callback = function()
-		--    vim.notify("Formater")
-		vim.lsp.buf.format()
-	end,
-	group = format_sync_grp,
-})
-autocmd("BufWritePre", {
-	pattern = "*.go",
-	callback = function()
-		require("go.format").gofmt()
+		--    vim.notify("Formatter")
+		-- Never request solargaph for formatting
+		vim.lsp.buf.format({
+			filter = function(client)
+				return client.name ~= "solargraph"
+			end,
+		})
 	end,
 	group = format_sync_grp,
 })
@@ -165,12 +164,12 @@ autocmd("BufWritePost", {
 
 -- Default Plugins {{{
 local disabled_built_ins = {
-	-- "netrw",
-	-- "netrwPlugin",
-	-- "netrwSettings",
-	-- "netrwFileHandlers",
-	-- "gzip",
-	-- "zip",
+	--	"netrw",
+	--	"netrwPlugin",
+	--	"netrwSettings",
+	--	"netrwFileHandlers",
+	"gzip",
+	"zip",
 	"zipPlugin",
 	"tar",
 	"tarPlugin",

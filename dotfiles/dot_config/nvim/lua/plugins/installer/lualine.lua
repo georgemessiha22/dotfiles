@@ -14,7 +14,18 @@ return {
 			"nvim-tree/nvim-web-devicons",
 		},
 		config = function()
-			local ui = require("config").ui
+			-- Color for highlights
+			local colors = {
+				yellow = "#ECBE7B",
+				cyan = "#008080",
+				darkblue = "#081633",
+				green = "#98be65",
+				orange = "#FF8800",
+				violet = "#a9a1e1",
+				magenta = "#c678dd",
+				blue = "#51afef",
+				red = "#ec5f67",
+			}
 			require("lualine").setup({
 				--[[
 					branch (git branch) ✔️
@@ -38,13 +49,56 @@ return {
 				sections = {
 					lualine_a = { "mode" },
 					lualine_b = { "branch", "diff", "diagnostics" },
-					lualine_c = { "lsp_progress", { "filename", path = 1 } },
-					lualine_x = { "encoding", "fileformat", "filetype" },
-					lualine_y = { "progress" },
+					lualine_c = {
+						{
+							"lsp_progress",
+							colors = {
+								percentage = colors.cyan,
+								title = colors.cyan,
+								message = colors.cyan,
+								spinner = colors.cyan,
+								lsp_client_name = colors.magenta,
+								use = true,
+							},
+							separators = {
+								component = " ",
+								progress = " | ",
+								percentage = { pre = "", post = "%%" },
+								title = { pre = "", post = ":" },
+								lsp_client_name = { pre = "[", post = "]" },
+								spinner = { pre = "", post = "" },
+								message = { pre = "(", post = ")", commenced = "In Progress", completed = "Completed" },
+							},
+							display_components = {
+								"lsp_client_name",
+								"spinner",
+								{
+									--[[ "title", ]]
+									"percentage",
+									--[[ "message" ]]
+								},
+							},
+							-- timer = { progress_enddelay = 500, spinner = 1000, lsp_client_name_enddelay = 1000 },
+							spinner_symbols = { "🌑", "🌒", "🌓", "🌔", "🌕", "🌖", "🌗", "🌘" },
+						},
+						{
+							"filename",
+							path = 1,
+						},
+						-- {
+						-- 	"progress",
+						-- 	seprator = " ",
+						-- 	padding = { left = 0, right = 1 },
+						-- },
+					},
+					lualine_x = {
+						-- "encoding",
+						-- "fileformat",
+						"filetype",
+					},
+					lualine_y = { "location", "selectioncount", "searchcount" },
 					lualine_z = {
-						"location",
-						-- "selectioncount",
-						"searchcount",
+						{ "os.date('%l:%M %p')", "data", "require'lsp-status'.status()" },
 					},
 				},
 				tabline = {
@@ -56,10 +110,11 @@ return {
 				options = {
 					-- theme = "nord",
 					theme = "auto",
-					-- globalstatus = true,
+					globalstatus = false,
 					disabled_filetypes = {
+
 						"neo-tree",
-						-- "trouble",
+						"trouble",
 					},
 					component_separators = { left = "", right = "|" },
 					section_separators = { left = "", right = "" },
@@ -75,7 +130,7 @@ return {
 					-- "man",
 					"mason",
 					-- "mundo",
-					-- "neo-tree",
+					"neo-tree",
 					-- "nerdtree",
 					"nvim-dap-ui",
 					-- "nvim-tree",
