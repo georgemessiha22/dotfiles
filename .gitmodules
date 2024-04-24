@@ -1,0 +1,3 @@
+[submodule "dotfiles/dot_config/nvim"]
+	path = dotfiles/dot_config/nvim
+	url = git@github.com:georgemessiha22/gogo
