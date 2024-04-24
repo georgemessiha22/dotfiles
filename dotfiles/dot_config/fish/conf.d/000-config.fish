@@ -173,8 +173,7 @@ alias rip="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -200 | nl"
 
 alias edit="nvim" # set favorite editor
 alias e="nvim"
-alias gogo="NVIM_APPNAME=nvim-gogo nvim"
-alias gogo-clean="rm -rf $HOME/.local/share/nvim-gogo $HOME/.local/state/nvim-gogo $HOME/.cache/nvim-gogo"
+
 # if using custom build of neovim
 if test -d $HOME/.local/neovim
     fish_add_path $HOME/.local/neovim/bin
