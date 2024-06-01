@@ -304,7 +304,7 @@ direnv hook fish | source
 
 starship init fish | source
 
-## Run neofetch if session is interactive
-if status --is-interactive && type -q neofetch
-    neofetch
+## Run fastfetch if session is interactive
+if status --is-interactive && type -q fastfetch
+    fastfetch
 end
