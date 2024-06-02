@@ -73,7 +73,6 @@ alias rip="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -200 | nl"
 [[ -x ~/.fzf.bash ]] && source ~/.fzf.bash
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
 if [[ -d $HOME/.cargo ]]; then
 	. "$HOME/.cargo/env"
 fi

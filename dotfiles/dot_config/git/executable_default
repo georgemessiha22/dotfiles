@@ -1,0 +1,16 @@
+[user]
+	email = georgemessiha22@gmail.com
+	name = George Messiha
+	signingkey = DFC444BC38AF229D
+
+[commit]
+	gpgsign = true
+
+[push]
+	autoSetupRemote = true
+
+[init]
+    defaultBranch = master
+
+[credential]
+	helper = /usr/lib/git-core/git-credential-libsecret

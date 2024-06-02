@@ -1,24 +1,48 @@
-[user]
-	email = georgemessiha22@gmail.com
-	name = George Messiha
-	signingkey = 38978058BF4371AF
-[core]
-	editor = "nano"
-[push]
-	autoSetupRemote = true
-[init]
-    defaultBranch = main
 
 [url "git@github.com:"]
 	insteadOf = https://github.com/
 
 [url "git@gitlab.com:"]
-   insteadOf = https://gitlab.com/
+	insteadOf = https://gitlab.com/
 
-# [url "ssh://git@github.com/"]
-#   insteadOf = "https://github.com/"
+[url "https://github.com/rust-lang/crates.io-index"]
+	insteadOf = https://github.com/rust-lang/crates.io-index
 
-#[url "ssh://git@gitlab.com/"]
-#   insteadOf = "https://gitlab.com/"
 [status]
-	submodulesummary = 1
+	submoduleSummary = true
+
+[pull]
+	rebase = true
+
+[core]
+	editor = "nvim"
+  excludesfile = ~/.config/git/ignore_global
+  pager = delta
+
+[interactive]
+  diffFilter = delta --color-only
+
+[delta]
+  navigate = true
+  side-by-side = true
+  line-number = true
+  dark = true
+
+[merge]
+  conflictstyle = diff3
+
+[diff]
+	colorMoved = default
+
+# when working with personal
+[includeIf "gitdir:**/projects/**/.git"]
+  path = ~/.config/git/default
+
+# when working with dotfiles
+[includeIf "gitdir:**/backup/**/.git"]
+	path = ~/.config/git/default
+
+# when working with HungerStation
+[includeIf "gitdir:**/HungerStation/**/.git"]
+  path = ~/.config/git/hungerstation
+
