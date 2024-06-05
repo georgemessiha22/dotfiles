@@ -34,15 +34,27 @@
 [diff]
 	colorMoved = default
 
+[commit]
+	gpgsign = true
+
+[push]
+	autoSetupRemote = true
+
+[init]
+    defaultBranch = master
+
+[user]
+	name = George Messiha
+
 # when working with personal
-[includeIf "gitdir:**/projects/**/.git"]
+[includeIf "gitdir:**/projects/"]
   path = ~/.config/git/default
 
 # when working with dotfiles
-[includeIf "gitdir:**/backup/**/.git"]
+[includeIf "gitdir:**/backup/"]
 	path = ~/.config/git/default
 
 # when working with HungerStation
-[includeIf "gitdir:**/HungerStation/**/.git"]
+[includeIf "gitdir:**/HungerStation/"]
   path = ~/.config/git/hungerstation
 

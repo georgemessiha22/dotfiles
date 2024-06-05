@@ -1,5 +1,5 @@
 command_timeout = 9999
-format = '$os$all$dienv$character'
+format = '$os$all$character'
 
 [shell]
 disabled = false

@@ -222,62 +222,62 @@ switch (uname)
             source "$(brew --prefix)/share/google-cloud-sdk/path.fish.inc"
         end
 
-        # The next line for ruby
-        # set CC compiler location this causes so many troubles
-        set -gx CC /usr/bin/gcc
-
         # OpenSSL postinstall
-        if test -d /opt/homebrew/opt/openssl@1.1/
-            fish_add_path /opt/homebrew/opt/openssl@1.1/bin
-            set -gx LDFLAGS "-L/opt/homebrew/opt/openssl@1.1/lib"
-            set -gx CPPFLAGS "-I/opt/homebrew/opt/openssl@1.1/include"
-            set -gx PKG_CONFIG_PATH "/opt/homebrew/opt/openssl@1.1/lib/pkgconfig"
-        end
+        # if test -d /opt/homebrew/opt/openssl@1.1/
+        #     fish_add_path -a /opt/homebrew/opt/openssl@1.1/bin
+        #     set -gx LDFLAGS "-L/opt/homebrew/opt/openssl@1.1/lib"
+        #     set -gx CPPFLAGS "-I/opt/homebrew/opt/openssl@1.1/include"
+        #     set -gx PKG_CONFIG_PATH "/opt/homebrew/opt/openssl@1.1/lib/pkgconfig"
+        # end
+
         # libressl
-        # fish_add_path /opt/homebrew/opt/libressl/bin
-        # set -gx LDFLAGS "-L/opt/homebrew/opt/libressl/lib"
-        # set -gx CPPFLAGS "-I/opt/homebrew/opt/libressl/include"
-        # set -gx PKG_CONFIG_PATH "/opt/homebrew/opt/libressl/lib/pkgconfig"
+        # if test -d /opt/homebrew/opt/libressl/bin
+        #     fish_add_path -a /opt/homebrew/opt/libressl/bin
+        #     set -gx LDFLAGS -L/opt/homebrew/opt/libressl/lib
+        #     set -gx CPPFLAGS -I/opt/homebrew/opt/libressl/include
+        #     set -gx PKG_CONFIG_PATH /opt/homebrew/opt/libressl/lib/pkgconfig
+        # end
 
-        if test -d /opt/homebrew/opt/llvm/
-            set -gx LDFLAGS -L/opt/homebrew/opt/llvm/lib
-            set -gx CPPFLAGS -I/opt/homebrew/opt/llvm/include
-            fish_add_path -a /opt/homebrew/opt/llvm/bin
+        if test -d /opt/homebrew/opt/llvm@15/
+            set -gx LDFLAGS -L/opt/homebrew/opt/llvm@15/lib/c++ -Wl,-rpath,/opt/homebrew/opt/llvm@15/lib/c++
+            set -gx CPPFLAGS -I/opt/homebrew/opt/llvm@15/include
+            fish_add_path -a /opt/homebrew/opt/llvm@15/bin
         end
 
-        if test -d /opt/homebrew/opt/readline/
-            set -gx LDFLAGS -L/opt/homebrew/opt/readline/lib
-            set -gx CPPFLAGS -I/opt/homebrew/opt/readline/include
-            set -gx PKG_CONFIG_PATH /opt/homebrew/opt/readline/lib/pkgconfig
-        end
+        # if test -d /opt/homebrew/opt/readline/
+        #     set -gx LDFLAGS -L/opt/homebrew/opt/readline/lib
+        #     set -gx CPPFLAGS -I/opt/homebrew/opt/readline/include
+        #     set -gx PKG_CONFIG_PATH /opt/homebrew/opt/readline/lib/pkgconfig
+        # end
 
         # adding go path
         if test -d $HOME/go/bin
             fish_add_path -a $HOME/go/bin/
         end
 
-        # Add home dir XDG
-        set -gx XDG_CONFIG_HOME "/Users/george/.config"
-
-        set -gx RUBY_CONFIGURE_OPTS "--with-openssl-dir=$(brew --prefix openssl@1.1)"
+        # The next line for ruby
+        # set CC compiler location this causes so many troubles
+        # set -gx CC /opt/homebrew/bin/gcc-11
 
         if test -d $HOME/.rbenv/versions/
             status --is-interactive; and rbenv init - fish | source
-        end
-        if test -d $HOME/.gem/ruby/2.7.0/bin
-            fish_add_path -a $HOME/.gem/ruby/2.7.0/bin
+            fish_add_path -a "$HOME/.rbenv/shims"
         end
 
-        if test -d /opt/homebrew/opt/ruby/bin/
-            fish_add_path -a /opt/homebrew/opt/ruby/bin/
-            fish_add_path -a $(gem environment gemdir)"/bin"
-            set -gx CPPFLAGS -I/opt/homebrew/opt/ruby/include
-            set -gx LDFLAGS -L/opt/homebrew/opt/ruby/lib
-        end
+        # if test -d /opt/homebrew/opt/ruby/bin/
+        #     set -gx CPPFLAGS -I/opt/homebrew/opt/ruby/include
+        #     set -gx LDFLAGS -L/opt/homebrew/opt/ruby/lib
+        # end
 
-        alias colima-start="colima start --cpu 6 --memory 10 --vm-type=vz --vz-rosetta --mount-type=virtiofs --kubernetes --profile k8s"
-        # copy gpg
-        alias gpg-pass="printf '%s' (cat ~/Documents/recovery/gpg) | pbcopy"
+        # if test -d $HOME/.rbenv/versions/2.7.5/include/
+        #     set -gx CPPFLAGS -I$HOME/.rbenv/versions/2.7.5/include/
+        #     set -gx LDFLAGS -L$HOME/.rbenv/versions/2.7.5/lib/
+        # end
+
+        # Add home dir XDG
+        set -gx XDG_CONFIG_HOME "/Users/george/.config"
+
+        # set -gx RUBY_CONFIGURE_OPTS "--with-openssl-dir=$(brew --prefix openssl@1.1)"
 
         # Yabai logs
         alias yabaiLogs="tail -f /tmp/yabai_$USER.out.log | sed 's/^/out: /' & tail -f /tmp/yabai_$USER.err.log | sed 's/^/err: /'"
@@ -287,7 +287,6 @@ switch (uname)
 
     case '*'
         # copy gpg
-        alias gpg-pass="printf '%s' (cat ~/Documents/recovery/gpg) | wl-copy"
         alias hx="helix"
 
         # opam configuration oCaml

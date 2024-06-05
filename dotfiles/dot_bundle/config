@@ -1,0 +1,8 @@
+---
+BUNDLE_BUILD__EVENTMACHINE: "--with-openssl-dir=/opt/homebrew/opt/libressl"
+BUNDLE_BUILD__THIN: "--with-cflags=-Wno-error=implicit-function-declaration"
+BUNDLE_BUILD__GRPC: "--with-cflags=-Wno-error=incompatible-function-pointer-types"
+BUNDLE_BUILD__OJ: "--with-cflags=-Wno-error=incompatible-function-pointer-types"
+BUNDLE_BUILD__MSGPACK: "--with-cflags=-Wno-error=incompatible-function-pointer-types"
+BUNDLE_BUILD__LIBXML_RUBY: "--with-cflags=-Wno-error=incompatible-function-pointer-types"
+BUNDLE_JOBS: "20"
