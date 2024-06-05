@@ -1,22 +1,4 @@
 [user]
 	email = george.messiha@hungerstation.com
-	name = George Messiha
 	signingkey = 3D47CB2B016E3840
 
-[commit]
-	gpgsign = true
-
-[push]
-	autoSetupRemote = true
-
-[init]
-	defaultBranch = master
-
-[status]
-	submoduleSummary = true
-
-[pull]
-	rebase = true
-
-[status]
-	submodulesummary = 1
