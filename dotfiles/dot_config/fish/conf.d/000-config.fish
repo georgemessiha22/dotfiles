@@ -44,11 +44,6 @@ if test -d ~/.local/go/bin
     end
 end
 
-## Add rust from .local
-if test -f $HOME/.cargo/env.fish
-    source $HOME/.cargo/env.fish
-end
-
 ## Add bun
 set --export BUN_INSTALL "$HOME/.bun"
 if test -d $BUN_INSTALL/bin

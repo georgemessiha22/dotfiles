@@ -1,2 +1,3 @@
 GOMODCACHE=/home/gmessiha/.local/go/pkg/mod
+GONOSUMDB=gitlab.com/startupbuilder
 GOPATH=/home/gmessiha/.local/go
