@@ -2,7 +2,7 @@ theme = "catppuccin_frappe"
 
 [editor]
 line-number = "absolute"
-mouse = false
+mouse = true
 cursorline = true
 cursorcolumn = true
 auto-save = true
