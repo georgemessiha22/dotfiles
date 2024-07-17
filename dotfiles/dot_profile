@@ -1,5 +1,5 @@
-export EDITOR=/usr/bin/micro
-export BROWSER=firedragon
+export EDITOR=nvim
+export BROWSER=firefox
 export TERM=alacritty
 export MAIL=geary
 export QT_QPA_PLATFORMTHEME="qt5ct"
@@ -38,13 +38,3 @@ export QT_QPA_PLATFORM=wayland
 #export QT_WAYLAND_FORCE_DPI=physical
 #export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
 
-
-# Added by Toolbox App
-export PATH="$PATH:/home/gmessiha/.local/share/JetBrains/Toolbox/scripts"
-
-[[ -f "$HOME/.cargo/env" ]] && . "$HOME/.cargo/env"
-
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
-
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*

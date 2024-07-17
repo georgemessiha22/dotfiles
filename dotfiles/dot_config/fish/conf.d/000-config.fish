@@ -24,30 +24,41 @@ end
 # Add ~/.local/bin to PATH
 if test -d ~/.local/bin
     if not contains -- ~/.local/bin $PATH
-        set -p PATH ~/.local/bin
+        fish_add_path -a ~/.local/bin
     end
 end
 
 # Add depot_tools to PATH
 if test -d ~/Applications/depot_tools
     if not contains -- ~/Applications/depot_tools $PATH
-        set -p PATH ~/Applications/depot_tools
+        fish_add_path -a ~/Applications/depot_tools
     end
 end
 
 ## Add golang from .local
 if test -d ~/.local/go/bin
     if not contains -- ~/.local/go/bin $PATH
-        set -p PATH ~/.local/go/bin
-        set -p PATH ~/.local/gopkgs/bin
+        fish_add_path -a ~/.local/go/bin
+        fish_add_path -a ~/.local/gopkgs/bin
         set -x GOPATH ~/.local/gopkgs
     end
 end
 
 ## Add bun
-set --export BUN_INSTALL "$HOME/.bun"
+set --export BUN_INSTALL "$HOME/.local/bun"
 if test -d $BUN_INSTALL/bin
     fish_add_path -a $BUN_INSTALL/bin
+end
+
+## Add Zig
+set --export ZIG_PATH "$HOME/.local/zig"
+if test -d $ZIG_PATH
+    fish_add_path -a $ZIG_PATH
+end
+
+## Add Cargo 
+if test -d "$HOME/.cargo/bin"
+    fish_add_path -a $HOME/.cargo/bin/
 end
 
 ## Functions
@@ -171,8 +182,9 @@ alias e="nvim"
 
 # if using custom build of neovim
 if test -d $HOME/.local/neovim
-    fish_add_path $HOME/.local/neovim/bin
+    fish_add_path -a $HOME/.local/neovim/bin
 end
+
 alias zshconfig="edit ~/.zshrc"
 alias ohmyzsh="edit ~/.local/share/oh-my-zsh"
 alias swayconfig="edit ~/.config/sway"
@@ -194,7 +206,7 @@ set -x SSH_AUTH_SOCK {$XDG_RUNTIME_DIR}/gcr/ssh
 
 # Add gcloud auth
 if test -d $HOME/google-cloud-sdk/bin
-    export PATH="$HOME/google-cloud-sdk/bin:$PATH"
+    fish_add_path -a "$HOME/google-cloud-sdk/bin"
 end
 
 # Some default behaviour on mac vs linux
