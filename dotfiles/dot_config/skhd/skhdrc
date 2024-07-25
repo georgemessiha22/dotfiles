@@ -62,4 +62,8 @@ ctrl + alt - r : yabai --restart-service
 
 # open alacritty
 
-ctrl + shift - l : alacritty
+# ctrl + shift - l : alacritty
+
+# open kitty
+
+ctrl + shift - l : kitty
