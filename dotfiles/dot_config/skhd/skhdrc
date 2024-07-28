@@ -4,7 +4,7 @@ cmd + alt - k : yabai -m window --focus north
 cmd + alt - h : yabai -m window --focus west
 cmd + alt - l : yabai -m window --focus east
 
-#change focus between external displays (left and right)
+# change focus between external displays (left and right)
 ctrl + alt - s: yabai -m display --focus west
 ctrl + alt - g: yabai -m display --focus east
 
