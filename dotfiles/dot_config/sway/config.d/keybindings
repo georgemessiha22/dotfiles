@@ -30,7 +30,7 @@
     # Exit sway (logs you out of your Wayland session)
     #    bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
     bindsym $mod+Shift+e exec $powermenu
-    
+
     #bindsym $mod+Shift+e exec swaynag \
     #    -t warning \
     #    -m "Do You want to exit" \
@@ -96,7 +96,7 @@
     bindsym $mod+Shift+0 move container to workspace number 10
     # Note: workspaces can have any name you want, not just numbers.
     # We just use 1-10 as the default.
-    
+
     # move workspace around
     bindsym $mod+Control+Shift+Right move workspace to output right
     bindsym $mod+Control+Shift+Left move workspace to output left
@@ -139,7 +139,7 @@
     # Show the next scratchpad window or hide the focused scratchpad window.
     # If there are multiple scratchpad windows, this command cycles through them.
     bindsym $mod+minus scratchpad show
-    
+
     # Activities
     bindsym $mod+p exec swayr switch-window
 

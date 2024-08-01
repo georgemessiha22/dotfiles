@@ -261,9 +261,6 @@ alias swaylog="less +F /tmp/sway/\`ls -t /tmp/sway | head -1\`"
 [[ -d "${HOME}/.npm-global" ]] && export PATH="${PATH}:${HOME}/.npm-global/bin"
 [[ -d "${HOME}/.yarn" ]] && export PATH="${PATH}:${HOME}/.yarn/bin"
 
-export GOPATH="${HOME}/.local/gopkgs"
-[[ -d "${HOME}/.local/go/bin" ]] && export PATH="${PATH}:${HOME}/.local/go/bin"
-[[ -d "${GOPATH}/bin" ]] && export PATH="${PATH}:${GOPATH}/bin"
 
 # python bin
 [[ -d "${HOME}/.local/bin" ]] && export PATH="${PATH}:${HOME}/.local/bin"
