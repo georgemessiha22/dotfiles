@@ -40,7 +40,7 @@ if test -d ~/.local/go/bin
     if not contains -- ~/.local/go/bin $PATH
         fish_add_path -a ~/.local/go/bin
         fish_add_path -a ~/.local/gopkgs/bin
-        set -x GOPATH ~/.local/gopkgs
+        # set -x GOPATH ~/.local/gopkgs
     end
 end
 
@@ -304,6 +304,17 @@ end
 
 # FZF because everyone is fuzzy about it.
 # fzf_key_bindings
+
+# proto
+if test -d "$HOME/.proto"
+    set -gx PROTO_HOME "$HOME/.proto"
+    set -gx PATH "$PROTO_HOME/shims" "$PROTO_HOME/bin" $PATH
+    set -gx __ORIG_PATH $PATH
+
+    function __proto_hook --on-variable PWD
+        proto activate fish --export | source
+    end
+end
 
 ## Direnv support
 direnv hook fish | source
