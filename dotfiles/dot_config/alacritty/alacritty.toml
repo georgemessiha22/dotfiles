@@ -20,8 +20,15 @@ action = "SpawnNewInstance"
 key = "Return"
 mods = "Control|Shift"
 
+[[keyboard.bindings]]
+key= "G"
+mods= "Shift|Control"
+action= "ToggleViMode"
+
 [window]
 opacity = 0.899
+decorations =  "buttonless"
+blur = true
 
 [window.padding]
 x = 5

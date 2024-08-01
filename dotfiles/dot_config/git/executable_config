@@ -1,35 +1,19 @@
-
-[url "git@github.com:"]
-	insteadOf = https://github.com/
-
-[url "git@gitlab.com:"]
-	insteadOf = https://gitlab.com/
-
-[url "https://github.com/rust-lang/crates.io-index"]
-	insteadOf = https://github.com/rust-lang/crates.io-index
-
-[status]
-	submoduleSummary = true
-
-[pull]
-	rebase = true
-
 [core]
 	editor = "nvim"
-  excludesfile = ~/.config/git/ignore_global
-  pager = delta
+	excludesfile = ~/.config/git/ignore_global
+	pager = delta
 
 [interactive]
-  diffFilter = delta --color-only
+	diffFilter = delta --color-only
 
 [delta]
-  navigate = true
-  side-by-side = true
-  line-number = true
-  dark = true
+	navigate = true
+	side-by-side = true
+	line-number = true
+	dark = true
 
 [merge]
-  conflictstyle = diff3
+	conflictstyle = diff3
 
 [diff]
 	colorMoved = default
@@ -41,14 +25,29 @@
 	autoSetupRemote = true
 
 [init]
-    defaultBranch = master
+	defaultBranch = master
 
 [user]
 	name = George Messiha
 
+[status]
+	submoduleSummary = true
+
+[pull]
+	rebase = true
+
+[url "git@github.com:"]
+	insteadOf = https://github.com/
+
+[url "git@gitlab.com:"]
+	insteadOf = https://gitlab.com/
+
+[url "https://github.com/rust-lang/crates.io-index"]
+	insteadOf = https://github.com/rust-lang/crates.io-index
+
 # when working with personal
 [includeIf "gitdir:**/projects/"]
-  path = ~/.config/git/default
+	path = ~/.config/git/default
 
 # when working with dotfiles
 [includeIf "gitdir:**/backup/"]
@@ -56,5 +55,4 @@
 
 # when working with HungerStation
 [includeIf "gitdir:**/HungerStation/"]
-  path = ~/.config/git/hungerstation
-
+	path = ~/.config/git/hungerstation

@@ -1,4 +1,4 @@
-command_timeout = 9999
+command_timeout = 99
 format = '$os$all$character'
 
 [shell]

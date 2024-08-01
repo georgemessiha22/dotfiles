@@ -1,8 +1,8 @@
 # change window focus within space
-cmd + alt - j : yabai -m window --focus south
-cmd + alt - k : yabai -m window --focus north
-cmd + alt - h : yabai -m window --focus west
-cmd + alt - l : yabai -m window --focus east
+ctrl + alt - j : yabai -m window --focus south
+ctrl + alt - k : yabai -m window --focus north
+ctrl + alt - h : yabai -m window --focus west
+ctrl + alt - l : yabai -m window --focus east
 
 # change focus between external displays (left and right)
 ctrl + alt - s: yabai -m display --focus west
@@ -33,16 +33,16 @@ shift + alt - h : yabai -m window --swap west
 shift + alt - l : yabai -m window --swap east
 
 # move window and split
-ctrl + alt - j : yabai -m window --warp south
-ctrl + alt - k : yabai -m window --warp north
-ctrl + alt - h : yabai -m window --warp west
-ctrl + alt - l : yabai -m window --warp east
+ctrl + shift + alt - j : yabai -m window --warp south
+ctrl + shift + alt - k : yabai -m window --warp north
+ctrl + shift + alt - h : yabai -m window --warp west
+ctrl + shift + alt - l : yabai -m window --warp east
 
 # move window to display left and right
-cmd + shift + alt - s : yabai -m window --display west; yabai -m display --focus west;
-cmd + shift + alt - g : yabai -m window --display east; yabai -m display --focus east;
+ctrl + shift + alt - s : yabai -m window --display west; yabai -m display --focus west;
+ctrl + shift + alt - g : yabai -m window --display east; yabai -m display --focus east;
 
-#move window to prev and next space
+# move window to prev and next space
 shift + alt - p : yabai -m window --space prev;
 shift + alt - n : yabai -m window --space next;
 
@@ -62,8 +62,8 @@ ctrl + alt - r : yabai --restart-service
 
 # open alacritty
 
-# ctrl + shift - l : alacritty
+ctrl + shift - l : open -n -a alacritty
 
 # open kitty
 
-ctrl + shift - l : kitty
+# ctrl + shift - l : open -n -a kitty

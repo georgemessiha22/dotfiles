@@ -8,10 +8,10 @@
 # If the script is run with a non-Alacritty window in focus or a non-compliant
 # version of Alacritty, an instance will be spawned in the user's $HOME.
 
-TERMINAL_APP=kitty
-# TERMINAL_APP=alacritty
-WINDOW_NAME=kitty
-# WINDOW_NAME=Alacritty
+# TERMINAL_APP=kitty
+TERMINAL_APP=alacritty
+# WINDOW_NAME=kitty
+WINDOW_NAME=Alacritty
 
 ACTIVE_WM_CLASS=$(swaymsg -t get_tree | jq '.. | (.nodes? // empty)[] | select(.focused==true) | {app_id, pid} | [.[]][0]')
 ACTIVE_WINDOW_PID=$(swaymsg -t get_tree | jq '.. | (.nodes? // empty)[] | select(.focused==true) | {app_id, pid} | [.[]][1] ')

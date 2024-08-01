@@ -204,7 +204,7 @@ on_force_close "quit"
 //    - true
 //    - false (Default)
 //
-simplified_ui true
+simplified_ui false
 
 // Choose the path to the default shell that zellij will use for opening new panes
 // Default: $SHELL
@@ -220,7 +220,7 @@ simplified_ui true
 //   - true (default)
 //   - false
 //
-pane_frames true
+pane_frames false
 
 // Toggle between having Zellij lay out panes according to a predefined set of layouts whenever possible
 // Options:
@@ -240,7 +240,7 @@ pane_frames true
 // Options:
 //   - true
 //   - false (default)
-serialize_pane_viewport true
+serialize_pane_viewport false
 
 // Scrollback lines to serialize along with the pane viewport when serializing sessions, 0
 // defaults to the scrollback size. If this number is higher than the scrollback size, it will
