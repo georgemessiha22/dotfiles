@@ -319,7 +319,8 @@ end
 ## Direnv support
 direnv hook fish | source
 
-starship init fish | source
+# starship init fish | source
+oh-my-posh init fish --config 'https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/blue-owl.omp.json' | source
 
 ## Run fastfetch if session is interactive
 if status --is-interactive && type -q fastfetch
