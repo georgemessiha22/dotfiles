@@ -262,6 +262,11 @@ switch (uname)
             fish_add_path -a $HOME/go/bin/
         end
 
+        # adding python path
+        if test -d /Users/george/Library/Python/3.12/bin
+            fish_add_path -a /Users/george/Library/Python/3.12/bin
+        end
+
         # The next line for ruby
         # set CC compiler location this causes so many troubles
         # set -gx CC /opt/homebrew/bin/gcc-11
@@ -314,6 +319,13 @@ if test -d "$HOME/.proto"
     function __proto_hook --on-variable PWD
         proto activate fish --export | source
     end
+end
+
+# kubectl krew
+set KREW_PATH "$KREW_ROOT"
+test -z "$KREW_PATH"; and set KREW_PATH "$HOME/.krew"
+if test -d "$KREW_PATH"
+    fish_add_path -a "$KREW_PATH/bin"
 end
 
 ## Direnv support

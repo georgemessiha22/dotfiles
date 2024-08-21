@@ -26,9 +26,9 @@ mods= "Shift|Control"
 action= "ToggleViMode"
 
 [window]
-opacity = 0.899
+opacity = 0.9888
 decorations =  "buttonless"
-blur = true
+blur = false
 
 [window.padding]
 x = 5
