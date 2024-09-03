@@ -2,6 +2,7 @@
 	editor = "nvim"
 	excludesfile = ~/.config/git/ignore_global
 	pager = delta
+	hooksPath = .githooks/
 
 [interactive]
 	diffFilter = delta --color-only
