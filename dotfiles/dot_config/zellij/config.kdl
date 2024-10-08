@@ -3,6 +3,8 @@ keybinds {
     normal {
         // uncomment this and adjust key if using copy_on_select=false
         // bind "Alt c" { Copy; }
+				bind "Ctrl l" {SwitchToMode "scroll"; }
+				unbind "Ctrl s"
     }
     locked {
         bind "Ctrl g" { SwitchToMode "Normal"; }
@@ -204,12 +206,12 @@ on_force_close "quit"
 //    - true
 //    - false (Default)
 //
-simplified_ui false
+simplified_ui true
 
 // Choose the path to the default shell that zellij will use for opening new panes
 // Default: $SHELL
 //
-// default_shell "fish"
+default_shell "fish"
 
 // Choose the path to override cwd that zellij will use for opening new panes
 //
