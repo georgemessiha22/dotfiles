@@ -313,12 +313,18 @@ end
 # proto
 if test -d "$HOME/.proto"
     set -gx PROTO_HOME "$HOME/.proto"
-    set -gx PATH "$PROTO_HOME/shims" "$PROTO_HOME/bin" $PATH
     set -gx __ORIG_PATH $PATH
 
+		fish_add_path -gx "$PROTO_HOME/shims"
+		fish_add_path -gx "$PROTO_HOME/bin"
     function __proto_hook --on-variable PWD
         proto activate fish --export | source
     end
+end
+
+# flutter 
+if test -d "$HOME/.local/flutter/"
+	fish_add_path -a "$HOME/.local/flutter/bin"
 end
 
 # kubectl krew
