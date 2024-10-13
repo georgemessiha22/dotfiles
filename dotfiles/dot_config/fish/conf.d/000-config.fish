@@ -315,8 +315,8 @@ if test -d "$HOME/.proto"
     set -gx PROTO_HOME "$HOME/.proto"
     set -gx __ORIG_PATH $PATH
 
-		fish_add_path -gx "$PROTO_HOME/shims"
-		fish_add_path -gx "$PROTO_HOME/bin"
+		fish_add_path -a "$PROTO_HOME/shims"
+		fish_add_path -a "$PROTO_HOME/bin"
     function __proto_hook --on-variable PWD
         proto activate fish --export | source
     end
