@@ -1,0 +1,37 @@
+
+[font]
+size = 14
+
+[font.normal]
+family = "JetBrainsMono Nerd Font"
+style = "Regular"
+
+[[keyboard.bindings]]
+action = "SpawnNewInstance"
+key = "Return"
+mods = "Control|Shift"
+
+[[keyboard.bindings]]
+key= "G"
+mods= "Shift|Control"
+action= "ToggleViMode"
+
+[window]
+opacity = 0.9888
+decorations =  "buttonless"
+blur = false
+
+[window.padding]
+x = 5
+y = 5
+
+[general]
+live_config_reload = true
+# dynamic_padding = true
+import = [
+	"~/.config/alacritty/themes/catppuccin/catppuccin-frappe.toml",
+	# uncomment the flavour you want below:
+	# "~/.config/alacritty/themes/catppuccin/catppuccin-mocha.toml",
+	# "~/.config/alacritty/themes/catppuccin/catppuccin-macchiato.toml",
+	# "~/.config/alacritty/themes/catppuccin/catppuccin-latte.toml",
+]
