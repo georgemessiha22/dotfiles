@@ -8,7 +8,7 @@ for sid in "${SPACE_ICONS[@]}"; do
 		label.font="sketchybar-app-font:Regular:16.0" \
 		label.padding_right=20 \
 		label.y_offset=-1 \
-		background.color=0xfff5a97f \
+		background.color=0xffa6da95 \
 		icon.color=0xff24273a \
 		script="$PLUGIN_DIR/space.sh"
 	# sid="$(($i + 1))"
