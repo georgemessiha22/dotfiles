@@ -62,7 +62,16 @@ ctrl + alt - r : yabai --restart-service
 
 # open alacritty
 
-ctrl + shift - l : open -n -a alacritty
+alt - t : open -n -a alacritty
+
+# open Slack
+alt - s : open -a Slack
+
+# open Chrome
+alt - b : open -a 'Google Chrome'
+
+# open test app
+alt - h : open -a HungerStation
 
 # open kitty
 
