@@ -65,6 +65,13 @@ function config_rules {
 	yabai -m rule --add app="^Calculator$" manage=off
 	yabai -m rule --add app="^Karabiner-Elements$" manage=off
 	yabai -m rule --add app="^Keymapp" manage=off
+
+	# Default Spaces
+
+	yabai -m rule --add app="^Slack$" space=1
+	yabai -m rule --add app="^Google Chrome$" space=2
+	yabai -m rule --add app="^Alacritty$" space=3
+	yabai -m rule --add app="^Spotify$" space=5
 }
 
 function config_signals {
@@ -73,6 +80,9 @@ function config_signals {
 			action="$YABAIRC maybe_center_space" \
 			label="maybe_center_space-on-$signal"
 	done
+
+	yabai -m signal --add event=window_focused action="sketchybar -m --trigger window_focus &> /dev/null"
+	yabai -m signal --add event=window_title_changed action="sketchybar -m --trigger title_change &> /dev/null"
 }
 # }}}
 
@@ -89,6 +99,13 @@ function config_main {
 
 	# Auto balance makes it so all windows always occupy the same space, independent of how deeply nested they are in the window tree. When a new window is inserted or a window is removed, the split ratios will be automatically adjusted.
 	yabai -m config auto_balance on
+
+	yabai -m config window_shadow off
+	yabai -m config window_border_width 5
+	yabai -m config window_border off
+	yabai -m config active_window_border_color 0xff8CABC8
+	yabai -m config normal_window_border_color 0xff434c5e
+	yabai -m config insert_feedback_color 0xffd75f5f
 
 	# center mouse on window with focus
 	yabai -m config mouse_follows_focus on
@@ -109,7 +126,7 @@ function config_main {
 	config_rules
 
 	# something related to the bar
-	osascript -e 'tell application id "tracesOf.Uebersicht" to refresh'
+	# osascript -e 'tell application id "tracesOf.Uebersicht" to refresh'
 
 	# spaces between window
 	yabai -m config window_gap 3
@@ -118,6 +135,20 @@ function config_main {
 	maybe_center_space
 	config_signals
 	# }}}
+}
+
+function setup_space {
+	local idx="$1"
+	local name="$2"
+	local space=
+	echo "setup space $idx : $name"
+
+	space=$(yabai -m query --spaces --space "$idx")
+	if [ "$space" = "" ]; then
+		yabai -m space --create
+	fi
+
+	yabai -m space "$idx" --label "$name"
 }
 
 if [[ $# == 0 ]]; then
