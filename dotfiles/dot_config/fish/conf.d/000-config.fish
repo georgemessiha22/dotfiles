@@ -327,6 +327,9 @@ if test -d "$HOME/.local/flutter/"
 	fish_add_path -a "$HOME/.local/flutter/bin"
 end
 
+# Kubectl abbreviation
+alias kc="kubectl"
+
 # kubectl krew
 set KREW_PATH "$KREW_ROOT"
 test -z "$KREW_PATH"; and set KREW_PATH "$HOME/.krew"
