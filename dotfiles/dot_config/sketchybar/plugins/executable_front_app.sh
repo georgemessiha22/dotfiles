@@ -88,7 +88,7 @@ case $INFO in
 esac
 #
 #
-ICON=" $($CONFIG_DIR/plugins/icon_map_fn.sh "$INFO")"
+ICON=" $($CONFIG_DIR/plugins/icon_map_fn.sh "$INFO") "
 
 sketchybar --set $NAME icon=$ICON icon.padding_right=$ICON_PADDING_RIGHT icon.font="sketchybar-app-font:Regular:16.0"
 sketchybar --set $NAME.name label="$INFO"

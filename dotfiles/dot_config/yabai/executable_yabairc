@@ -55,6 +55,11 @@ function maybe_center_space {
 	fi
 }
 
+function add_rule {
+	yabai -m rule --add "$@"
+	yabai -m rule --apply "$@"
+}
+
 function config_rules {
 	# Application specific rules
 	yabai -m rule --add app=SideNotes manage=off
@@ -68,10 +73,10 @@ function config_rules {
 
 	# Default Spaces
 
-	yabai -m rule --add app="^Slack$" space=1
-	yabai -m rule --add app="^Google Chrome$" space=2
-	yabai -m rule --add app="^Alacritty$" space=3
-	yabai -m rule --add app="^Spotify$" space=5
+	add_rule app="Slack$" space=1
+	add_rule app="Google Chrome$" space=2
+	add_rule app="Alacritty" space=3
+	add_rule app="Spotify" space=5
 }
 
 function config_signals {
