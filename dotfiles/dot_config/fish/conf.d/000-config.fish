@@ -16,10 +16,6 @@ set -U __done_notification_urgency_level low
 
 
 ## Environment setup
-# Apply .profile: use this to put fish compatible .profile stuff in
-if test -f ~/.fish_profile
-    source ~/.fish_profile
-end
 
 # Add ~/.local/bin to PATH
 if test -d ~/.local/bin
@@ -56,9 +52,45 @@ if test -d $ZIG_PATH
     fish_add_path -a $ZIG_PATH
 end
 
-## Add Cargo 
+## Add Cargo
 if test -d "$HOME/.cargo/bin"
     fish_add_path -a $HOME/.cargo/bin/
+end
+
+# Add gcloud auth
+if test -d $HOME/google-cloud-sdk/bin
+    fish_add_path -a "$HOME/google-cloud-sdk/bin"
+end
+
+
+# proto
+if test -d "$HOME/.proto"
+    set -gx PROTO_HOME "$HOME/.proto"
+    set -gx __ORIG_PATH $PATH
+
+		fish_add_path -a "$PROTO_HOME/shims"
+		fish_add_path -a "$PROTO_HOME/bin"
+    function __proto_hook --on-variable PWD
+        proto activate fish --export | source
+    end
+end
+
+# flutter
+if test -d "$HOME/.local/flutter/"
+	fish_add_path -a "$HOME/.local/flutter/bin"
+end
+
+# if using custom build of neovim
+if test -d $HOME/.local/neovim
+    fish_add_path -a $HOME/.local/neovim/bin
+end
+
+
+# kubectl krew
+set KREW_PATH "$KREW_ROOT"
+test -z "$KREW_PATH"; and set KREW_PATH "$HOME/.krew"
+if test -d "$KREW_PATH"
+    fish_add_path -a "$KREW_PATH/bin"
 end
 
 ## Functions
@@ -100,37 +132,10 @@ function backup --argument filename
     cp $filename $filename.bak
 end
 
-# Copy DIR1 DIR2
-function copy
-    set count (count $argv | tr -d \n)
-    if test "$count" = 2; and test -d "$argv[1]"
-        set from (echo $argv[1] | trim-right /)
-        set to (echo $argv[2])
-        command cp -r $from $to
-    else
-        command cp $argv
-    end
-end
+## Aliases
 
-## Useful aliases
-# Replace ls with exa
-# alias ls='exa -agxT -L 1' # preferred listing
-# alias la='exa -algxT -L 1' # all files and dirs
-# alias ll='exa -lgxT -L 1' # long format
-# alias lt='exa -aT -L 1' # tree listing
-# alias l.='exa -ald' # show only dotfiles
-# Replace ls with lsd
-# alias ls='lsd ' # preferred listing
-# alias la='lsd ' # all files and dirs
-# alias ll='lsd ' # long format
-# alias lt='lsd ' # tree listing
-# alias l.='lsd ' # show only dotfiles
 # ip table coloured
 alias ip='ip -color'
-
-# Replace some more things with better alternatives
-# alias cat='bat -p'
-[ ! -x /usr/bin/yay ] && [ -x /usr/bin/paru ] && alias yay='paru'
 
 # Common use
 alias grubup="sudo update-grub"
@@ -156,18 +161,6 @@ alias hw='hwinfo --short' # Hardware Info
 alias big="expac -H M '%m\t%n' | sort -h | nl" # Sort installed packages according to size in MB
 alias gitpkg='pacman -Q | grep -i "\-git" | wc -l' # List amount of -git packages
 
-# Get fastest mirrors
-alias mirror="sudo reflector -f 30 -l 30 --number 10 --verbose --save /etc/pacman.d/mirrorlist"
-alias mirrord="sudo reflector --latest 50 --number 20 --sort delay --save /etc/pacman.d/mirrorlist"
-alias mirrors="sudo reflector --latest 50 --number 20 --sort score --save /etc/pacman.d/mirrorlist"
-alias mirrora="sudo reflector --latest 50 --number 20 --sort age --save /etc/pacman.d/mirrorlist"
-
-# Help people new to Arch
-alias apt='man pacman'
-alias apt-get='man pacman'
-alias please='sudo'
-alias tb='nc termbin.com 9999'
-
 # Cleanup orphaned packages
 alias cleanup='sudo pacman -Rns $(pacman -Qtdq)'
 
@@ -180,10 +173,8 @@ alias rip="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -200 | nl"
 alias edit="nvim" # set favorite editor
 alias e="nvim"
 
-# if using custom build of neovim
-if test -d $HOME/.local/neovim
-    fish_add_path -a $HOME/.local/neovim/bin
-end
+# Taskwarrior abbrv
+alias tt="taskwarrior-tui"
 
 alias zshconfig="edit ~/.zshrc"
 alias ohmyzsh="edit ~/.local/share/oh-my-zsh"
@@ -192,26 +183,14 @@ alias swayconfig="edit ~/.config/sway"
 ## create backup
 alias backitup="tar -cvzf ~/backup/backup.tar.gz --exclude .docker-cache --exclude .vs-code --exclude venv ~/Desktop ~/Documents ~/Pictures ~/.ssh ~/.gnupg"
 
-# snap 
-alias snapd-start="sudo systemctl start snapd snapd.socket"
-alias snapd-status="sudo systemctl status snapd snapd.socket"
-alias snapd-stop="sudo systemctl stop snapd snapd.socket"
-
-# docker control
-alias dockerd-start="sudo systemctl start docker"
-alias dockerd-status="sudo systemctl status docker"
-alias dockerd-stop="sudo systemctl stop docker && sudo systemctl status docker"
-
 set -x SSH_AUTH_SOCK {$XDG_RUNTIME_DIR}/gcr/ssh
-
-# Add gcloud auth
-if test -d $HOME/google-cloud-sdk/bin
-    fish_add_path -a "$HOME/google-cloud-sdk/bin"
-end
 
 # Some default behaviour on mac vs linux
 switch (uname)
     case Darwin
+        # Add home dir XDG
+        set -gx XDG_CONFIG_HOME "/Users/george/.config"
+
         # HOMEBREW SETUP
         set -gx HOMEBREW_PREFIX /opt/homebrew
         set -gx HOMEBREW_CELLAR /opt/homebrew/Cellar
@@ -229,33 +208,11 @@ switch (uname)
             source "$(brew --prefix)/share/google-cloud-sdk/path.fish.inc"
         end
 
-        # OpenSSL postinstall
-        # if test -d /opt/homebrew/opt/openssl@1.1/
-        #     fish_add_path -a /opt/homebrew/opt/openssl@1.1/bin
-        #     set -gx LDFLAGS "-L/opt/homebrew/opt/openssl@1.1/lib"
-        #     set -gx CPPFLAGS "-I/opt/homebrew/opt/openssl@1.1/include"
-        #     set -gx PKG_CONFIG_PATH "/opt/homebrew/opt/openssl@1.1/lib/pkgconfig"
-        # end
-
-        # libressl
-        # if test -d /opt/homebrew/opt/libressl/bin
-        #     fish_add_path -a /opt/homebrew/opt/libressl/bin
-        #     set -gx LDFLAGS -L/opt/homebrew/opt/libressl/lib
-        #     set -gx CPPFLAGS -I/opt/homebrew/opt/libressl/include
-        #     set -gx PKG_CONFIG_PATH /opt/homebrew/opt/libressl/lib/pkgconfig
-        # end
-
         if test -d /opt/homebrew/opt/llvm@15/
             set -gx LDFLAGS -L/opt/homebrew/opt/llvm@15/lib/c++ -Wl,-rpath,/opt/homebrew/opt/llvm@15/lib/c++
             set -gx CPPFLAGS -I/opt/homebrew/opt/llvm@15/include
             fish_add_path -a /opt/homebrew/opt/llvm@15/bin
         end
-
-        # if test -d /opt/homebrew/opt/readline/
-        #     set -gx LDFLAGS -L/opt/homebrew/opt/readline/lib
-        #     set -gx CPPFLAGS -I/opt/homebrew/opt/readline/include
-        #     set -gx PKG_CONFIG_PATH /opt/homebrew/opt/readline/lib/pkgconfig
-        # end
 
         # adding go path
         if test -d $HOME/go/bin
@@ -267,29 +224,10 @@ switch (uname)
             fish_add_path -a /Users/george/Library/Python/3.12/bin
         end
 
-        # The next line for ruby
-        # set CC compiler location this causes so many troubles
-        # set -gx CC /opt/homebrew/bin/gcc-11
-
         if test -d $HOME/.rbenv/versions/
             status --is-interactive; and rbenv init - fish | source
             fish_add_path -a "$HOME/.rbenv/shims"
         end
-
-        # if test -d /opt/homebrew/opt/ruby/bin/
-        #     set -gx CPPFLAGS -I/opt/homebrew/opt/ruby/include
-        #     set -gx LDFLAGS -L/opt/homebrew/opt/ruby/lib
-        # end
-
-        # if test -d $HOME/.rbenv/versions/2.7.5/include/
-        #     set -gx CPPFLAGS -I$HOME/.rbenv/versions/2.7.5/include/
-        #     set -gx LDFLAGS -L$HOME/.rbenv/versions/2.7.5/lib/
-        # end
-
-        # Add home dir XDG
-        set -gx XDG_CONFIG_HOME "/Users/george/.config"
-
-        # set -gx RUBY_CONFIGURE_OPTS "--with-openssl-dir=$(brew --prefix openssl@1.1)"
 
         # Yabai logs
         alias yabaiLogs="tail -f /tmp/yabai_$USER.out.log | sed 's/^/out: /' & tail -f /tmp/yabai_$USER.err.log | sed 's/^/err: /'"
@@ -298,52 +236,27 @@ switch (uname)
         alias skhdLogs="tail -f /tmp/skhd_$USER.out.log | sed 's/^/out: /' & tail -f /tmp/skhd_$USER.err.log | sed 's/^/err: /'"
 
     case '*'
-        # copy gpg
         alias hx="helix"
 
         # opam configuration oCaml
-        if test /home/gmessiha/.opam/opam-init/init.fish
-            source /home/gmessiha/.opam/opam-init/init.fish >/dev/null 2>/dev/null; or true
+        if test "$HOME/.opam/opam-init/init.fish"
+            source "$HOME/.opam/opam-init/init.fish" >/dev/null 2>/dev/null; or true
         end
 end
 
 # FZF because everyone is fuzzy about it.
 # fzf_key_bindings
 
-# proto
-if test -d "$HOME/.proto"
-    set -gx PROTO_HOME "$HOME/.proto"
-    set -gx __ORIG_PATH $PATH
-
-		fish_add_path -a "$PROTO_HOME/shims"
-		fish_add_path -a "$PROTO_HOME/bin"
-    function __proto_hook --on-variable PWD
-        proto activate fish --export | source
-    end
-end
-
-# flutter 
-if test -d "$HOME/.local/flutter/"
-	fish_add_path -a "$HOME/.local/flutter/bin"
-end
 
 # Kubectl abbreviation
 alias kc="kubectl"
-
-# kubectl krew
-set KREW_PATH "$KREW_ROOT"
-test -z "$KREW_PATH"; and set KREW_PATH "$HOME/.krew"
-if test -d "$KREW_PATH"
-    fish_add_path -a "$KREW_PATH/bin"
-end
 
 ## Direnv support
 direnv hook fish | source
 
 starship init fish | source
-# oh-my-posh init fish --config 'https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/blue-owl.omp.json' | source
 
 ## Run fastfetch if session is interactive
-if status --is-interactive && type -q fastfetch
-    fastfetch
+if status --is-interactive && type -q macchina
+    macchina -p -m -C -s
 end
