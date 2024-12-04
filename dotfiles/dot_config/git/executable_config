@@ -57,3 +57,8 @@
 # when working with HungerStation
 [includeIf "gitdir:**/HungerStation/"]
 	path = ~/.config/git/hungerstation
+
+# when working with test projects workspace
+[includeIf "gitdir:**"]
+	path = ~/.config/git/default
+
