@@ -21,6 +21,9 @@ opacity = 0.9888
 decorations =  "buttonless"
 blur = false
 
+[terminal]
+shell = "/usr/local/bin/fish"
+
 [window.padding]
 x = 5
 y = 5
