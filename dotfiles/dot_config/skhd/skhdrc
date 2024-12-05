@@ -61,7 +61,6 @@ ctrl + alt - s : yabai --start-service
 ctrl + alt - r : yabai --restart-service
 
 # open alacritty
-
 alt - t : open -n -a alacritty
 
 # open Slack

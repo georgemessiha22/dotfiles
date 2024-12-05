@@ -183,6 +183,9 @@ alias swayconfig="edit ~/.config/sway"
 ## create backup
 alias backitup="tar -cvzf ~/backup/backup.tar.gz --exclude .docker-cache --exclude .vs-code --exclude venv ~/Desktop ~/Documents ~/Pictures ~/.ssh ~/.gnupg"
 
+# Kubectl abbreviation
+alias kc="kubectl"
+
 set -x SSH_AUTH_SOCK {$XDG_RUNTIME_DIR}/gcr/ssh
 
 # Some default behaviour on mac vs linux
@@ -192,15 +195,7 @@ switch (uname)
         set -gx XDG_CONFIG_HOME "/Users/george/.config"
 
         # HOMEBREW SETUP
-        set -gx HOMEBREW_PREFIX /opt/homebrew
-        set -gx HOMEBREW_CELLAR /opt/homebrew/Cellar
-        set -gx HOMEBREW_REPOSITORY /opt/homebrew
-        ! set -q PATH; and set PATH ''
-        set -gx PATH /opt/homebrew/bin /opt/homebrew/sbin $PATH
-        ! set -q MANPATH; and set MANPATH ''
-        set -gx MANPATH /opt/homebrew/share/man $MANPATH
-        ! set -q INFOPATH; and set INFOPATH ''
-        set -gx INFOPATH /opt/homebrew/share/info $INFOPATH
+	eval "$(/opt/homebrew/bin/brew shellenv)"
         set --export GPG_TTY $(tty)
 
         # The next line updates PATH for the Google Cloud SDK.
@@ -247,14 +242,11 @@ end
 # FZF because everyone is fuzzy about it.
 # fzf_key_bindings
 
-
-# Kubectl abbreviation
-alias kc="kubectl"
-
-## Direnv support
-direnv hook fish | source
-
-starship init fish | source
+if status --is-interactive
+	## Direnv support
+	direnv hook fish | source
+	starship init fish | source
+end
 
 ## Run fastfetch if session is interactive
 if status --is-interactive && type -q macchina
