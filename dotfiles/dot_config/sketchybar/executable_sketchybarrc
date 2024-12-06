@@ -53,14 +53,6 @@ sketchybar -m --add item yabai_mode left \
 
 source "$PLUGIN_DIR/workspaces.sh"
 
-# sketchybar --add item current_space left \
-#     --set current_space \
-#     background.color=0xfff5a97f \
-#     icon.color=0xff24273a \
-#     label.drawing=off \
-#     script="$PLUGIN_DIR/current_space.sh" \
-#     --subscribe current_space space_change mouse.clicked
-
 sketchybar --add item front_app left \
     --set front_app \
     background.color=0xffa6da95 \
@@ -68,10 +60,9 @@ sketchybar --add item front_app left \
     background.padding_right=0 \
     icon.y_offset=1 \
     icon.color=0xff24273a \
-    label.drawing=no \
-    script="$PLUGIN_DIR/front_app.sh" \
-		--subscribe front_app front_app_switched \
-    --add item front_app.separator left \
+    label.drawing=no
+
+sketchybar --add item front_app.separator left \
     --set front_app.separator \
     background.color=0x00000000 \
     background.padding_left=-3 \
@@ -81,36 +72,39 @@ sketchybar --add item front_app left \
     icon.padding_left=0 \
     icon.padding_right=0 \
     icon.y_offset=1 \
-    label.drawing=no \
-    --add item front_app.name left \
+    label.drawing=no
+
+sketchybar --add item front_app.name left \
     --set front_app.name \
-    background.color=0x00000000 \
     background.padding_right=0 \
-    icon.drawing=off \
+    icon.drawing=on \
     label.font="$FONT_FACE:Bold:12.0" \
-    label.drawing=yes
+    label.drawing=yes \
+    script="$PLUGIN_DIR/front_app.sh" \
+    --subscribe front_app.name front_app_switched
 
-sketchybar --add item weather.moon q \
-    --set weather.moon \
-    background.color=0x667dc4e4 \
-    background.padding_right=-1 \
-    icon.color=0xff181926 \
-    icon.font="$FONT_FACE:Bold:22.0" \
-    icon.padding_left=4 \
-    icon.padding_right=3 \
-    label.drawing=off \
-    --subscribe weather.moon mouse.clicked
 
-sketchybar --add item weather q \
-    --set weather \
-    icon= \
-    icon.color=0xfff5bde6 \
-    icon.font="$FONT_FACE:Bold:15.0" \
-    update_freq=1800 \
-    script="$PLUGIN_DIR/weather.sh" \
-    --subscribe weather system_woke
+# sketchybar --add item weather.moon q \
+#     --set weather.moon \
+#     background.color=0x667dc4e4 \
+#     background.padding_right=-1 \
+#     icon.color=0xff181926 \
+#     icon.font="$FONT_FACE:Bold:22.0" \
+#     icon.padding_left=4 \
+#     icon.padding_right=3 \
+#     label.drawing=off \
+#     --subscribe weather.moon mouse.clicked
 
-sketchybar --add bracket front_app_bracket \
+# sketchybar --add item weather q \
+#     --set weather \
+#     icon= \
+#     icon.color=0xfff5bde6 \
+#     icon.font="$FONT_FACE:Bold:15.0" \
+#     update_freq=1800 \
+#     script="$PLUGIN_DIR/weather.sh" \
+#     --subscribe weather system_woke
+
+sketchybar --add item front_app_bracket \
     front_app \
     front_app.separator \
     front_app.name \
@@ -148,8 +142,6 @@ sketchybar  --add   item slack right \
                     background.padding_left=15  \
                     icon.font.size=18 \
            --subscribe slack system_woke
-# osascript -e 'quit app "Rectangle"'
-# open -a Rectangle
 
 ##### Finalizing Setup #####
 sketchybar --update
