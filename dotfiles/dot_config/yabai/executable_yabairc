@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env zsh
 
 YABAIRC="${HOME}/.config/yabai/yabairc"
 
@@ -88,7 +88,7 @@ function config_signals {
 
 	yabai -m signal --add event=window_focused action="sketchybar -m --trigger window_focus &> /dev/null"
 	yabai -m signal --add event=window_title_changed action="sketchybar -m --trigger title_change &> /dev/null"
-	yabai -m signal --add event=window_created action"$YABAIRC config_rules"
+	# yabai -m signal --add event=window_created action"$YABAIRC config_rules"
 }
 # }}}
 
@@ -110,14 +110,18 @@ function config_main {
 	# Auto balance makes it so all windows always occupy the same space, independent of how deeply nested they are in the window tree. When a new window is inserted or a window is removed, the split ratios will be automatically adjusted.
 	yabai -m config auto_balance on
 
+	yabai -m config debug_output on
+
 	yabai -m config window_shadow off
-	yabai -m config window_border_width 5
-	yabai -m config window_border on
-	yabai -m config active_window_border_color 0xff8CABC8
-	yabai -m config normal_window_border_color 0xff434c5e
-	yabai -m config insert_feedback_color 0xffd75f5f
+	yabai -m config window_opacity on
 	yabai -m config active_window_opacity        1.0
-	yabai -m config normal_window_opacity        0.50
+	yabai -m config normal_window_opacity        0.8
+
+	# yabai -m config window_border_width 5
+	# yabai -m config window_border on
+	# yabai -m config active_window_border_color 0xff8CABC8
+	# yabai -m config normal_window_border_color 0xff434c5e
+	# yabai -m config insert_feedback_color 0xffd75f5f
 	
 	# center mouse on window with focus
 	yabai -m config mouse_follows_focus on

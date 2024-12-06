@@ -239,9 +239,6 @@ alias zshconfig="edit ~/.zshrc"
 alias ohmyzsh="edit ~/.local/share/oh-my-zsh"
 alias swayconfig="edit ~/.config/sway"
 
-# copy gpg
-alias gpg-pass="printf \"%s\" \"$(cat ~/Documents/recovery/gpg)\" | wl-copy"
-
 # snap 
 alias snapd-start="sudo systemctl start snapd snapd.socket"
 alias snapd-status="sudo systemctl status snapd snapd.socket"

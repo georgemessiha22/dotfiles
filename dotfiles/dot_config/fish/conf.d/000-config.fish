@@ -35,9 +35,12 @@ end
 if test -d ~/.local/go/bin
     if not contains -- ~/.local/go/bin $PATH
         fish_add_path -a ~/.local/go/bin
-        fish_add_path -a ~/.local/gopkgs/bin
         # set -x GOPATH ~/.local/gopkgs
     end
+end
+
+if test -d "$HOME/.local/gopkgs/"
+	fish_add_path -a "$HOME/.local/gopkgs/bin"
 end
 
 ## Add bun
