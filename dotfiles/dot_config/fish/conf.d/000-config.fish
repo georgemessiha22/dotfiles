@@ -40,7 +40,7 @@ if test -d ~/.local/go/bin
 end
 
 if test -d "$HOME/.local/gopkgs/"
-	fish_add_path -a "$HOME/.local/gopkgs/bin"
+    fish_add_path -a "$HOME/.local/gopkgs/bin"
 end
 
 ## Add bun
@@ -71,8 +71,8 @@ if test -d "$HOME/.proto"
     set -gx PROTO_HOME "$HOME/.proto"
     set -gx __ORIG_PATH $PATH
 
-		fish_add_path -a "$PROTO_HOME/shims"
-		fish_add_path -a "$PROTO_HOME/bin"
+    fish_add_path -a "$PROTO_HOME/shims"
+    fish_add_path -a "$PROTO_HOME/bin"
     function __proto_hook --on-variable PWD
         proto activate fish --export | source
     end
@@ -80,7 +80,7 @@ end
 
 # flutter
 if test -d "$HOME/.local/flutter/"
-	fish_add_path -a "$HOME/.local/flutter/bin"
+    fish_add_path -a "$HOME/.local/flutter/bin"
 end
 
 # if using custom build of neovim
@@ -198,7 +198,7 @@ switch (uname)
         set -gx XDG_CONFIG_HOME "/Users/george/.config"
 
         # HOMEBREW SETUP
-	eval "$(/opt/homebrew/bin/brew shellenv)"
+        eval "$(/opt/homebrew/bin/brew shellenv)"
         set --export GPG_TTY $(tty)
 
         # The next line updates PATH for the Google Cloud SDK.
@@ -227,6 +227,10 @@ switch (uname)
             fish_add_path -a "$HOME/.rbenv/shims"
         end
 
+        if test -d /Library/Frameworks/Python.framework/Versions/Current/bin
+            fish_add_path -a /Library/Frameworks/Python.framework/Versions/Current/bin
+        end
+
         # Yabai logs
         alias yabaiLogs="tail -f /tmp/yabai_$USER.out.log | sed 's/^/out: /' & tail -f /tmp/yabai_$USER.err.log | sed 's/^/err: /'"
 
@@ -246,9 +250,9 @@ end
 # fzf_key_bindings
 
 if status --is-interactive
-	## Direnv support
-	direnv hook fish | source
-	starship init fish | source
+    ## Direnv support
+    direnv hook fish | source
+    starship init fish | source
 end
 
 ## Run fastfetch if session is interactive
