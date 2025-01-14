@@ -76,6 +76,7 @@ function config_rules {
 	add_rule app="^Slack" space=1 manage=on
 	add_rule app="^Google Chrome" space=2 manage=on
 	add_rule app="^Alacritty" space=3 manage=on
+	add_rule app="^Ghostty" space=3 manage=on
 	add_rule app="^Spotify" space=5 manage=on
 }
 
