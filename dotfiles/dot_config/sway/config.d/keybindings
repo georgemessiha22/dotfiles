@@ -9,7 +9,7 @@
     bindsym $mod+q kill
 
     # Start your launcher
-    bindsym $mod+d exec $menu
+    bindsym $mod+Space exec $menu
 
     # Launcher
     bindsym $mod+Shift+d exec $launcher
