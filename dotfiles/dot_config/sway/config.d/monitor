@@ -11,7 +11,14 @@ output DP-1 {
     pos 0 0
 }
 
+output DP-3 {
+    scale 1
+    res 1920x1080
+    pos 0 0
+}
+
 focus output DP-1
+focus output DP-3
 
 # Clamshell Mode
 bindswitch --reload --locked lid:on output $laptop disable
