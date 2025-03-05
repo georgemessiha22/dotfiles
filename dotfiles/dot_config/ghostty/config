@@ -4,5 +4,5 @@ shell-integration-features = no-cursor
 
 window-decoration = false
 
-keybind = ctrl+u=scroll_page_up
-keybind = ctrl+d=scroll_page_down
+# keybind = ctrl+u=scroll_page_up
+# keybind = ctrl+d=scroll_page_down
