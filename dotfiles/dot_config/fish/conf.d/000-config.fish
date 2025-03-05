@@ -223,7 +223,7 @@ switch (uname)
         end
 
         if test -d $HOME/.rbenv/versions/
-            status --is-interactive; and rbenv init - fish | source
+            status --is-interactive; and rbenv init - --no-rehash fish | source
             fish_add_path -a "$HOME/.rbenv/shims"
         end
 
