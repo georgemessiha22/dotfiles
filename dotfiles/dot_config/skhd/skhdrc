@@ -66,16 +66,16 @@ shift + alt - b : yabai -m space --balance
 
 # Display control {{{
 # Change focus to display
-ctrl + alt - w: yabai -m display --focus west;
-ctrl + alt - e: yabai -m display --focus east;
-ctrl + alt - n: yabai -m display --focus north;
-ctrl + alt - s: yabai -m display --focus south;
+ctrl + alt - h: yabai -m display --focus west;
+ctrl + alt - l: yabai -m display --focus east;
+ctrl + alt - j: yabai -m display --focus north;
+ctrl + alt - k: yabai -m display --focus south;
 
 # move window to display left and right
-shift + ctrl + alt - w: yabai -m window --display west;
-shift + ctrl + alt - e : yabai -m window --display east;
-shift + ctrl + alt - s : yabai -m window --display south;
-shift + ctrl + alt - n : yabai -m window --display north;
+shift + ctrl + alt - h: yabai -m window --display west;
+shift + ctrl + alt - l : yabai -m window --display east;
+shift + ctrl + alt - j : yabai -m window --display south;
+shift + ctrl + alt - k : yabai -m window --display north;
 
 # }}}
 

@@ -46,14 +46,6 @@
 [url "https://github.com/rust-lang/crates.io-index"]
 	insteadOf = https://github.com/rust-lang/crates.io-index
 
-# when working with personal
-[includeIf "gitdir:**/projects/"]
-	path = ~/.config/git/default
-
-# when working with dotfiles
-[includeIf "gitdir:**/backup/"]
-	path = ~/.config/git/default
-
 # when working with HungerStation
 [includeIf "gitdir:**/HungerStation/"]
 	path = ~/.config/git/hungerstation
