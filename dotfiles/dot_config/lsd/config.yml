@@ -81,10 +81,10 @@ layout: tree
 recursion:
   # Whether to enable recursion.
   # Possible values: false, true
-  enabled: false
+  enabled: true
   # How deep the recursion should go. This has to be a positive integer. Leave
   # it unspecified for (virtually) infinite.
-  # depth: 3
+  depth: 1
 
 # == Size ==
 # Specifies the format of the size column.
