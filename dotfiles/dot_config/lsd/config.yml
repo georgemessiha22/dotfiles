@@ -131,7 +131,7 @@ symlink-arrow: ⇒
 # == Header ==
 # Whether to display block headers.
 # Possible values: false, true
-header: false
+header: true
 
 # == Literal ==
 # Whether to show quotes on filenames.
