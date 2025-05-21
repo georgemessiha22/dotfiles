@@ -1,4 +1,4 @@
-theme = "sonokai"
+theme = "catppuccin_mocha"
 
 [editor]
 line-number = "absolute"
@@ -24,6 +24,6 @@ display-messages=true
 
 [editor.soft-wrap]
 enable = true
-max-wrap = 60 # increase value to reduce forced mid-word wrapping
+max-wrap = 120 # increase value to reduce forced mid-word wrapping
 max-indent-retain = 0
-wrap-indicator = ""  # set wrap-indicator to "" to hide it
+wrap-indicator = ">>"  # set wrap-indicator to "" to hide it

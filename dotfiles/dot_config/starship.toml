@@ -82,11 +82,11 @@ format = '[$all_status$ahead_behind ]($style)'
 symbol = " "
 
 [docker_context]
-symbol = ""
+symbol = " "
 format = '[$symbol($context) ]($style)'
 
 [kubernetes]
-format = '[$symbol$context ]($style)'
+format = '[$symbol($context) ]($style)'
 disabled = false
 contexts = [
   { context_pattern = "dev.local.cluster.k8s", symbol = "💔 " },
@@ -94,7 +94,7 @@ contexts = [
 style = 'blue bold'
 
 [gcloud]
-disabled = false
+disabled = true
 
 [haxe]
 symbol = " "
@@ -124,7 +124,7 @@ symbol = "󰆥 "
 symbol = " "
 
 [aws]
-symbol = "  "
+symbol = " "
 disabled = true
 
 [buf]
@@ -135,7 +135,7 @@ symbol = " "
 symbol = " "
 
 [direnv]
-disabled = false
+disabled = true
 
 [package]
 symbol = "󰏗 "
