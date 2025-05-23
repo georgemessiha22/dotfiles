@@ -6,3 +6,19 @@ window-decoration = false
 
 # keybind = ctrl+u=scroll_page_up
 # keybind = ctrl+d=scroll_page_down
+
+# goto split like vim
+keybind = super+alt+h=goto_split:left
+keybind = super+alt+l=goto_split:right
+keybind = super+alt+j=goto_split:down
+keybind = super+alt+k=goto_split:up
+
+# resize like vim
+keybind = super+ctrl+k=resize_split:up,10
+keybind = super+ctrl+j=resize_split:down,10
+keybind = super+ctrl+l=resize_split:right,10
+keybind = super+ctrl+h=resize_split:left,10
+
+# jump like vim 
+keybind = super+k=jump_to_prompt:1
+keybind = super+j=jump_to_prompt:-1
