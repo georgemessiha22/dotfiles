@@ -51,6 +51,8 @@
 	path = ~/.config/git/hungerstation
 
 # when working with test projects workspace
-[includeIf "gitdir:**"]
+[includeIf "gitdir:**/projects/"]
 	path = ~/.config/git/default
 
+[includeIf "gitdir:**/backup/"]
+	path = ~/.config/git/default
