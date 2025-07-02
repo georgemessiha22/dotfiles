@@ -4,17 +4,20 @@ YABAIRC="${HOME}/.config/yabai/yabairc"
 
 # helper functions {{{
 function get_display_aspect_ratio {
-	case $(yabai -m query --displays --display mouse | jq '.frame | (.w)/(.h) | floor') in
-	2)
-		echo "16:9"
-		;;
-	4)
-		echo "32:9"
-		;;
-	*)
-		echo "something:whacky"
-		;;
-	esac
+    for x in $(yabai -m query --displays --display mouse | jq 'if type=="array" then .[].frame else .frame end | (.w)/(.h) | floor')
+    do
+        case $x in
+            2)
+                echo "ultrawide"
+                ;;
+            4)
+                echo "wide"
+                ;;
+            *)
+                echo "something:whacky"
+                ;;
+        esac
+    done
 }
 
 function get_space_num_managed_windows {
@@ -31,28 +34,29 @@ function get_space_num_managed_windows {
 
 function maybe_center_space {
 	managed_spaces=$(get_space_num_managed_windows)
-	aspect_ratio=$(get_display_aspect_ratio)
 
-	if [[ $aspect_ratio == "32:9" ]]; then
-		if ((managed_spaces < 1)); then
-			yabai -m space --padding abs:3:3:800:800
-		elif ((managed_spaces < 4)); then
-			yabai -m space --padding abs:3:3:400:400
-		else
-			yabai -m space --padding abs:3:3:3:3
-		fi
-	elif [[ $aspect_ratio == "16:9" ]]; then
-		if ((managed_spaces < 1)); then
-			yabai -m space --padding abs:3:3:600:600
-		elif ((managed_spaces < 4)); then
-			yabai -m space --padding abs:3:3:300:300
-		else
-			yabai -m space --padding abs:3:3:3:3
-		fi
-	else
-		yabai -m space --padding abs:3:3:3:3
-
-	fi
+    for aspect_ratio in $(get_display_aspect_ratio)
+    do
+        if [[ $aspect_ratio == "ultrawide" ]]; then
+            if ((managed_spaces < 1)); then 
+                yabai -m space --padding abs:3:60:800:800
+            elif ((managed_spaces < 4)); then
+                yabai -m space --padding abs:3:60:400:400
+            else
+                yabai -m space --padding abs:3:60:3:3
+            fi
+        elif [[ $aspect_ratio == "wide" ]]; then
+            if ((managed_spaces < 1)); then
+                yabai -m space --padding abs:3:3:600:600
+            elif ((managed_spaces < 4)); then
+                yabai -m space --padding abs:3:3:300:300
+            else
+                yabai -m space --padding abs:3:3:3:3
+            fi
+        else
+            yabai -m space --padding abs:3:3:3:3
+        fi
+    done
 }
 
 function add_rule {
@@ -111,7 +115,7 @@ function config_main {
 	# Auto balance makes it so all windows always occupy the same space, independent of how deeply nested they are in the window tree. When a new window is inserted or a window is removed, the split ratios will be automatically adjusted.
 	yabai -m config auto_balance on
 
-	yabai -m config debug_output on
+	yabai -m config debug_output off
 
 	yabai -m config window_shadow off
 	yabai -m config window_opacity on

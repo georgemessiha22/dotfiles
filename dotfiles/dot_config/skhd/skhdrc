@@ -7,16 +7,16 @@ alt - h : yabai -m window --focus west
 alt - l : yabai -m window --focus east
 
 # swap windows
-shift + alt - j : yabai -m window --swap south
-shift + alt - k : yabai -m window --swap north
-shift + alt - h : yabai -m window --swap west
-shift + alt - l : yabai -m window --swap east
+# shift + alt - j : yabai -m window --swap south
+# shift + alt - k : yabai -m window --swap north
+# shift + alt - h : yabai -m window --swap west
+# shift + alt - l : yabai -m window --swap east
 
 # move window and split
-ctrl + shift + alt - j : yabai -m window --warp south
-ctrl + shift + alt - k : yabai -m window --warp north
-ctrl + shift + alt - h : yabai -m window --warp west
-ctrl + shift + alt - l : yabai -m window --warp east
+shift + alt - j : yabai -m window --warp south
+shift + alt - k : yabai -m window --warp north
+shift + alt - h : yabai -m window --warp west
+shift + alt - l : yabai -m window --warp east
 # }}}
 
 # Multi Space control {{{
