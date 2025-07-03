@@ -55,16 +55,10 @@ if test -d $ZIG_PATH
     fish_add_path -a $ZIG_PATH
 end
 
-## Add Cargo
-if test -d "$HOME/.cargo/bin"
-    fish_add_path -a $HOME/.cargo/bin/
-end
-
 # Add gcloud auth
 if test -d $HOME/google-cloud-sdk/bin
     fish_add_path -a "$HOME/google-cloud-sdk/bin"
 end
-
 
 # proto
 if test -d "$HOME/.proto"
