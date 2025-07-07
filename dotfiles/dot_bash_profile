@@ -9,6 +9,8 @@
 
 [[ -d "$HOME/.local/share/JetBrains/Toolbox/scripts" ]] && export PATH="$PATH:$HOME/.local/share/JetBrains/Toolbox/scripts"
 
-[[ -f "$HOME/.cargo/env" ]] && . "$HOME/.cargo/env"
+export CARGO_HOME=$HOME/.local/cargo
+export RUSTUP_HOME=$HOME/.local/rustup
+[[ -f "$HOME/.local/cargo/env" ]] && . "$HOME/.local/cargo/env"
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*

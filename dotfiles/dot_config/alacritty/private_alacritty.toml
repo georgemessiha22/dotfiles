@@ -1,9 +1,16 @@
 [font]
-size = 14
+size = 16
 
 [font.normal]
-family = "JetBrainsMono Nerd Font"
-style = "Regular"
+family = "JetBrainsMonoNL Nerd Font Mono"
+style = "Thin"
+[font.bold]
+family = "JetBrainsMonoNL Nerd Font Mono"
+style = "ExtraLight"
+[font.bold_italic]
+family = "JetBrainsMonoNL Nerd Font Mono"
+style = "Thin Italic"
+
 
 [[keyboard.bindings]]
 action = "SpawnNewInstance"
@@ -12,7 +19,7 @@ mods = "Control|Shift"
 
 [[keyboard.bindings]]
 key= "G"
-mods= "Shift|Control"
+mods= "Control"
 action= "ToggleViMode"
 
 [window]
@@ -27,11 +34,14 @@ y = 5
 [general]
 live_config_reload = true
 # dynamic_padding = true
+
 import = [
+    # "~/.config/alacritty/themes/tokyonight.toml",
+    # "~/.config/alacritty/themes/github_dark_tritanopia.yml",
+    # "~/.config/alacritty/themes/rose-pine-moon.toml",
     # "~/.config/alacritty/themes/rose-pine.toml",
 	# "~/.config/alacritty/themes/catppuccin/catppuccin-frappe.toml",
-	# uncomment the flavour you want below:
 	# "~/.config/alacritty/themes/catppuccin/catppuccin-mocha.toml",
-	# "~/.config/alacritty/themes/catppuccin/catppuccin-macchiato.toml",
+	"~/.config/alacritty/themes/catppuccin/catppuccin-macchiato.toml",
 	# "~/.config/alacritty/themes/catppuccin/catppuccin-latte.toml",
 ]
