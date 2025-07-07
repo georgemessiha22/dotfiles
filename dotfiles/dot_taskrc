@@ -25,7 +25,7 @@ include dark-256.theme
 #include no-color.theme
 
 # used to create backup with git.
-sync.local.server_dir=~\/HungerStation\/Booklet\/todo\/
+sync.local.server_dir=~/HungerStation/Booklet/todo/
 
 # reviewed tasksh
 uda.reviewed.type=date

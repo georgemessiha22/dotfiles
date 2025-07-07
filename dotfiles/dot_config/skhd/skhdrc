@@ -84,8 +84,8 @@ shift + ctrl + alt - k : yabai -m window --display north;
 ctrl + alt - r : yabai --restart-service
 
 # open alacritty
-# alt - t : open -n -a Alacritty
-alt - t : open -a Ghostty
+alt - t : open -n -a Alacritty
+# alt - t : open -a Ghostty
 
 # open Slack
 alt - s : open -a Slack

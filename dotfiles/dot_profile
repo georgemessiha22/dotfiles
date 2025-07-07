@@ -38,4 +38,7 @@ export QT_QPA_PLATFORM=wayland
 #export QT_WAYLAND_FORCE_DPI=physical
 #export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
 
-. "$HOME/.cargo/env"
+# Rust
+export CARGO_HOME=$HOME/.local/cargo
+export RUSTUP_HOME=$HOME/.local/rustup
+[[ -f $HOME/.local/cargo/env ]] && . "$HOME/.local/cargo/env"

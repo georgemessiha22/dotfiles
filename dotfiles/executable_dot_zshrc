@@ -253,7 +253,9 @@ alias dockerd-stop="sudo systemctl stop docker && sudo systemctl status docker"
 alias swaylog="less +F /tmp/sway/\`ls -t /tmp/sway | head -1\`"
 
 # User configuration
-[[ -f "${HOME}/.cargo/env" ]] && source "${HOME}/.cargo/env"
+export CARGO_HOME=${HOME}/.local/cargo
+export RUSTUP_HOME=${HOME}/.local/rustup
+[[ -f "${HOME}/.local/cargo/env" ]] && source "${HOME}/.local/cargo/env"
 
 [[ -d "${HOME}/.npm-global" ]] && export PATH="${PATH}:${HOME}/.npm-global/bin"
 [[ -d "${HOME}/.yarn" ]] && export PATH="${PATH}:${HOME}/.yarn/bin"

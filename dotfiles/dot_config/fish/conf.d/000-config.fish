@@ -1,3 +1,5 @@
+# enable vi mode
+fish_vi_key_bindings insert
 ## Set values
 
 # Hide welcome message
@@ -35,7 +37,6 @@ end
 if test -d ~/.local/go/bin
     if not contains -- ~/.local/go/bin $PATH
         fish_add_path -a ~/.local/go/bin
-        # set -x GOPATH ~/.local/gopkgs
     end
 end
 
