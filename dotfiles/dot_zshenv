@@ -1,0 +1,1 @@
+[[ -f "$HOME/.local/cargo/env" ]] && . "$HOME/.local/cargo/env"
