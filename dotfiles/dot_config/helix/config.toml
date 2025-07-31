@@ -8,7 +8,7 @@ cursorcolumn = true
 auto-save = true
 
 [editor.cursor-shape]
-insert = "block"
+insert = "bar"
 normal = "block"
 select = "underline"
 
