@@ -54,5 +54,9 @@
 [includeIf "gitdir:**/projects/"]
 	path = ~/.config/git/default
 
+# when working with test projects workspace
+[includeIf "gitdir:**/Desktop/"]
+	path = ~/.config/git/default
+
 [includeIf "gitdir:**/backup/"]
 	path = ~/.config/git/default
