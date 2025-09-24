@@ -8,3 +8,4 @@ NOTES.md
 .envrc
 coverage/
 rails.txt
+*.prv.*
