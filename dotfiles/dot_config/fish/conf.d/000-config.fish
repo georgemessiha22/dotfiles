@@ -256,3 +256,8 @@ end
 if status --is-interactive && type -q macchina
     macchina -p -m -C -s
 end
+
+## start Zellij
+# if status --is-interactive
+#     eval (zellij setup --generate-auto-start fish | string collect)
+# end
