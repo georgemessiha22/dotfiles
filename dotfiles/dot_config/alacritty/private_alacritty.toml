@@ -26,6 +26,7 @@ action= "ToggleViMode"
 opacity = 0.9888
 decorations =  "buttonless"
 blur = false
+option_as_alt = "Both"
 
 [window.padding]
 x = 5
@@ -45,3 +46,6 @@ import = [
 	"~/.config/alacritty/themes/catppuccin/catppuccin-macchiato.toml",
 	# "~/.config/alacritty/themes/catppuccin/catppuccin-latte.toml",
 ]
+
+[terminal]
+shell = { program = "/opt/homebrew/bin/zellij"} #, args = ["setup", "--generate-auto-start fish"] }
