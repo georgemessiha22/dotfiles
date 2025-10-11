@@ -48,4 +48,4 @@ import = [
 ]
 
 [terminal]
-shell = { program = "/opt/homebrew/bin/zellij"} #, args = ["setup", "--generate-auto-start fish"] }
+# shell = { program = "/opt/homebrew/bin/zellij"} #, args = ["setup", "--generate-auto-start fish"] }
