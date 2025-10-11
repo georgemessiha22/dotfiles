@@ -100,7 +100,12 @@
     # move workspace around
     bindsym $mod+Control+Shift+Right move workspace to output right
     bindsym $mod+Control+Shift+Left move workspace to output left
+    bindsym $mod+Control+Shift+$right move workspace to output right
+    bindsym $mod+Control+Shift+$left move workspace to output left
 
+    # move to left or right workspace
+    bindsym $mod+Control+$left workspace prev
+    bindsym $mod+Control+$right workspace next
 #
 # Layout stuff:
 #
