@@ -257,6 +257,7 @@ if status --is-interactive && type -q macchina
     macchina -p -m -C -s
 end
 
+theme_gruvbox dark medium
 ## start Zellij
 # if status --is-interactive
 #     eval (zellij setup --generate-auto-start fish | string collect)
