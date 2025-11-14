@@ -23,12 +23,12 @@ shift + alt - l : yabai -m window --warp east
 
 # Multi Space control {{{
 # change focus to prev and next space
-alt - p : yabai -m space --focus prev;
-alt - n : yabai -m space --focus next;
+alt - p : yabai -m space --focus prev
+alt - n : yabai -m space --focus next
 
 # move window to prev and next space
-shift + alt - p : yabai -m window --space prev;
-shift + alt - n : yabai -m window --space next;
+shift + alt - p : yabai -m window --space prev
+shift + alt - n : yabai -m window --space next
 
 # change focus to space #
 alt - 1 : yabai -m space --focus 1;
@@ -77,8 +77,8 @@ shift + alt - d : yabai -m space --layout bsp;
 # Change focus to display
 ctrl + alt - h: yabai -m display --focus west;
 ctrl + alt - l: yabai -m display --focus east;
-ctrl + alt - j: yabai -m display --focus north;
-ctrl + alt - k: yabai -m display --focus south;
+ctrl + alt - k: yabai -m display --focus north;
+ctrl + alt - j: yabai -m display --focus south;
 
 # move window to display left and right
 shift + ctrl + alt - h: yabai -m window --display west;
