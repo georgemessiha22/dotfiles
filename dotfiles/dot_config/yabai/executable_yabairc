@@ -39,9 +39,9 @@ function maybe_center_space {
     do
         if [[ $aspect_ratio == "ultrawide" ]]; then
             if ((managed_spaces < 1)); then 
-                yabai -m space --padding abs:3:60:800:800
+                yabai -m space --padding abs:3:90:800:800
             elif ((managed_spaces < 4)); then
-                yabai -m space --padding abs:3:60:400:400
+                yabai -m space --padding abs:3:90:400:400
             else
                 yabai -m space --padding abs:3:60:3:3
             fi
