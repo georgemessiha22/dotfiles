@@ -5,7 +5,7 @@ function push2stg -d "Create Staging version branch of current branch"
 
     if set -ql _flag_help
         echo "
-        Create a staging branch of current branch on platform
+        Create a staging branch of current branch 
         Options:
           -n number of commits to be cherry-picked
        "
@@ -34,7 +34,7 @@ function push2stg -d "Create Staging version branch of current branch"
         git pull --rebase origin staging
         git branch -D "$branch_name-stg" || true
         git checkout -b "$branch_name-stg"
-				git cherry-pick --abort || true
+		git cherry-pick --abort || true
         git cherry-pick "$first_hash".."$last_hash"
         git push --set-upstream origin "$branch_name-stg" -f
         open "https://github.com/$owner_name/$repo_name/compare/staging...$branch_name-stg?expand=1"
