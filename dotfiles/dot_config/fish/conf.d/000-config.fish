@@ -262,3 +262,7 @@ theme_gruvbox dark medium
 # if status --is-interactive
 #     eval (zellij setup --generate-auto-start fish | string collect)
 # end
+#
+if status --is-interactive
+    zoxide init fish | source
+end
