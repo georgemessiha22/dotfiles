@@ -4,17 +4,21 @@
 	pager = delta
 	hooksPath = .githooks/
 
+[blame]
+    pager = delta
+
 [interactive]
-	diffFilter = delta --color-only
+	diffFilter = delta --color-only --diff-so-fancy
 
 [delta]
 	navigate = true
-	side-by-side = true
+	side-by-side = false
 	line-number = true
 	dark = true
+    hyperlinks = true
 
 [merge]
-	conflictstyle = diff3
+	conflictstyle = zdiff3
 
 [diff]
 	colorMoved = default
@@ -52,6 +56,14 @@
 
 # when working with test projects workspace
 [includeIf "gitdir:**/projects/"]
+	path = ~/.config/git/default
+
+# when working with test projects workspace
+[includeIf "gitdir:**/.local/"]
+	path = ~/.config/git/default
+
+# when working with test projects workspace
+[includeIf "gitdir:**/.config/"]
 	path = ~/.config/git/default
 
 # when working with test projects workspace

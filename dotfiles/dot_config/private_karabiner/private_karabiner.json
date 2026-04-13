@@ -19,6 +19,15 @@
                             "to": [{ "key_code": "escape" }]
                         }
                     ]
+                },
+                {
+                    "identifiers": {
+                        "is_keyboard": true,
+                        "product_id": 26414,
+                        "vendor_id": 3141
+                    },
+                    "ignore_vendor_events": true,
+                    "treat_as_built_in_keyboard": true
                 }
             ],
             "name": "Default profile",
