@@ -25,3 +25,4 @@ config/vim/my_plugins/vim-expand-region/docs/tags
 paru/
 
 install/brew/Brewfile.lock.json
+nvim-pack-lock.json
