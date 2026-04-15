@@ -11,7 +11,6 @@ style = "ExtraLight"
 family = "JetBrainsMonoNL Nerd Font Mono"
 style = "Thin Italic"
 
-
 [[keyboard.bindings]]
 action = "SpawnNewInstance"
 key = "Return"
@@ -41,12 +40,10 @@ import = [
     # "~/.config/alacritty/themes/github_dark_tritanopia.yml",
     # "~/.config/alacritty/themes/rose-pine-moon.toml",
     # "~/.config/alacritty/themes/rose-pine.toml",
-	# "~/.config/alacritty/themes/catppuccin/catppuccin-frappe.toml",
+	"~/.config/alacritty/themes/catppuccin/catppuccin-frappe.toml",
 	# "~/.config/alacritty/themes/catppuccin/catppuccin-mocha.toml",
 	# "~/.config/alacritty/themes/catppuccin/catppuccin-macchiato.toml",
-	"~/.config/alacritty/themes/gruvbox.toml",
+	# "~/.config/alacritty/themes/gruvbox.toml",
 	# "~/.config/alacritty/themes/catppuccin/catppuccin-latte.toml",
 ]
 
-[terminal]
-# shell = { program = "/opt/homebrew/bin/zellij"} #, args = ["setup", "--generate-auto-start fish"] }
