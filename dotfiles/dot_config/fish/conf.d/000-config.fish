@@ -16,13 +16,20 @@ end
 set -U __done_min_cmd_duration 10000
 set -U __done_notification_urgency_level low
 
-
 ## Environment setup
+set -x EDITOR nvim
 
 # Add ~/.local/bin to PATH
 if test -d ~/.local/bin
     if not contains -- ~/.local/bin $PATH
         fish_add_path -a ~/.local/bin
+    end
+end
+
+# Add mason installed tools to PATH
+if test -d ~/.local/share/nvim/mason/bin
+    if not contains -- ~/.local/share/nvim/mason/bin $PATH
+        fish_add_path -a ~/.local/share/nvim/mason/bin
     end
 end
 
@@ -82,7 +89,6 @@ end
 if test -d $HOME/.local/neovim
     fish_add_path -a $HOME/.local/neovim/bin
 end
-
 
 # kubectl krew
 set KREW_PATH "$KREW_ROOT"
@@ -257,12 +263,24 @@ if status --is-interactive && type -q macchina
     macchina -p -m -C -s
 end
 
-theme_gruvbox dark medium
+fish_config theme choose catppuccin-mocha
+
 ## start Zellij
-# if status --is-interactive
-#     eval (zellij setup --generate-auto-start fish | string collect)
-# end
+# The following snippet is meant to be used like this in your fish config:
 #
+if status --is-interactive && type -q zellij
+    if not set -q ZELLIJ
+        set -l zellij_sessions (zellij ls -s | string match -v "No active zellij sessions found.")
+        if test -n "$zellij_sessions"
+            zellij attach $zellij_sessions[1]
+        else
+            zellij
+        end
+        # Configure auto-attach/exit to your likings (default is off).
+        # zellij attach $(zellij ls -s | head -1 || echo "-c")
+    end
+end
+
 if status --is-interactive
     zoxide init fish | source
 end
