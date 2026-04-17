@@ -173,11 +173,11 @@ keybinds clear-defaults=true {
                 floating true
             }
         }
-        bind "Ctrl Alt f" {
-            LaunchOrFocusPlugin "filepicker" {
-                floating true
-            }
-        }
+        // bind "Ctrl Alt f" {
+        //     LaunchOrFocusPlugin "filepicker" {
+        //         floating true
+        //     }
+        // }
         bind "Ctrl Alt g" { SwitchToMode "locked"; }
         bind "Ctrl Alt q" { Quit; }
     }
@@ -367,7 +367,7 @@ default_shell "fish"
 // The name of the default layout to load on startup
 // Default: "default"
 // 
-default_layout "development"
+// default_layout "development"
  
 // The folder in which Zellij will look for layouts
 // (Requires restart)

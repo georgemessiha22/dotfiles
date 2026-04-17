@@ -1,7 +1,7 @@
 layout {
-    default_tab_template {
+    default_tab_template cwd="~/.local/share/nvim/site/pack/core/opt/GogoNvim/" {
         pane size=1 borderless=true {
-            plugin location="zellij:tab-bar"
+            plugin location="zellij:compact-bar"
         }
         children
         pane size=1 borderless=true {
@@ -11,11 +11,10 @@ layout {
     tab name="Neovim " {
         pane command="nvim"
     }
-    tab name="Reward " cwd="./HungerStation/reward" {
-
-    }
-    tab name="Offer " cwd="./HungerStation/offer" {
-
+    floating_panes {
+        pane {
+            command "lazygit"
+        }
     }
 }
 

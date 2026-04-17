@@ -1,0 +1,29 @@
+layout {
+    default_tab_template cwd="." {
+        pane size=1 borderless=true {
+            plugin location="zellij:compact-bar"
+        }
+        children
+        pane size=1 borderless=true {
+            plugin location="zellij:status-bar"
+        }
+    }
+    tab name="Neovim " {
+        pane command="nvim"
+    }
+    tab name="Runner " {
+        pane split_direction="vertical" {
+            pane
+            pane name="Services " command="bash" size="35%" {
+                args "-c" "docker stop $(docker ps -q) && docker compose -f docker-compose.test.yml up"
+                start_suspended true
+            }
+        }
+        floating_panes {
+            pane {
+                command "lazygit"
+            }
+        }
+    }
+}
+

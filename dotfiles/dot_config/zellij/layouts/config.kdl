@@ -1,0 +1,32 @@
+layout {
+    default_tab_template cwd=".config" {
+        pane size=1 borderless=true {
+            plugin location="zellij:compact-bar"
+        }
+        children
+        pane size=1 borderless=true {
+            plugin location="zellij:status-bar"
+        }
+    }
+    tab name="Neovim " {
+        pane command="nvim"
+    }
+    tab name="Chezit " {
+        pane size="70%" {
+            // start_suspended true
+            command "chezit"
+            args "status"
+            close_on_exit true
+        }
+        pane split_direction="horizontal"{
+            size "30%"
+        }
+    }
+    tab name="lazygit" cwd="~/backup/linux-workspace" {
+        pane {
+            command "lazygit"
+            close_on_exit true
+        }
+    }
+}
+

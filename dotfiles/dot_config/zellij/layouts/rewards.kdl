@@ -1,0 +1,30 @@
+layout {
+    default_tab_template cwd="~/HungerStation/reward" {
+        pane size=1 borderless=true {
+            plugin location="zellij:compact-bar"
+        }
+        children
+        pane size=1 borderless=true {
+            plugin location="zellij:status-bar"
+        }
+    }
+    tab name="Neovim " {
+        pane command="nvim"
+    }
+    tab name="Rewards " {
+        pane split_direction="vertical" {
+            pane
+            pane name="Docker Run " command="bash" size="35%" {
+                args "-c" "docker stop $(docker ps -q) && docker compose -f docker-compose.test.yml up"
+                start_suspended true
+                close_on_exit true
+            }
+        }
+    }
+    floating_panes {
+        pane {
+            command "lazygit"
+        }
+    }
+}
+
