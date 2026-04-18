@@ -265,21 +265,11 @@ end
 
 fish_config theme choose catppuccin-mocha
 
-## start Zellij
-# The following snippet is meant to be used like this in your fish config:
-#
-if status --is-interactive && type -q zellij
-    if not set -q ZELLIJ
-        set -l zellij_sessions (zellij ls -s | string match -v "No active zellij sessions found.")
-        if test -n "$zellij_sessions"
-            zellij attach $zellij_sessions[1]
-        else
-            zellij
-        end
-        # Configure auto-attach/exit to your likings (default is off).
-        # zellij attach $(zellij ls -s | head -1 || echo "-c")
-    end
-end
+alias dev="zellij --layout dev"
+alias config="zellij --layout config"
+alias reward="cd ~/HungerStation/reward && zellij --layout dev"
+alias offer="cd ~/HungerStation/offer && zellij --layout dev"
+alias gogoNvim="zellij --layout gogoNvim"
 
 if status --is-interactive
     zoxide init fish | source

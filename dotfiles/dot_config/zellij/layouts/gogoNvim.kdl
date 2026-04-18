@@ -1,5 +1,5 @@
 layout {
-    default_tab_template cwd="~/.local/share/nvim/site/pack/core/opt/GogoNvim/" {
+    default_tab_template {
         pane size=1 borderless=true {
             plugin location="zellij:compact-bar"
         }
@@ -7,14 +7,20 @@ layout {
         pane size=1 borderless=true {
             plugin location="zellij:status-bar"
         }
+        floating_panes cwd="~/.local/share/nvim/site/pack/core/opt/GogoNvim/" {
+            pane {
+                command "lazygit"
+            }
+        }
     }
-    tab name="Neovim " {
+    tab name="GogoNvim " cwd="~/.local/share/nvim/site/pack/core/opt/GogoNvim/" {
         pane command="nvim"
     }
-    floating_panes {
-        pane {
-            command "lazygit"
-        }
+    tab name="Nvim Config " cwd="~/.config/nvim/" {
+        pane command="nvim"
+    }
+    tab name="Chezit " cwd="~/.config/nvim" {
+        pane command="chezit"
     }
 }
 

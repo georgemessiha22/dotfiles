@@ -8,5 +8,17 @@ layout {
             plugin location="zellij:status-bar"
         }
     }
+    tab name="Neovim " {
+        pane command="nvim"
+    }
+    tab name="Shell " {
+        pane
+        pane size="30%"
+    }
+    tab name="Lazygit " {
+        pane {
+            command "lazygit"
+        }
+    }
 }
 
