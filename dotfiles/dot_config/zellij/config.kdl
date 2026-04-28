@@ -348,7 +348,8 @@ simplified_ui true
 // Choose the theme that is specified in the themes section.
 // Default: default
 // 
-theme "catppuccin-frappe"
+theme "catppuccin-macchiato"
+// theme "nord"
  
 // Choose the base input mode of zellij.
 // Default: normal
@@ -456,13 +457,13 @@ on_force_close "detach"
 // otherwise this will error if such a session exists.
 // Default: <RANDOM>
 // 
-session_name "development"
+// session_name "development"
  
 // When `session_name` is provided, attaches to that session
 // if it is already running or creates it otherwise.
 // Default: false
 // 
-attach_to_session true
+// attach_to_session true
  
 // Toggle between having Zellij lay out panes according to a predefined set of layouts whenever possible
 // Options:

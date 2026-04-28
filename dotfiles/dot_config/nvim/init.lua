@@ -3,13 +3,12 @@ vim.pack.add({
 	{
 		src = "https://github.com/folke/which-key.nvim",
 		name = "which-key",
-		data = {},
+		data = { confirm = false },
 	},
+	-- {
+	-- 	src = "https://github.com/rose-pine/neovim",
+	-- 	name = "rose-pine",
+	-- 	data = { confirm = false },
+	-- },
 })
 
-require("which-key").setup({
-	triggers = {
-		{ "<auto>", mode = "nixsotc" },
-		{ "a", mode = { "n", "v" } },
-	},
-})

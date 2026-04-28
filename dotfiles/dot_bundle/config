@@ -5,4 +5,5 @@ BUNDLE_BUILD__GRPC: "--with-cflags=-Wno-error=incompatible-function-pointer-type
 BUNDLE_BUILD__OJ: "--with-cflags=-Wno-error=incompatible-function-pointer-types"
 BUNDLE_BUILD__MSGPACK: "--with-cflags=-Wno-error=incompatible-function-pointer-types"
 BUNDLE_BUILD__LIBXML_RUBY: "--with-cflags=-Wno-error=incompatible-function-pointer-types"
+BUNDLE_SET: "--local force_ruby_platform true"
 BUNDLE_JOBS: "20"

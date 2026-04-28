@@ -13,7 +13,7 @@ alias pod-init='podman machine init --disk-size 100 -m 8600 --rootful'
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/george/google-cloud-sdk/path.fish.inc' ]
-    . '/Users/george/google-cloud-sdk/path.fish.inc'
+    source '/Users/george/google-cloud-sdk/path.fish.inc'
 end
 
 if [ -d '/Users/george/Developer/flutter/bin' ]
@@ -27,6 +27,17 @@ end
 alias hs-stg="gcloud container clusters get-credentials developer-platform-hs-staging --region europe-west1 --project hungerstation-staging"
 alias hs-prod="gcloud container clusters get-credentials gdp-hs-production --region europe-west1 --project hungerstation-production"
 
+# Load platform shit when cd
+function auto_run_platform_script --on-variable PWD
+    # Check if we just entered the 'platform' directory
+    # Update the path to match your actual absolute path
+    if test "$PWD" = "/Users/george/HungerStation/platform_virtual/platform"
+        echo "Entering platform... Loading scripts!"
+
+        # Source your fish script
+        source "/Users/george/HungerStation/platform_virtual/platform.fish"
+    end
+end
 
 set -Ux GOOGLE_CLOUD_PROJECT "dp-gemini-code-assist-9224"
 
