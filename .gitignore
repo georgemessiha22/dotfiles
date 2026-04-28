@@ -17,8 +17,10 @@ config/vim/temp_dirs/yankring_history_v2.txt
 config/vim/sources_forked/yankring/doc/tags
 config/vim/sources_non_forked/tlib/doc/tags
 config/vim/sources_non_forked/ctrlp.vim/doc/tags*
-
 config/vim/my_plugins/vim-expand-region/docs/tags
+
+dotfiles/dot_config/fish/fish_variables
+
 .DS_Store
 .vscode
 

@@ -263,13 +263,22 @@ if status --is-interactive && type -q macchina
     macchina -p -m -C -s
 end
 
-fish_config theme choose catppuccin-mocha
+if status --is-interactive && command -q pyenv
+    set -Ux PYENV_ROOT $HOME/.pyenv
+    set -U fish_user_paths $PYENV_ROOT/bin $fish_user_paths
+    pyenv init - fish | source
+end
+
+# fish_config theme choose rose-pine-moon
+# fish_config theme choose catppuccin-macchiato
+# fish_config theme choose nord
+fish_config theme choose "fish default"
 
 alias dev="zellij --layout dev"
 alias config="zellij --layout config"
 alias reward="cd ~/HungerStation/reward && zellij --layout dev"
 alias offer="cd ~/HungerStation/offer && zellij --layout dev"
-alias gogoNvim="zellij --layout gogoNvim"
+alias gogoNvim="zellij -n gogoNvim"
 
 if status --is-interactive
     zoxide init fish | source

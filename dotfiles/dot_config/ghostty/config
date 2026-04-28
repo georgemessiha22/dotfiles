@@ -23,4 +23,6 @@ keybind = super+ctrl+h=resize_split:left,10
 keybind = super+k=jump_to_prompt:1
 keybind = super+j=jump_to_prompt:-1
 
-theme = Gruvbox Dark
+theme = Catppuccin Macchiato
+# theme = Nord
+# theme = Rose Pine Moon
