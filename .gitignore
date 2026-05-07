@@ -28,3 +28,6 @@ paru/
 
 install/brew/Brewfile.lock.json
 nvim-pack-lock.json
+
+dotfiles/dot_config/fish/conf.d/executable_hungerstation.fish
+dotfiles/dot_bundle/config

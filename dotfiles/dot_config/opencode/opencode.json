@@ -1,0 +1,90 @@
+{
+    "$schema": "https://opencode.ai/config.json",
+    "instructions": [
+        "Hungerstation.wiki/AGENTS.md",
+        "CONTRIBUTING.md",
+        "docs/guidelines.md",
+        "AGENTS.md",
+        ".agents/rules/*.md",
+        ".agents/AGENTS.md",
+        "README.md"
+    ],
+    "skills": {
+        "paths": [
+            "~/.config/opencode/skills/*/SKILL.md",
+            "Hungerstation.wiki/skills/",
+            ".agents/skills/",
+            ".opencode/skills/",
+            ".claude/skills/"
+        ]
+    },
+    "default_agent": "plan",
+    "model": "anthropic/claude-opus-4-7",
+    "autoupdate": true,
+    "server": {
+        "port": 4096,
+    },
+    "mcp": {
+        "github": {
+            "type": "remote",
+            "enabled": true,
+            "url": "https://api.githubcopilot.com/mcp/",
+            "oauth": false,
+            "headers": {
+                "Authorization": "Bearer {env:GITHUB_TOKEN}"
+            }
+        },
+        "kubernetes": {
+            "type": "local",
+            "command": [
+                "npx",
+                "mcp-server-kubernetes@2.5.1"
+            ],
+            "environment": {
+                "SPAWN_MAX_BUFFER": "10485760",
+                "ALLOW_ONLY_READONLY_TOOLS": "true"
+            }
+        },
+        "dp-devinfra": {
+            "type": "local",
+            "command": [
+                "dp-devinfra",
+                "mcp"
+            ]
+        },
+        "atlassian": {
+            "type": "remote",
+            "url": "https://mcp.atlassian.com/v1/mcp",
+            "enabled": true
+        },
+        "drive": {
+            "type": "remote",
+            "url": "https://drivemcp.googleapis.com/mcp/v1",
+            "enabled": true,
+        },
+        "slack": {
+            "type": "local",
+            "command": [
+                "/Users/george/projects/pd-mcp-servers/pd-slack-mcp-server/slack-mcp"
+            ],
+            "enabled": true,
+        }
+    },
+    "provider": {
+        "ollama": {
+            "npm": "@ai-sdk/openai-compatible",
+            "name": "Ollama (local)",
+            "options": {
+                "baseURL": "http://localhost:11434/v1"
+            },
+            "models": {
+                "qwen2.5-coder:1.5b": {
+                    "name": "QWEN-coder 2.5"
+                }
+            }
+        }
+    },
+    "plugin": [
+        "superpowers@git+https://github.com/obra/superpowers.git"
+    ]
+}
