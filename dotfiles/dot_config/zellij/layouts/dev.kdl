@@ -9,6 +9,11 @@ layout {
             plugin location="zellij:status-bar"
         }
     }
+    tab name="Copilot " {
+        pane {
+            command "opencode"
+        }
+    }
     tab name="Neovim " {
         pane command="nvim"
     }
@@ -19,10 +24,6 @@ layout {
     tab name="Lazygit " {
         pane {
             command "lazygit"
-        }
-    }
-    tab name="Copilot " {
-        pane {
         }
     }
 }

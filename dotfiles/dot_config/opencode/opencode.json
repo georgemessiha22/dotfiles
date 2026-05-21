@@ -38,7 +38,7 @@
             "type": "local",
             "command": [
                 "npx",
-                "mcp-server-kubernetes@2.5.1"
+                "mcp-server-kubernetes@3.5.1"
             ],
             "environment": {
                 "SPAWN_MAX_BUFFER": "10485760",
@@ -68,7 +68,19 @@
                 "/Users/george/projects/pd-mcp-servers/pd-slack-mcp-server/slack-mcp"
             ],
             "enabled": true,
-        }
+        },
+        "testrails": {
+            "type": "local",
+            "command": [
+                "npx",
+                "@bun913/mcp-testrail@latest"
+            ],
+            "environment": {
+                "TESTRAIL_URL": "https://hungerstation.testrail.io",
+                "TESTRAIL_USERNAME": "{env:TESTRAIL_USER}",
+                "TESTRAIL_API_KEY": "{env:TESTRAIL_API_KEY}"
+            },
+        },
     },
     "provider": {
         "ollama": {
