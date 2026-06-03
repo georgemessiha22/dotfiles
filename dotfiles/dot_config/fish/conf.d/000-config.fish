@@ -201,11 +201,13 @@ switch (uname)
         set -gx XDG_CONFIG_HOME "/Users/george/.config"
 
         # HOMEBREW SETUP
-        eval "$(/opt/homebrew/bin/brew shellenv)"
+        if status --is-login
+            eval "$(/opt/homebrew/bin/brew shellenv)"
+        end
         set --export GPG_TTY $(tty)
 
         # The next line updates PATH for the Google Cloud SDK.
-        if test -f '$(brew --prefix)/share/google-cloud-sdk/path.fish.inc'
+        if status --is-login && test -f '$(brew --prefix)/share/google-cloud-sdk/path.fish.inc'
             source "$(brew --prefix)/share/google-cloud-sdk/path.fish.inc"
         end
 
@@ -225,7 +227,7 @@ switch (uname)
             fish_add_path -a /Users/george/Library/Python/3.12/bin
         end
 
-        if test -d $HOME/.rbenv/versions/
+        if status --is-login && test -d $HOME/.rbenv/versions/
             status --is-interactive; and rbenv init - --no-rehash fish | source
             fish_add_path -a "$HOME/.rbenv/shims"
         end
@@ -258,21 +260,15 @@ if status --is-interactive
     starship init fish | source
 end
 
-## Run fastfetch if session is interactive
-if status --is-interactive && type -q macchina
-    macchina -p -m -C -s
-end
-
-if status --is-interactive && command -q pyenv
-    set -Ux PYENV_ROOT $HOME/.pyenv
-    set -U fish_user_paths $PYENV_ROOT/bin $fish_user_paths
-    pyenv init - fish | source
+if status --is-interactive && status --is-login && command -q pyenv
+    set -gx PYENV_ROOT $HOME/.pyenv
+    fish_add_path -m "$PYENV_ROOT/bin" "$PYENV_ROOT/shims"
+    pyenv init - --no-rehash fish | source
 end
 
 # fish_config theme choose rose-pine-moon
-# fish_config theme choose catppuccin-macchiato
+fish_config theme choose catppuccin-macchiato
 # fish_config theme choose nord
-fish_config theme choose "fish default"
 
 alias dev="zellij --layout dev"
 alias config="zellij --layout config"

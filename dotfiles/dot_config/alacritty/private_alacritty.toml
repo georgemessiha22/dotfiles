@@ -31,6 +31,9 @@ option_as_alt = "Both"
 x = 5
 y = 5
 
+[terminal]
+osc52 = "CopyPaste"
+
 [general]
 live_config_reload = true
 # dynamic_padding = true
@@ -47,4 +50,3 @@ import = [
 	# "~/.config/alacritty/themes/gruvbox.toml",
 	# "~/.config/alacritty/themes/catppuccin/catppuccin-latte.toml",
 ]
-

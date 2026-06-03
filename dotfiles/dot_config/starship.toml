@@ -11,7 +11,7 @@ $shell\
 $cmd_duration\
 $character"""
 
-command_timeout = 99
+command_timeout = 9
 
 # palette = 'gruvbox_dark'
 
@@ -84,6 +84,7 @@ symbol = " "
 [docker_context]
 symbol = " "
 format = '[$symbol($context) ]($style)'
+disabled = true
 
 [kubernetes]
 format = '[$symbol($context) ]($style)'
@@ -98,6 +99,7 @@ disabled = true
 
 [haxe]
 symbol = " "
+disabled = true
 
 [hg_branch]
 symbol = " "
@@ -107,9 +109,11 @@ ssh_symbol = " "
 
 [julia]
 symbol = " "
+disabled = true
 
 [lua]
 symbol = " "
+disabled = true
 
 [memory_usage]
 symbol = "󰍛 "
@@ -119,6 +123,7 @@ symbol = "󰔷 "
 
 [nim]
 symbol = "󰆥 "
+disabled = true
 
 [nix_shell]
 symbol = " "
@@ -130,33 +135,46 @@ disabled = true
 [buf]
 symbol = " "
 
+[cmake]
+disabled = true
+
+[bun]
+disabled = true
+
 
 [dart]
 symbol = " "
+disabled = true
 
 [direnv]
 disabled = true
 
 [package]
 symbol = "󰏗 "
+disabled = true
 
 [pijul_channel]
 symbol = " "
 
 [rlang]
 symbol = "󰟔 "
+disabled = true
 
 [ruby]
 symbol = " "
+disabled = true
 
 [scala]
 symbol = " "
+disabled = true
 
 [elixir]
 symbol = " "
+disabled = true
 
 [elm]
 symbol = " "
+disabled = true
 
 [fossil_branch]
 symbol = " "
@@ -173,42 +191,52 @@ format = '[$user ]($style)'
 [nodejs]
 symbol = ""
 format = '[$symbol $version ]($style)'
+disabled = true
 
 [c]
 symbol = " "
 format = '[$symbol $version ]($style)'
+disabled = true
 
 [rust]
 symbol = ""
 format = '[$symbol $version ]($style)'
+disabled = true
 
 [golang]
 symbol = ""
 format = '[$symbol $version ]($style)'
 version_format = '${major}.${minor}'
+disabled = true
 
 [php]
 symbol = ""
 format = '[$symbol $version ]($style)'
+disabled = true
 
 [java]
 symbol = ""
 format = '[$symbol $version ]($style)'
+disabled = true
 
 [kotlin]
 symbol = ""
 format = '[$symbol $version ]($style)'
+disabled = true
 
 [haskell]
 symbol = ""
 format = '[$symbol $version ]($style)'
+disabled = true
 
 [python]
 symbol = ""
 format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
+disabled = true
 
 [conda]
 format = '[$symbol $version ]($style)'
+disabled = true
 
 [status]
 disabled = false
@@ -222,6 +250,7 @@ disabled = false
 fish_indicator = "󰈺"
 zsh_indicator = "󰫫"
 bash_indicator = ""
+nu_indicator = ""
 
 [cmd_duration]
 disabled = false
