@@ -6,6 +6,7 @@ TODO.md
 NOTES.md
 *.pyc
 .envrc
+*.envrc
 coverage/
 rails.txt
 *.prv.*
