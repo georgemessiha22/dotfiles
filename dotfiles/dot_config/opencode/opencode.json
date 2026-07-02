@@ -19,7 +19,7 @@
         ]
     },
     "default_agent": "plan",
-    "model": "anthropic/claude-opus-4-7",
+    "model": "github-copilot/claude-opus-4.8",
     "autoupdate": true,
     "server": {
         "port": 4096,

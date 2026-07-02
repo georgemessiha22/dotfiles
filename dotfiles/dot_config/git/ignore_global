@@ -11,3 +11,6 @@ coverage/
 rails.txt
 *.prv.*
 *.skip.*
+
+**/.claude/settings.local.json
+.worktrees/

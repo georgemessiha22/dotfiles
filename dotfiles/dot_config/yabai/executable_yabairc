@@ -85,7 +85,7 @@ function config_rules {
 }
 
 function config_signals {
-	for signal in application_launched application_terminated application_hidden application_visible window_created window_destroyed window_minimized window_deminimized space_changed display_resized display_changed display_added display_removed system_woke; do
+	for signal in application_launched application_terminated application_hidden application_visible window_created window_destroyed window_minimized window_deminimized space_changed display_resized display_changed display_added; do
 		yabai -m signal --add event="$signal" \
 			action="$YABAIRC maybe_center_space" \
 			label="maybe_center_space-on-$signal"
