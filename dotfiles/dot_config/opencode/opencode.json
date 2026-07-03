@@ -4,7 +4,6 @@
         "Hungerstation.wiki/AGENTS.md",
         "CONTRIBUTING.md",
         "docs/guidelines.md",
-        "AGENTS.md",
         ".agents/rules/*.md",
         ".agents/AGENTS.md",
         "README.md"
@@ -18,6 +17,7 @@
             ".claude/skills/"
         ]
     },
+    "shell": "fish",
     "default_agent": "plan",
     "model": "github-copilot/claude-opus-4.8",
     "autoupdate": true,
@@ -36,6 +36,7 @@
         },
         "kubernetes": {
             "type": "local",
+            "enabled": false,
             "command": [
                 "npx",
                 "mcp-server-kubernetes@3.5.1"
@@ -47,6 +48,7 @@
         },
         "dp-devinfra": {
             "type": "local",
+            "enabled": true,
             "command": [
                 "dp-devinfra",
                 "mcp"
@@ -60,14 +62,14 @@
         "drive": {
             "type": "remote",
             "url": "https://drivemcp.googleapis.com/mcp/v1",
-            "enabled": true,
+            "enabled": false,
         },
         "slack": {
             "type": "local",
             "command": [
                 "/Users/george/projects/pd-mcp-servers/pd-slack-mcp-server/slack-mcp"
             ],
-            "enabled": true,
+            "enabled": false,
         },
         "testrails": {
             "type": "local",
@@ -80,6 +82,7 @@
                 "TESTRAIL_USERNAME": "{env:TESTRAIL_USER}",
                 "TESTRAIL_API_KEY": "{env:TESTRAIL_API_KEY}"
             },
+            "enabled": false,
         },
     },
     "provider": {
@@ -94,9 +97,16 @@
                     "name": "QWEN-coder 2.5"
                 }
             }
+        },
+        "anthropic": {
+            "models": {},
+            "options": {
+                "apiKey": "{env:CLAUDE_CODE_OAUTH_TOKEN}"
+            }
         }
     },
     "plugin": [
         "superpowers@git+https://github.com/obra/superpowers.git"
-    ]
+    ],
+    "lsp": true,
 }
