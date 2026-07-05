@@ -33,10 +33,10 @@ function get_space_num_managed_windows {
 }
 
 function maybe_center_space {
-	managed_spaces=$(get_space_num_managed_windows)
 
     for aspect_ratio in $(get_display_aspect_ratio)
     do
+	    managed_spaces=$(get_space_num_managed_windows)
         if [[ $aspect_ratio == "ultrawide" ]]; then
             if ((managed_spaces < 1)); then 
                 yabai -m space --padding abs:3:90:800:800
@@ -82,6 +82,43 @@ function config_rules {
 	# add_rule app="^Alacritty" space=3 manage=on
 	# add_rule app="^Ghostty" space=3 manage=on
 	# add_rule app="^Spotify" space=5 manage=on
+
+    yabai -m config window_shadow off
+	yabai -m config window_opacity on
+	yabai -m config active_window_opacity        1.0
+	yabai -m config normal_window_opacity        0.5
+
+	yabai -m config insert_feedback_color 0xffd75f5f
+	
+	# center mouse on window with focus
+	yabai -m config mouse_follows_focus on
+
+	# modifier for clicking and dragging with mouse
+	yabai -m config mouse_modifier fn
+	# set modifier + left-click drag to move window
+	yabai -m config mouse_action1 move
+	# set modifier + right-click drag to resize window
+	yabai -m config mouse_action2 resize
+
+	# set focus follows mouse mode (default: off, options: off, autoraise, autofocus)
+	yabai -m config focus_follows_mouse autofocus
+
+	# default layout (can be bsp, stack or float)
+	yabai -m config layout bsp
+
+	# New window spawns to the right if vertical split, or bottom if horizontal split
+	yabai -m config window_placement second_child
+
+	# leave space for sketchybar on external screen without notch
+	yabai -m config external_bar all:30:0
+
+	# Auto balance makes it so all windows always occupy the same space, independent of how deeply nested they are in the window tree. When a new window is inserted or a window is removed, the split ratios will be automatically adjusted.
+	yabai -m config auto_balance on
+
+	yabai -m config debug_output off
+
+	# spaces between window
+	yabai -m config window_gap 3
 }
 
 function config_signals {
@@ -100,54 +137,13 @@ function config_signals {
 function config_main {
 	
 	# ref https://github.com/koekeishiya/yabai/wiki/Installing-yabai-(latest-release)#configure-scripting-addition
-	yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
-	sudo yabai --load-sa
+	# yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+	# sudo yabai --load-sa
 	
-	# default layout (can be bsp, stack or float)
-	yabai -m config layout bsp
-
-	# New window spawns to the right if vertical split, or bottom if horizontal split
-	yabai -m config window_placement second_child
-
-	# leave space for sketchybar on external screen without notch
-	yabai -m config external_bar all:33:0
-
-	# Auto balance makes it so all windows always occupy the same space, independent of how deeply nested they are in the window tree. When a new window is inserted or a window is removed, the split ratios will be automatically adjusted.
-	yabai -m config auto_balance on
-
-	yabai -m config debug_output off
-
-	yabai -m config window_shadow off
-	yabai -m config window_opacity on
-	yabai -m config active_window_opacity        1.0
-	yabai -m config normal_window_opacity        0.8
-
-	# yabai -m config window_border_width 5
-	# yabai -m config window_border on
-	# yabai -m config active_window_border_color 0xff8CABC8
-	# yabai -m config normal_window_border_color 0xff434c5e
-	# yabai -m config insert_feedback_color 0xffd75f5f
-	
-	# center mouse on window with focus
-	yabai -m config mouse_follows_focus on
-
-	# modifier for clicking and dragging with mouse
-	yabai -m config mouse_modifier fn
-	# set modifier + left-click drag to move window
-	yabai -m config mouse_action1 move
-	# set modifier + right-click drag to resize window
-	yabai -m config mouse_action2 resize
-
-	# set focus follows mouse mode (default: off, options: off, autoraise, autofocus)
-	yabai -m config focus_follows_mouse autofocus
-
 	config_rules
 
-	# spaces between window
-	yabai -m config window_gap 3
-
 	# Dynamic left & right gaps on wide screen & Paddings {{{
-	maybe_center_space
+	# maybe_center_space
 	config_signals
 	# }}}
 }
