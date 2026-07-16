@@ -168,9 +168,16 @@ keybinds clear-defaults=true {
         bind "Ctrl Alt h" { SwitchToMode "move"; }
     }
     shared_except "locked" "entersearch" "renametab" "renamepane" "prompt" "tmux" {
-        bind "Ctrl Alt F" {
-            LaunchOrFocusPlugin "fuzzy" {
+        // bind "Ctrl Alt F" {
+        //     LaunchOrFocusPlugin "fuzzy" {
+        //         floating true
+        //     }
+        // }
+        bind "Ctrl alt F" {
+            LaunchOrFocusPlugin "room" {
                 floating true
+                ignore_case true
+                quick_jump true
             }
         }
         // bind "Ctrl Alt f" {
@@ -319,6 +326,7 @@ plugins {
     welcome-screen location="zellij:session-manager" {
         welcome_screen false
     }
+    room location="file:~/.config/zellij/plugins/room.wasm"
 }
 
 // Plugins to load in the background when a new session starts
@@ -387,7 +395,7 @@ default_shell "fish"
 //   - true (default)
 //   - false
 // 
-mouse_mode true
+mouse_mode false
  
 // Toggle having pane frames around the panes
 // Options:
