@@ -72,3 +72,12 @@
 
 [includeIf "gitdir:**/backup/"]
 	path = ~/.config/git/default
+[credential "https://github.com"]
+	helper = 
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[trace2]
+	eventTarget = af_unix:stream:/Users/george/.git-ai/internal/daemon/trace2.sock
+	eventNesting = 0

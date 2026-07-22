@@ -1,6 +1,6 @@
 [user]
 	email = georgemessiha22@gmail.com
-	signingkey = DFC444BC38AF229D
+	signingkey = 86B73CF638BDF022
 
 [credential]
 	helper = /usr/lib/git-core/git-credential-libsecret
