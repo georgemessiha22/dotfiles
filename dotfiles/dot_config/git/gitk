@@ -48,6 +48,8 @@ set tagbgcolor yellow
 set tagfgcolor black
 set tagoutlinecolor black
 set textfont {Monaco 9}
+set theme aqua
+set themeloader {}
 set uicolor grey85
 set uifgcolor black
 set uifgdisabledcolor #999
@@ -57,12 +59,12 @@ set web_browser open
 set workingfilescirclecolor red
 set wrapcomment none
 set wrapdefault none
-set geometry(main) 1722x1050+3+36
-set geometry(state) zoomed
-set geometry(topwidth) 1722
+set geometry(main) 878x929+1282+33
+set geometry(state) normal
+set geometry(topwidth) 878
 set geometry(topheight) 225
-set geometry(pwsash0) "595 1"
-set geometry(pwsash1) "891 1"
-set geometry(botwidth) 1402
-set geometry(botheight) 820
+set geometry(pwsash0) "201 1"
+set geometry(pwsash1) "302 1"
+set geometry(botwidth) 480
+set geometry(botheight) 699
 set permviews {}

@@ -84,6 +84,13 @@
             },
             "enabled": false,
         },
+        // "grafana": {
+        //     "type": "remote",
+        //     "url": "https://mcp.grafana.com/mcp",
+        //     "headers": {
+        //         "X-Grafana-URL": "https://deliveryhero.grafana.net"
+        //     }
+        // }
     },
     "provider": {
         "ollama": {

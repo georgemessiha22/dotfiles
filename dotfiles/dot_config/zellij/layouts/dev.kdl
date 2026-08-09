@@ -23,7 +23,7 @@ layout {
         pane
         pane size="30%"
     }
-    tab name="Lazygit " {
+    tab name="Shell 2 " {
         pane {
         }
     }

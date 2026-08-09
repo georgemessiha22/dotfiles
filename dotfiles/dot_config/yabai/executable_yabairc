@@ -74,6 +74,7 @@ function config_rules {
 	yabai -m rule --add app="^Calculator$" manage=off
 	yabai -m rule --add app="^Karabiner-Elements$" manage=off
 	yabai -m rule --add app="^Keymapp" manage=off
+	yabai -m rule --add app="^qemu-system" manage=off
 
 	# Default Spaces
 

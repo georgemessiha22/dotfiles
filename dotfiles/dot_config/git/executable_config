@@ -54,6 +54,14 @@
 [includeIf "gitdir:**/HungerStation/"]
 	path = ~/.config/git/hungerstation
 
+# when working with HungerStation
+[includeIf "gitdir:**/.unhinged-agent/"]
+	path = ~/.config/git/hungerstation
+
+# when working with test projects workspace
+[includeIf "gitdir:**/.unhinged-agent/unhinged-agent/"]
+	path = ~/.config/git/default
+
 # when working with test projects workspace
 [includeIf "gitdir:**/projects/"]
 	path = ~/.config/git/default
