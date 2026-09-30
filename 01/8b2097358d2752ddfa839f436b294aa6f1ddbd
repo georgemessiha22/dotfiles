@@ -1,0 +1,20 @@
+dotfiles/dot_config/alacritty/private_alacritty.toml
+  h_7e869580ab12e8 20-21
+dotfiles/dot_config/opencode/opencode.jsonc
+  h_7e869580ab12e8 116-117
+dotfiles/dot_taskrc
+  h_7e869580ab12e8 2
+dotfiles/executable_dot_zshrc
+  h_7e869580ab12e8 309
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "018b2097358d2752ddfa839f436b294aa6f1ddbd",
+  "prompts": {},
+  "humans": {
+    "h_7e869580ab12e8": {
+      "author": "George Messiha <georgemessiha22@gmail.com>"
+    }
+  }
+}
