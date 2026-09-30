@@ -17,8 +17,8 @@ key = "Return"
 mods = "Control|Shift"
 
 [[keyboard.bindings]]
-key= "G"
-mods= "Control"
+key= "v"
+mods= "Control|Shift"
 action= "ToggleViMode"
 
 [window]

@@ -78,4 +78,3 @@ export RUSTUP_HOME=$HOME/.local/rustup
 if [[ -d $HOME/.local/cargo ]]; then
 	. "$HOME/.local/cargo/env"
 fi
-
