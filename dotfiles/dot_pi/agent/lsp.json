@@ -1,0 +1,13 @@
+{
+  "servers": {
+    "gopls": {
+      "install": { "type": "system", "command": ["/Users/george/.local/gopkgs/bin/gopls"] }
+    },
+    "pyright": {
+      "install": { "type": "system", "command": ["/Users/george/.local/share/nvim/mason/bin/pyright-langserver", "--stdio"] }
+    },
+    "rust-analyzer": {
+      "install": { "type": "system", "command": ["/Users/george/.local/cargo/bin/rust-analyzer"] }
+    }
+  }
+}

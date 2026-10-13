@@ -1,0 +1,45 @@
+{
+  "lastChangelogVersion": "1.2.0",
+  "theme": "opencode",
+  "defaultProvider": "github-copilot",
+  "defaultModel": "claude-sonnet-5.5",
+  "defaultThinkingLevel": "medium",
+  "showHardwareCursor": true,
+  "editorPaddingX": 2,
+  "steeringMode": "one-at-a-time",
+  "followUpMode": "one-at-a-time",
+  "transport": "auto",
+  "markdown": {
+    "mermaid": "streaming"
+  },
+  "enableInstallTelemetry": false,
+  "warnings": {
+    "anthropicExtraUsage": true
+  },
+  "packages": [
+    "npm:pi-claude-auth",
+    "npm:pi-hermes-memory",
+    "npm:@juanibiapina/pi-powerbar",
+    "npm:pi-mcp-adapter",
+    "npm:pi-subagents",
+    "./local/pi-sidebar-tui",
+    "npm:pi-lsp-adapter"
+  ],
+  "terminal": {
+    "showTerminalProgress": true
+  },
+  "showCacheMissNotices": true,
+  "tuiMode": "fullscreen",
+  "fullscreenExitOutput": "resume-hint",
+  "doubleEscapeAction": "tree",
+  "extensions": [
+    "-builtin:mcp"
+  ],
+  "skills": [
+    "~/HungerStation/Hungerstation.wiki/skills",
+    "/Users/george/.cache/opencode/packages/superpowers@git+https:/github.com/obra/superpowers.git/node_modules/superpowers/skills"
+  ],
+  "quietStartup": false,
+  "collapseChangelog": true,
+  "autocompleteMaxVisible": 8
+}

@@ -1,0 +1,35 @@
+{
+	"$schema": "https://pi.dev/schemas/theme.schema.json",
+	"name": "opencode",
+	"appearance": "dark",
+	"vars": {
+		"text": "#cad3f5", "muted": "#8087a2", "overlay": "#6e738d",
+		"mauve": "#c6a0f6", "blue": "#8aadf4", "green": "#a6da95",
+		"red": "#ed8796", "yellow": "#eed49f", "peach": "#f5a97f",
+		"teal": "#8bd5ca", "base": "#24273a", "surface": "#363a4f",
+		"mantle": "#1e2030", "blueBg": "#2e3552", "greenBg": "#2c3d3a",
+		"redBg": "#452d3b", "mauveBg": "#3a3354"
+	},
+	"colors": {
+		"accent": "mauve", "border": "blue", "borderAccent": "mauve", "borderMuted": "surface",
+		"success": "green", "error": "red", "warning": "yellow",
+		"muted": "muted", "dim": "overlay", "text": "text", "thinkingText": "muted",
+		"selectedBg": "surface", "scrollbarTrack": "mantle", "scrollbarThumb": "overlay",
+		"searchMatchBg": "#4a4234", "searchMatchText": "text",
+		"userMessageBg": "blueBg", "userMessageText": "text",
+		"customMessageBg": "mauveBg", "customMessageText": "muted", "customMessageLabel": "mauve",
+		"toolPendingBg": "mantle", "toolSuccessBg": "greenBg", "toolErrorBg": "redBg",
+		"toolTitle": "text", "toolOutput": "muted",
+		"mdHeading": "mauve", "mdLink": "blue", "mdLinkUrl": "muted", "mdCode": "peach",
+		"mdCodeBlock": "green", "mdCodeBlockBorder": "overlay", "mdQuote": "muted",
+		"mdQuoteBorder": "overlay", "mdHr": "overlay", "mdListBullet": "mauve",
+		"toolDiffAdded": "green", "toolDiffRemoved": "red", "toolDiffContext": "muted",
+		"syntaxComment": "overlay", "syntaxKeyword": "mauve", "syntaxFunction": "blue",
+		"syntaxVariable": "text", "syntaxString": "green", "syntaxNumber": "peach",
+		"syntaxType": "yellow", "syntaxOperator": "teal", "syntaxPunctuation": "muted",
+		"thinkingOff": "overlay", "thinkingMinimal": "muted", "thinkingLow": "blue",
+		"thinkingMedium": "mauve", "thinkingHigh": "peach", "thinkingXhigh": "red",
+		"thinkingMax": "red", "bashMode": "green"
+	},
+	"export": { "pageBg": "base", "cardBg": "mantle", "infoBg": "surface" }
+}
