@@ -66,15 +66,14 @@ function add_rule {
 
 function config_rules {
 	# Application specific rules
-	yabai -m rule --add app=SideNotes manage=off
-	yabai -m rule --add app=Session manage=off
-	yabai -m rule --add app=Slidepad manage=off
-
-	yabai -m rule --add app="^System Settings$" manage=off
-	yabai -m rule --add app="^Calculator$" manage=off
-	yabai -m rule --add app="^Karabiner-Elements$" manage=off
-	yabai -m rule --add app="^Keymapp" manage=off
-	yabai -m rule --add app="^qemu-system" manage=off
+	add_rule app=SideNotes manage=off
+	add_rule app=Session manage=off
+	add_rule app=Slidepad manage=off
+	add_rule app="^System Settings$" manage=off
+	add_rule app="^Calculator$" manage=off
+	add_rule app="^Karabiner-Elements$" manage=off
+	add_rule app="^Keymapp" manage=off
+	add_rule app="^qemu-system" manage=off
 
 	# Default Spaces
 
@@ -82,6 +81,7 @@ function config_rules {
 	add_rule app="^Google Chrome" space=2 manage=on
 	add_rule app="^Alacritty" space=3 manage=on
 	add_rule app="^Ghostty" space=3 manage=on
+    add_rule app="^Obsidian" space=4 manage=on
 	# add_rule app="^Spotify" space=5 manage=on
 
     yabai -m config window_shadow off

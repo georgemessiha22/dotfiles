@@ -11,9 +11,9 @@ layout {
         //     plugin location="zellij:status-bar"
         // }
     }
-    tab name="Opencode " {
+    tab name="pi" {
         pane {
-            command "opencode"
+            command "pi"
         }
     }
     tab name="Neovim " {

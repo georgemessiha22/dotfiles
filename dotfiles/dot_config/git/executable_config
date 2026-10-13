@@ -24,10 +24,12 @@
 	colorMoved = default
 
 [commit]
-	gpgsign = true
+	gpgSign = true
 
 [push]
+    default = current
 	autoSetupRemote = true
+
 
 [init]
 	defaultBranch = master
@@ -78,6 +80,3 @@
 [credential "https://gist.github.com"]
 	helper = 
 	helper = !/opt/homebrew/bin/gh auth git-credential
-[trace2]
-	eventTarget = af_unix:stream:/Users/george/.git-ai/internal/daemon/trace2.sock
-	eventNesting = 0

@@ -1,8 +1,8 @@
 {
-  "lastChangelogVersion": "1.2.0",
+  "lastChangelogVersion": "1.3.0",
   "theme": "opencode",
-  "defaultProvider": "github-copilot",
-  "defaultModel": "claude-sonnet-5.5",
+  "defaultProvider": "xai",
+  "defaultModel": "grok-4.7",
   "defaultThinkingLevel": "medium",
   "showHardwareCursor": true,
   "editorPaddingX": 2,
@@ -17,13 +17,13 @@
     "anthropicExtraUsage": true
   },
   "packages": [
-    "npm:pi-claude-auth",
     "npm:pi-hermes-memory",
     "npm:@juanibiapina/pi-powerbar",
     "npm:pi-mcp-adapter",
     "npm:pi-subagents",
     "./local/pi-sidebar-tui",
-    "npm:pi-lsp-adapter"
+    "npm:pi-lsp-adapter",
+    "npm:pi-claude-cli"
   ],
   "terminal": {
     "showTerminalProgress": true
