@@ -1,0 +1,18 @@
+dotfiles/dot_config/git/executable_config
+  h_7e869580ab12e8 27,30,33
+dotfiles/dot_config/opencode/opencode.jsonc
+  h_7e869580ab12e8 22
+dotfiles/dot_config/yabai/executable_yabairc
+  h_7e869580ab12e8 69-76,84
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "c68379491dd0db48c249e03aee46651a60068cee",
+  "prompts": {},
+  "humans": {
+    "h_7e869580ab12e8": {
+      "author": "George Messiha <georgemessiha22@gmail.com>"
+    }
+  }
+}
