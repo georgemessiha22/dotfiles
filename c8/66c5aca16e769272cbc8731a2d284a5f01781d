@@ -1,0 +1,64 @@
+dotfiles/dot_pi/agent/local/pi-sidebar-tui/README.md
+  h_7e869580ab12e8 1-139
+dotfiles/dot_pi/agent/local/pi-sidebar-tui/activity.ts
+  h_7e869580ab12e8 1-181
+dotfiles/dot_pi/agent/local/pi-sidebar-tui/caveman.ts
+  h_7e869580ab12e8 1-164
+dotfiles/dot_pi/agent/local/pi-sidebar-tui/colors.ts
+  h_7e869580ab12e8 1-135
+dotfiles/dot_pi/agent/local/pi-sidebar-tui/compositor.ts
+  h_7e869580ab12e8 1-384
+dotfiles/dot_pi/agent/local/pi-sidebar-tui/config.ts
+  h_7e869580ab12e8 1-153
+dotfiles/dot_pi/agent/local/pi-sidebar-tui/index.ts
+  h_7e869580ab12e8 1-750
+dotfiles/dot_pi/agent/local/pi-sidebar-tui/mcp.ts
+  h_7e869580ab12e8 1-142
+dotfiles/dot_pi/agent/local/pi-sidebar-tui/package.json
+  h_7e869580ab12e8 1-39
+dotfiles/dot_pi/agent/local/pi-sidebar-tui/panels/files.ts
+  h_7e869580ab12e8 1-21
+dotfiles/dot_pi/agent/local/pi-sidebar-tui/panels/lsp.ts
+  h_7e869580ab12e8 1-14
+dotfiles/dot_pi/agent/local/pi-sidebar-tui/panels/mcp.ts
+  h_7e869580ab12e8 1-36
+dotfiles/dot_pi/agent/local/pi-sidebar-tui/panels/session.ts
+  h_7e869580ab12e8 1-195
+dotfiles/dot_pi/agent/local/pi-sidebar-tui/panels/subagents.ts
+  h_7e869580ab12e8 1-28
+dotfiles/dot_pi/agent/local/pi-sidebar-tui/panels/todos.ts
+  h_7e869580ab12e8 1-79
+dotfiles/dot_pi/agent/local/pi-sidebar-tui/panels/tools.ts
+  h_7e869580ab12e8 1-20
+dotfiles/dot_pi/agent/local/pi-sidebar-tui/panels/workspace.ts
+  h_7e869580ab12e8 1-75
+dotfiles/dot_pi/agent/local/pi-sidebar-tui/parse-todos.ts
+  h_7e869580ab12e8 1-92
+dotfiles/dot_pi/agent/local/pi-sidebar-tui/sidebar.ts
+  h_7e869580ab12e8 1-237
+dotfiles/dot_pi/agent/local/pi-sidebar-tui/types.ts
+  h_7e869580ab12e8 1-104
+dotfiles/dot_pi/agent/local/pi-sidebar-tui/workspace.ts
+  h_7e869580ab12e8 1-84
+dotfiles/dot_pi/agent/lsp.json
+  h_7e869580ab12e8 1-13
+dotfiles/dot_pi/agent/mcp-adapter.json
+  h_7e869580ab12e8 1-11
+dotfiles/dot_pi/agent/mcp.json
+  h_7e869580ab12e8 1-48
+dotfiles/dot_pi/agent/settings.json
+  h_7e869580ab12e8 1-45
+dotfiles/dot_pi/agent/themes/opencode.json
+  h_7e869580ab12e8 1-35
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "c866c5aca16e769272cbc8731a2d284a5f01781d",
+  "prompts": {},
+  "humans": {
+    "h_7e869580ab12e8": {
+      "author": "George Messiha <georgemessiha22@gmail.com>"
+    }
+  }
+}
