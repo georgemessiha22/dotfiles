@@ -5,6 +5,12 @@ vim.pack.add({
 		name = "which-key",
 		data = { confirm = false },
 	},
+	{
+		src = "https://github.com/milanglacier/minuet-ai.nvim",
+		name = "minuet-ai.nvim",
+		version = "main",
+		data = { confirm = false },
+	},
 	-- {
 	-- 	src = "https://github.com/rose-pine/neovim",
 	-- 	name = "rose-pine",
