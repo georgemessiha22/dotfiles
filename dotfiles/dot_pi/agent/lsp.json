@@ -8,6 +8,16 @@
     },
     "rust-analyzer": {
       "install": { "type": "system", "command": ["/Users/george/.local/cargo/bin/rust-analyzer"] }
+    },
+    "lua-language-server": {
+      "displayName": "Lua Language Server",
+      "filetypes": ["lua"],
+      "rootMarkers": [".luarc.json", ".luarc.jsonc", "stylua.toml", ".git"],
+      "install": {
+        "type": "system",
+        "command": ["/Users/george/.local/share/nvim/mason/bin/lua-language-server"]
+      },
+      "command": ["/Users/george/.local/share/nvim/mason/bin/lua-language-server"]
     }
   }
 }

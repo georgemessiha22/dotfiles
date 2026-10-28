@@ -11,9 +11,9 @@ layout {
         //     plugin location="zellij:status-bar"
         // }
     }
-    tab name="pi" {
+    tab name="Agents " {
         pane {
-            command "pi"
+            command "herdr"
         }
     }
     tab name="Neovim " {
@@ -21,11 +21,6 @@ layout {
     }
     tab name="Shell " split_direction="vertical" {
         pane
-        pane size="30%"
-    }
-    tab name="Shell 2 " {
-        pane {
-        }
     }
 }
 

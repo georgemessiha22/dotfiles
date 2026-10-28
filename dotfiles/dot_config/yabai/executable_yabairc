@@ -74,6 +74,7 @@ function config_rules {
 	add_rule app="^Karabiner-Elements$" manage=off
 	add_rule app="^Keymapp" manage=off
 	add_rule app="^qemu-system" manage=off
+	add_rule app="^cloudflare WARP" manage=off
 
 	# Default Spaces
 

@@ -1,5 +1,5 @@
 {
-  "lastChangelogVersion": "1.3.0",
+  "lastChangelogVersion": "1.4.0",
   "theme": "opencode",
   "defaultProvider": "xai",
   "defaultModel": "grok-4.7",
@@ -22,8 +22,7 @@
     "npm:pi-mcp-adapter",
     "npm:pi-subagents",
     "./local/pi-sidebar-tui",
-    "npm:pi-lsp-adapter",
-    "npm:pi-claude-cli"
+    "npm:pi-lsp-adapter"
   ],
   "terminal": {
     "showTerminalProgress": true
@@ -32,12 +31,15 @@
   "tuiMode": "fullscreen",
   "fullscreenExitOutput": "resume-hint",
   "doubleEscapeAction": "tree",
+  "externalEditor": "nvim",
   "extensions": [
-    "-builtin:mcp"
+    "-builtin:mcp",
+    "./local/claude-project-config.ts",
+    "./local/plan-mode/index.ts"
   ],
   "skills": [
-    "~/HungerStation/Hungerstation.wiki/skills",
-    "/Users/george/.cache/opencode/packages/superpowers@git+https:/github.com/obra/superpowers.git/node_modules/superpowers/skills"
+    "/Users/george/.cache/opencode/packages/superpowers@git+https:/github.com/obra/superpowers.git/node_modules/superpowers/skills",
+    "~/.config/opencode/skills"
   ],
   "quietStartup": false,
   "collapseChangelog": true,
