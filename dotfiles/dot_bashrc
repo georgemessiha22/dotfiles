@@ -1,7 +1,9 @@
+export MAKEFLAGS="-j$(nproc)"
+
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-# Load starship prompt if starship is installed
+# Load starship prompt if starship is installedviwa
 if [ -x /usr/bin/starship ]; then
 	__main() {
 		local major="${BASH_VERSINFO[0]}"
