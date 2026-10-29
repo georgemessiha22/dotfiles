@@ -1,100 +1,192 @@
-tap "anomalyco/tap"
-tap "asmvik/formulae"
-tap "daptify14/tap"
-tap "deliveryhero/dp-tap"
-tap "felixkratz/formulae"
+tap "anomalyco/tap", trusted: true
+tap "asmvik/formulae", trusted: true
+tap "can1357/tap"
+tap "daptify14/tap", trusted: true
+tap "deliveryhero/dp-tap", trusted: true
+tap "derailed/k9s"
+tap "felixkratz/formulae", "https://github.com/FelixKratz/homebrew-formulae", trusted: true
 tap "homebrew/bundle"
 tap "homebrew/services"
-tap "jorgerojas26/lazysql"
-tap "kanriapp/cask"
-tap "koekeishiya/formulae"
-tap "nikitabobko/tap"
-tap "tnk-studio/tools"
+tap "jorgerojas26/lazysql", trusted: true
+tap "kanriapp/cask", trusted: true
+tap "nikitabobko/tap", trusted: true
+tap "tcarac/taskboard"
+tap "tnk-studio/tools", trusted: true
+tap "unhinged/dev"
+# Tool for generating GNU Standards-compliant Makefiles
 brew "automake"
+# Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
+# Yet another cross-platform graphical process/system monitor
 brew "bottom"
+# Manage your dotfiles across multiple diverse machines, securely
 brew "chezmoi"
+# Cloudflare Tunnel client (formerly Argo Tunnel)
+brew "cloudflared"
+# Cross-platform make
 brew "cmake"
+# Documentation for CMake
+brew "cmake-docs"
+# Container runtimes on MacOS (and Linux) with minimal setup
 brew "colima"
+# Command-line csv viewer
 brew "csvlens"
+# Load/unload environment variables based on $PWD
 brew "direnv"
+# Pack, ship and run any application as a lightweight container
 brew "docker"
+# Lightning-fast linter for .env files written in Rust
 brew "dotenv-linter"
+# Command-line client for the Drone continuous integration server
+brew "drone-cli"
+# Modern, maintained replacement for ls
 brew "eza"
+# Simple, fast and user-friendly alternative to find
 brew "fd"
+# Play, record, convert, and stream select audio and video codecs
 brew "ffmpeg"
+# User-friendly command-line shell for UNIX-like operating systems
 brew "fish"
+# Command-line fuzzy finder written in Go
 brew "fzf"
+# GitHub command-line tool
 brew "gh"
+# Distributed revision control system
 brew "git"
+# Syntax-highlighting pager for git and diff output
 brew "git-delta"
+# Tcl/Tk UI for the git revision control system
 brew "git-gui"
+# GNU Privacy Guard (OpenPGP)
+brew "gnupg@1.4"
+# Open source programming language to build simple/reliable/efficient software
+brew "go"
+# Next generation open source RPC library and framework
 brew "grpc"
+# Post-modern modal text editor
 brew "helix"
-brew "helm"
+# Agent multiplexer that lives in your terminal
+brew "herdr"
+# Improved top (interactive process viewer)
 brew "htop"
+# Tools and libraries to manipulate images in select formats
 brew "imagemagick"
+# Lightweight and flexible command-line JSON processor
 brew "jq"
+# Little helper to run CNCF's k3s in Docker
 brew "k3d"
-brew "k6"
-brew "k9s"
-brew "kotlin"
+# Lazier way to manage everything docker
 brew "lazydocker"
+# Simple terminal UI for git commands
 brew "lazygit"
+# Cross-platform TUI database management tool
 brew "lazysql"
+# Additional guest agents for Lima
 brew "lima-additional-guestagents"
+# Clone of ls with colorful output, file type icons, and more
 brew "lsd"
+# Language Server for the Lua language
 brew "lua-language-server"
+# Package manager for the Lua programming language
 brew "luarocks"
+# System information fetcher, with an emphasis on performance and minimalism
 brew "macchina"
-brew "marp-cli"
-brew "mcfly"
-brew "tree-sitter"
-brew "neovim"
+# Open-source, cross-platform JavaScript runtime environment
 brew "node"
+# Easily convert Marp Markdown files into static HTML/CSS, PDF, PPT and images
+brew "marp-cli"
+# Fly through your shell history
+brew "mcfly"
+# Incremental parsing library
+brew "tree-sitter"
+# Ambitious Vim-fork focused on extensibility and agility
+brew "neovim"
+# Development kit for the Java programming language
+brew "openjdk@17"
+# Drop-in replacement for Terraform. Infrastructure as Code Tool
 brew "opentofu"
+# Package compiler and linker metadata toolkit
 brew "pkgconf"
-brew "postgresql@17", link: true
+# PDF rendering library (based on the xpdf-3.0 code base)
+brew "poppler"
+# Object-relational database system
+brew "postgresql@18"
+# Pyenv plugin to manage virtualenv
 brew "pyenv-virtualenv"
+# Interpreted, interactive, object-oriented programming language
 brew "python@3.12"
+# Install various Ruby versions and implementations
 brew "ruby-build"
+# Ruby version manager
 brew "rbenv"
+# KISS yet powerful gem/set management for curious engineers and Ruby hackers
 brew "rbenv-gemset"
+# Search tool like grep and The Silver Searcher
 brew "ripgrep"
+# Database of common MIME types
 brew "shared-mime-info"
+# Static analysis and lint tool, for (ba)sh scripts
+brew "shellcheck"
+# Fuzzy Finder in rust!
 brew "sk"
-brew "skaffold"
+# Fast SQL formatter/linter
 brew "sqruff"
+# Cross-shell prompt for astronauts
 brew "starship"
-brew "task"
-brew "tasksh"
-brew "taskwarrior-tui"
+# Tool to build, change, and version infrastructure
 brew "terraform"
+# Command-line time tracking application
 brew "timewarrior"
+# Markup-based typesetting system
 brew "typst"
+# Vi 'workalike' with many additional features
 brew "vim"
+# Internet file retriever
 brew "wget"
+# JavaScript package manager
 brew "yarn"
+# Blazing fast terminal file manager written in Rust, based on async I/O
+brew "yazi"
+# Pluggable terminal workspace, with terminal multiplexer as the base feature
 brew "zellij"
+# Shell extension to navigate your filesystem faster
 brew "zoxide"
-brew "anomalyco/tap/opencode"
-brew "asmvik/formulae/yabai"
-brew "deliveryhero/dp-tap/dp-devinfra"
+# OpenCode V2 - the AI coding agent for the terminal
+brew "anomalyco/tap/opencode-v2", trusted: true
+# Simple hotkey-daemon for macOS.
+brew "asmvik/formulae/skhd", trusted: true
+# A tiling window manager for macOS based on binary space partitioning.
+brew "asmvik/formulae/yabai", trusted: true
+# Coding agent with the IDE wired in
+brew "can1357/tap/omp", trusted: true
+# CLI for interacting with Delivery Hero Platform infrastructure
+brew "deliveryhero/dp-tap/dp-devinfra", trusted: true
+# Kubernetes CLI To Manage Your Clusters In Style!
+brew "derailed/k9s/k9s", trusted: true
+# Custom macOS statusbar with shell plugin, interaction and graph support
 brew "felixkratz/formulae/sketchybar"
-brew "koekeishiya/formulae/skhd"
-brew "tnk-studio/tools/lazykube"
+# Terminal UI for chezmoi dotfile management
 cask "daptify14/tap/chezit"
+# Free app that makes your Internet safer
+cask "cloudflare-warp"
+# Brings the power of Copilot coding agent directly to your terminal
+cask "copilot-cli"
+# Set of tools to manage resources and applications hosted on Google Cloud
 cask "gcloud-cli"
+# Terminal emulator that uses platform-native UI and GPU acceleration
 cask "ghostty"
+# Offline Kanban board app
 cask "kanriapp/cask/kanri"
+# Open-source keystroke visualiser
 cask "keycastr"
+# Music streaming service
 cask "spotify"
-cask "tofu"
 go "golang.org/x/tools/cmd/callgraph"
 go "github.com/go-delve/delve/cmd/dlv"
 go "github.com/davidrjenni/reftools/cmd/fillswitch"
 go "github.com/onsi/ginkgo/v2/ginkgo"
 go "github.com/abice/go-enum"
+go "github.com/Gelio/go-global-update"
 go "github.com/jstemmer/go-junit-report/v2"
 go "mvdan.cc/gofumpt"
 go "golang.org/x/tools/cmd/goimports"
@@ -102,6 +194,7 @@ go "github.com/twpayne/go-jsonstruct/v3/cmd/gojsonstruct"
 go "github.com/golangci/golangci-lint/v2/cmd/golangci-lint"
 go "github.com/nametake/golangci-lint-langserver"
 go "github.com/segmentio/golines"
+go "github.com/chimanjain/gomajor/cmd/gomajor"
 go "github.com/fatih/gomodifytags"
 go "github.com/abenz1267/gomvp"
 go "golang.org/x/tools/cmd/gonew"
@@ -118,12 +211,16 @@ go "github.com/vektra/mockery/v3"
 go "go.uber.org/mock/mockgen"
 go "github.com/joesonw/oneproto"
 go "github.com/lasorda/protobuf-language-server"
+go "google.golang.org/protobuf/cmd/protoc-gen-go"
+go "google.golang.org/grpc/cmd/protoc-gen-go-grpc"
 go "github.com/kyoh86/richgo"
 go "honnef.co/go/tools/cmd/staticcheck"
+cargo "cargo-upgrade-command"
 cargo "kdlfmt"
 cargo "pbls"
-cargo "taskwarrior-tui"
 cargo "tree-sitter-cli"
+uv "trafilatura"
 npm "@google/gemini-cli"
 npm "mcp-hub"
 npm "neovim"
+npm "vscode-json-languageservice"
