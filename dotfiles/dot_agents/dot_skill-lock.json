@@ -1,0 +1,42 @@
+{
+  "version": 3,
+  "skills": {
+    "python-developer": {
+      "source": "gvre/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/gvre/skills.git",
+      "skillPath": "python-developer/SKILL.md",
+      "skillFolderHash": "c88962c47f506f5594b1b3a16abd2cb25df7454c",
+      "installedAt": "2026-10-29T21:35:27.288Z",
+      "updatedAt": "2026-10-29T21:35:27.288Z"
+    },
+    "find-skills": {
+      "source": "vercel-labs/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/vercel-labs/skills.git",
+      "skillPath": "skills/find-skills/SKILL.md",
+      "skillFolderHash": "76a98a285cb0434f3d39e1a873823556330e398b",
+      "installedAt": "2026-10-29T21:35:31.340Z",
+      "updatedAt": "2026-10-29T21:35:31.340Z"
+    }
+  },
+  "dismissed": {
+    "findSkillsPrompt": true
+  },
+  "lastSelectedAgents": [
+    "amp",
+    "cline",
+    "codex",
+    "cursor",
+    "droid",
+    "fx",
+    "gemini-cli",
+    "github-copilot",
+    "kilo",
+    "kimi-code-cli",
+    "opencode",
+    "pi",
+    "warp",
+    "zed"
+  ]
+}

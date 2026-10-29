@@ -1,47 +1,48 @@
 {
-  "lastChangelogVersion": "1.4.0",
-  "theme": "opencode",
-  "defaultProvider": "xai",
-  "defaultModel": "grok-4.7",
-  "defaultThinkingLevel": "medium",
-  "showHardwareCursor": true,
-  "editorPaddingX": 2,
-  "steeringMode": "one-at-a-time",
-  "followUpMode": "one-at-a-time",
-  "transport": "auto",
-  "markdown": {
-    "mermaid": "streaming"
-  },
-  "enableInstallTelemetry": false,
-  "warnings": {
-    "anthropicExtraUsage": true
-  },
-  "packages": [
-    "npm:pi-hermes-memory",
-    "npm:@juanibiapina/pi-powerbar",
-    "npm:pi-mcp-adapter",
-    "npm:pi-subagents",
-    "./local/pi-sidebar-tui",
-    "npm:pi-lsp-adapter"
-  ],
-  "terminal": {
-    "showTerminalProgress": true
-  },
-  "showCacheMissNotices": true,
-  "tuiMode": "fullscreen",
-  "fullscreenExitOutput": "resume-hint",
-  "doubleEscapeAction": "tree",
-  "externalEditor": "nvim",
-  "extensions": [
-    "-builtin:mcp",
-    "./local/claude-project-config.ts",
-    "./local/plan-mode/index.ts"
-  ],
-  "skills": [
-    "/Users/george/.cache/opencode/packages/superpowers@git+https:/github.com/obra/superpowers.git/node_modules/superpowers/skills",
-    "~/.config/opencode/skills"
-  ],
-  "quietStartup": false,
-  "collapseChangelog": true,
-  "autocompleteMaxVisible": 8
+    "lastChangelogVersion": "1.4.0",
+    "theme": "opencode",
+    "defaultProvider": "xai",
+    "defaultModel": "grok-4.7",
+    "defaultThinkingLevel": "medium",
+    "showHardwareCursor": true,
+    "editorPaddingX": 2,
+    "steeringMode": "one-at-a-time",
+    "followUpMode": "one-at-a-time",
+    "transport": "auto",
+    "markdown": {
+        "mermaid": "streaming"
+    },
+    "enableInstallTelemetry": false,
+    "warnings": {
+        "anthropicExtraUsage": true
+    },
+    "packages": [
+        "npm:pi-hermes-memory",
+        "npm:@juanibiapina/pi-powerbar",
+        "npm:pi-mcp-adapter",
+        "npm:pi-subagents",
+        "./local/pi-sidebar-tui",
+        "npm:pi-lsp-adapter",
+        "git:github.com/obra/superpowers"
+    ],
+    "terminal": {
+        "showTerminalProgress": true
+    },
+    "showCacheMissNotices": true,
+    "tuiMode": "fullscreen",
+    "fullscreenExitOutput": "resume-hint",
+    "doubleEscapeAction": "tree",
+    "externalEditor": "nvim",
+    "extensions": [
+        "-builtin:mcp",
+        "./local/claude-project-config.ts",
+        "./local/plan-mode/index.ts"
+    ],
+    "skills": [
+        "~/.agents/skills",
+        "~/.config/opencode/skills"
+    ],
+    "quietStartup": false,
+    "collapseChangelog": true,
+    "autocompleteMaxVisible": 8
 }

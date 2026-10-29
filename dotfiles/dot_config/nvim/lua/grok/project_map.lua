@@ -514,6 +514,7 @@ function M.get(bufnr)
 	local implemented, remaining = classify(root, symbols, empty_files, readme)
 	local map = {
 		root = root,
+		symbols = symbols,
 		implemented = implemented,
 		remaining = remaining,
 		text = format_map(implemented, remaining),

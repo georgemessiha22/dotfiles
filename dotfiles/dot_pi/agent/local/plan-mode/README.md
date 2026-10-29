@@ -23,7 +23,7 @@ Read-only exploration mode for safe code analysis.
 
 ## Usage
 
-1. Plan mode starts enabled. The bottom bar shows `plan` or `agent`. Toggle with `Shift+Tab`, `/plan`, or Ctrl+Alt+P
+1. Plan mode starts enabled. The bottom bar shows `plan` or `agent`. Toggle with `Shift+Tab`, `/plan`, or Ctrl+Alt+P. Automated runs that must write files should pass `--no-plan`; that flag wins over the default and over resumed session state.
 2. Ask the agent to analyze code and create a plan
 3. The agent should output a numbered plan under a `Plan:` header:
 

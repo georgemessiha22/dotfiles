@@ -57,6 +57,12 @@ export default function planModeExtension(pi: ExtensionAPI): void {
 		default: true,
 	});
 
+	pi.registerFlag("no-plan", {
+		description: "Start with plan mode off so an automated session can write files.",
+		type: "boolean",
+		default: false,
+	});
+
 	let planModeSegmentRegistered = false;
 
 	function updateStatus(ctx: ExtensionContext): void {
@@ -517,6 +523,13 @@ After completing a step, include a [DONE:n] tag in your response.`;
 			todoItems = planModeEntry.data.todos ?? todoItems;
 			executionMode = planModeEntry.data.executing ?? executionMode;
 			toolsBeforePlanMode = planModeEntry.data.toolsBeforePlanMode ?? toolsBeforePlanMode;
+		}
+
+		// Wins over the default and over resumed session state. Do not call
+		// restoreNormalModeTools(): that would drop tools that plan mode did not enable.
+		if (pi.getFlag("no-plan") === true) {
+			planModeEnabled = false;
+			executionMode = false;
 		}
 
 		// On resume: re-scan messages to rebuild completion state

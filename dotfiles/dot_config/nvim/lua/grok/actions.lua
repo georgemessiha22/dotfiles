@@ -50,6 +50,59 @@ local function lsp_action(title, scope)
 	}
 end
 
+local function relative_path(bufnr, project)
+	local name = vim.api.nvim_buf_get_name(bufnr)
+	if not project or name == "" then
+		return ""
+	end
+	local prefix = project.root .. "/"
+	local normalized = vim.fs.normalize(name)
+	if vim.startswith(normalized, prefix) then
+		return normalized:sub(#prefix + 1)
+	end
+	return ""
+end
+
+local function cursor_test_item(bufnr, cursor_line)
+	if cursor_line == nil then
+		return nil
+	end
+	local project = map.get(bufnr)
+	if not project or not project.symbols then
+		return nil
+	end
+	local relative = relative_path(bufnr, project)
+	if relative == "" or relative:match("^tests?/") then
+		return nil
+	end
+	local lnum = cursor_line + 1
+	local best
+	for _, symbol in ipairs(project.symbols) do
+		local covers = symbol.file == relative
+			and (symbol.kind == "class" or symbol.kind == "function")
+			and symbol.line
+			and symbol.line <= lnum
+			and lnum <= (symbol.last or symbol.line)
+		if covers and (not best or symbol.line > best.line) then
+			best = symbol
+		end
+	end
+	if not best or best.name:match("^test_") or best.name:match("^[Tt]est") then
+		return nil
+	end
+	return {
+		file = best.file,
+		path = project.root .. "/" .. best.file,
+		name = best.name,
+		kind = "tests",
+		symbol_kind = best.kind,
+		line = best.line,
+		reason = "missing tests",
+		title = "Grok: add tests for " .. best.name,
+		target_file = best.file,
+	}
+end
+
 local function actions_for(bufnr, params)
 	local items = map.for_buffer(bufnr)
 	local actions = {}
@@ -83,16 +136,31 @@ local function actions_for(bufnr, params)
 			)
 		end
 	end
+	local cursor_tests = cursor_test_item(bufnr, cursor_line)
+	if cursor_tests then
+		local key = cursor_tests.title .. ":" .. cursor_tests.file .. ":" .. tostring(cursor_tests.line)
+		seen[key] = true
+		actions[#actions + 1] = {
+			title = cursor_tests.title,
+			kind = "quickfix",
+			command = {
+				title = cursor_tests.title,
+				command = "grok.add_tests",
+				arguments = { cursor_tests },
+			},
+		}
+	end
 	for _, item in ipairs(items) do
 		local key = item.title .. ":" .. item.file .. ":" .. tostring(item.line)
 		if not seen[key] and #actions < 14 then
 			seen[key] = true
+			local command_name = item.kind == "tests" and "grok.add_tests" or "grok.implement"
 			actions[#actions + 1] = {
 				title = item.title,
 				kind = "quickfix",
 				command = {
 					title = item.title,
-					command = "grok.implement",
+					command = command_name,
 					arguments = { item },
 				},
 			}
@@ -221,54 +289,75 @@ local function generate(prompt, callback, opts)
 	end)
 end
 
-local function apply_text(bufnr, item, text)
-	local lines = vim.split(text, "\n", { plain = true })
-	if item.kind == "empty" or vim.api.nvim_buf_line_count(bufnr) == 1 and vim.api.nvim_buf_get_lines(bufnr, 0, 1, false)[1] == "" then
-		vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, lines)
-		return
+local function diagnostic_line(bufnr, diagnostic, file)
+	local start_line = diagnostic.lnum + 1
+	local start_col = diagnostic.col + 1
+	local location = string.format("%s:%d:%d", file, start_line, start_col)
+	if diagnostic.end_lnum then
+		location = string.format("%s-%d:%d", location, diagnostic.end_lnum + 1, (diagnostic.end_col or 0) + 1)
 	end
-	local start_line = math.max((item.line or 1), 1)
-	local end_line = item.last or start_line
-	-- Keep the signature line; replace the unfinished body.
-	if item.kind == "stub" or item.kind == "readme" then
-		start_line = start_line + 1
+	local code = diagnostic.code
+	if type(code) == "table" then
+		code = code.value or code.code
 	end
-	if start_line > end_line then
-		end_line = start_line
+	local header = string.format(
+		"- %s [%s] %s%s: %s",
+		location,
+		severity_name(diagnostic.severity),
+		diagnostic.source or "lsp",
+		code and (" (" .. tostring(code) .. ")") or "",
+		diagnostic.message
+	)
+	local source = vim.api.nvim_buf_get_lines(bufnr, diagnostic.lnum, diagnostic.lnum + 1, false)[1]
+	if source and source ~= "" then
+		return header .. "\n  source: " .. source
 	end
-	vim.api.nvim_buf_set_lines(bufnr, start_line - 1, end_line, false, lines)
+	return header
 end
 
-local function diagnostic_prompt(bufnr, diagnostics)
+function M.lsp_prompt(bufnr, line, scope)
+	local diagnostics = lsp_diagnostics(bufnr, line)
+	if #diagnostics == 0 then
+		return nil
+	end
 	local project = map.get(bufnr)
-	local lines = {}
+	local name = vim.api.nvim_buf_get_name(bufnr)
+	local file = relative_path(bufnr, project)
+	if file == "" then
+		file = name
+	end
+	local listed = {}
 	for _, diagnostic in ipairs(diagnostics) do
-		lines[#lines + 1] = string.format(
-			"- line %d col %d [%s] %s: %s",
-			diagnostic.lnum + 1,
-			diagnostic.col + 1,
-			severity_name(diagnostic.severity),
-			diagnostic.source or "lsp",
-			diagnostic.message
-		)
+		listed[#listed + 1] = diagnostic_line(bufnr, diagnostic, file)
+	end
+	local instructions = {
+		"Fix the listed LSP errors and warnings in " .. file .. ".",
+		"Read that file and whatever it imports. Edit that file. Edit another file only when a diagnostic cannot be cleared otherwise.",
+		"Change only what these diagnostics require and any other new diagnostic appears after applying the fix. Do not refactor, reimplement, or add tests.",
+	}
+	if scope == "line" and line ~= nil then
+		instructions[#instructions + 1] = "Clear only the diagnostics on line " .. tostring(line + 1) .. ". Leave every other issue alone."
 	end
 	return table.concat({
-		project and project.text or "",
-		"",
-		"Fix every listed LSP error and warning. Return the complete corrected file.",
-		"Change only what is required to clear those diagnostics. Do not add commentary or markdown fences.",
+		table.concat(instructions, "\n"),
 		"",
 		"Diagnostics:",
-		table.concat(lines, "\n"),
-		"",
-		"Current file:",
-		table.concat(vim.api.nvim_buf_get_lines(bufnr, 0, -1, false), "\n"),
+		table.concat(listed, "\n"),
 	}, "\n")
 end
 
 function M.fix_lsp(opts)
 	opts = opts or {}
 	local bufnr = vim.api.nvim_get_current_buf()
+	local name = vim.api.nvim_buf_get_name(bufnr)
+	if name == "" then
+		vim.notify("Write the buffer to a file before asking Pi to fix LSP diagnostics", vim.log.levels.WARN)
+		return
+	end
+	if vim.api.nvim_get_option_value("modified", { buf = bufnr }) then
+		vim.notify("Write the buffer first so Pi and the diagnostics see the same file", vim.log.levels.WARN)
+		return
+	end
 	local line = nil
 	if opts.scope == "line" then
 		line = vim.api.nvim_win_get_cursor(0)[1] - 1
@@ -278,24 +367,28 @@ function M.fix_lsp(opts)
 		vim.notify("No LSP errors or warnings to fix", vim.log.levels.INFO)
 		return
 	end
-	local before = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
-	vim.notify(string.format("Grok is fixing %d LSP diagnostic%s", #diagnostics, #diagnostics == 1 and "" or "s"), vim.log.levels.INFO)
-	generate(diagnostic_prompt(bufnr, diagnostics), function(text, err)
-		if not text then
-			vim.notify(err or "Grok could not fix the LSP diagnostics", vim.log.levels.ERROR)
-			return
-		end
-		local replacement = vim.split(text, "\n", { plain = true })
-		if #before > 20 and #replacement < math.floor(#before * 0.3) then
-			vim.notify("Grok returned a partial file, so nothing was changed", vim.log.levels.ERROR)
-			return
-		end
-		vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, replacement)
-		vim.notify("Applied a Grok fix for the LSP diagnostics. Review it before saving.", vim.log.levels.INFO)
-	end, {
-		max_tokens = 4096,
-		timeout = 45,
-		system = "You fix LSP errors and warnings in an existing source file. Return the complete corrected file and nothing else. Do not wrap it in markdown.",
+	local project = map.get(bufnr)
+	local root = project and project.root or vim.fs.dirname(name)
+	local file = relative_path(bufnr, project)
+	if file == "" then
+		file = vim.fs.basename(name)
+	end
+	local prompt = M.lsp_prompt(bufnr, line, opts.scope)
+	require("grok.pi_job").start({
+		root = root,
+		name = file,
+		prefix = "grok-lsp",
+		prompt = prompt,
+		start_message = string.format("Pi is fixing %d LSP diagnostic%s in the background", #diagnostics, #diagnostics == 1 and "" or "s"),
+		fail_message = "Pi could not fix the LSP diagnostics",
+		on_success = function()
+			vim.cmd("checktime")
+			local left = #lsp_diagnostics(bufnr, opts.scope == "line" and line or nil)
+			vim.notify(
+				string.format("Pi finished the LSP fix for %s. %d error%s and warning%s still listed. Review before saving.", file, left, left == 1 and "" or "s", left == 1 and "" or "s"),
+				left == 0 and vim.log.levels.INFO or vim.log.levels.WARN
+			)
+		end,
 	})
 end
 
@@ -372,9 +465,22 @@ function M.outline_readme(bufnr)
 	})
 end
 
+function M.add_tests(item)
+	local project = map.get(0)
+	if not project then
+		vim.notify("No project root found", vim.log.levels.WARN)
+		return
+	end
+	require("grok.pi_tests").start(project, item)
+end
+
 function M.implement(item)
 	if type(item) ~= "table" then
 		vim.notify("Missing project-map target", vim.log.levels.ERROR)
+		return
+	end
+	if item.kind == "tests" then
+		M.add_tests(item)
 		return
 	end
 	if item.kind == "delegate" then
@@ -396,7 +502,7 @@ function M.implement(item)
 		'{"files":[{"path":"relative/path.py","content":"full file"}]}',
 		"Create missing folders by using the full relative path.",
 		"Keep clean architecture: entities, repositories, and services stay in their existing packages.",
-		"Follow TDD: include a test file under test/ or tests/ with real test_ functions.",
+		"Do not create or modify files under test/ or tests/. A separate action writes tests.",
 		"Never copy an implementation into a test file, and never reimplement a symbol listed as Implemented.",
 		"If a stub duplicates an existing class, replace that stub file with imports instead of rewriting the class.",
 	}, "\n")
@@ -412,9 +518,31 @@ function M.implement(item)
 			vim.notify("Grok did not return a file plan, so nothing was inserted", vim.log.levels.ERROR)
 			return
 		end
-		local written = apply.write_plan(project.root, plan)
+		local production = { files = {} }
+		local skipped_tests = false
+		for _, file in ipairs(plan.files or {}) do
+			local path = type(file.path) == "string" and file.path or ""
+			if path:match("^tests?/") or path:match("/tests?/") or path:match("test_") or path:match("_test%.") or path:match("%.test%.") then
+				skipped_tests = true
+			else
+				production.files[#production.files + 1] = file
+			end
+		end
+		local written = apply.write_plan(project.root, production)
+		if skipped_tests then
+			M.add_tests({
+				name = item.name,
+				symbol_kind = item.kind,
+				file = item.file,
+				target_file = item.target_file or item.file,
+				line = item.line,
+				reason = item.reason,
+			})
+		end
 		if #written == 0 then
-			vim.notify("Grok's file plan had no usable files", vim.log.levels.WARN)
+			if not skipped_tests then
+				vim.notify("Grok's file plan had no usable files", vim.log.levels.WARN)
+			end
 			return
 		end
 		map.invalidate()
@@ -424,7 +552,7 @@ function M.implement(item)
 	end, {
 		max_tokens = 4096,
 		timeout = 45,
-		system = "You create or replace whole files for one missing piece of a clean-architecture, test-driven project. Return JSON only. Never append a second copy of existing code.",
+		system = "You create or replace whole production files for one missing piece of a clean-architecture project. Return JSON only. Do not create or modify test files. Never append a second copy of existing code.",
 	})
 end
 
@@ -441,6 +569,10 @@ function M.attach(bufnr)
 			["grok.implement"] = function(command)
 				local item = command.arguments and command.arguments[1]
 				M.implement(item)
+			end,
+			["grok.add_tests"] = function(command)
+				local item = command.arguments and command.arguments[1]
+				M.add_tests(item)
 			end,
 			["grok.fix_lsp"] = function(command)
 				local args = command.arguments and command.arguments[1] or {}
