@@ -1,0 +1,238 @@
+theme = "mocha.json"
+
+[statusline]
+left = ["mode", "diagnostics", "git_branch", "filename"]
+right = ["position", "syntax", "agent_activity", "lsp_status"]
+
+[statusline.icons]
+style = "nerd_font"
+color = true
+
+[lsp.servers.go]
+command = "gopls"
+root_markers = ["go.work", "go.mod", ".git"]
+
+[[lsp.servers.go.documents]]
+language_id = "go"
+file_extensions = ["go"]
+
+[[lsp.servers.go.documents]]
+language_id = "gomod"
+filenames = ["go.mod"]
+
+[[lsp.servers.go.documents]]
+language_id = "gowork"
+filenames = ["go.work"]
+
+[[lsp.servers.go.documents]]
+language_id = "gotmpl"
+file_extensions = ["gotmpl"]
+
+[lsp.servers.go.settings.gopls]
+semanticTokens = true
+staticcheck = true
+gofumpt = true
+vulncheck = "Imports"
+buildFlags = ["-tags=cron,api,functional,integration,unit,functional_1,functional_2,functional_3,functional_4,functional_5,functional_6,functional_http,functional_grpc"]
+
+[lsp.servers.go.settings.gopls.analyses]
+unusedparams = true
+unusedwrite = true
+shadow = true
+unusedvariable = true
+useany = true
+ST1000 = false
+ST1019 = true
+ST1020 = true
+ST1021 = true
+ST1022 = true
+ST1023 = true
+
+[lsp.servers.go.settings.gopls.hints]
+assignVariableTypes = true
+compositeLiteralFields = true
+compositeLiteralTypes = true
+constantValues = true
+functionTypeParameters = true
+parameterNames = true
+rangeVariableTypes = true
+
+[lsp.servers.go.settings.gopls.codelenses]
+gc_details = true
+generate = true
+regenerate_cgo = true
+tidy = true
+upgrade_dependency = true
+vendor = true
+
+[lsp.servers.golangci]
+command = "golangci-lint-langserver"
+root_markers = [".git", "go.mod"]
+
+[[lsp.servers.golangci.documents]]
+language_id = "go"
+file_extensions = ["go"]
+
+[[lsp.servers.golangci.documents]]
+language_id = "gomod"
+filenames = ["go.mod"]
+
+[lsp.servers.golangci.initialization_options]
+command = [
+    "golangci-lint",
+    "run",
+    "--output.text.path",
+    "/dev/null",
+    "--output.json.path",
+    "stdout",
+    "--show-stats=false",
+    "--issues-exit-code",
+    "1",
+    "--new-from-rev",
+    "refs/remotes/origin/HEAD",
+    "--build-tags",
+    "cron,api,unit,integration,functional,functional_1,functional_2,functional_3,functional_4,functional_5,functional_6,functional_http,functional_grpc",
+    "--timeout",
+    "20s",
+]
+
+[lsp.servers.lua]
+command = "lua-language-server"
+root_markers = [".luarc.json", ".luarc.jsonc", ".luacheckrc", ".stylua.toml", "stylua.lua", ".stylua.lua", ".git"]
+
+[[lsp.servers.lua.documents]]
+language_id = "lua"
+file_extensions = ["lua"]
+
+[lsp.servers.lua.settings.Lua.codeLens]
+enable = true
+
+[lsp.servers.lua.settings.Lua.hint]
+enable = true
+
+[lsp.servers.lua.settings.Lua.runtime]
+version = "LuaJIT"
+path = ["./?.lua", "/opt/homebrew/share/luajit-2.1/?.lua", "/usr/local/share/lua/5.1/?.lua", "/usr/local/share/lua/5.1/?/init.lua", "/opt/homebrew/share/lua/5.1/?.lua", "/opt/homebrew/share/lua/5.1/?/init.lua"]
+
+[lsp.servers.lua.settings.Lua.workspace]
+ignoreSubmodules = false
+library = ["/opt/homebrew/share/nvim/runtime"]
+
+[lsp.servers.ruff]
+command = "/Users/george/.local/share/nvim/mason/bin/ruff"
+args = ["server"]
+root_markers = ["pyproject.toml", "ruff.toml", ".ruff.toml", ".git"]
+
+[[lsp.servers.ruff.documents]]
+language_id = "python"
+file_extensions = ["py", "pyw", "pyi"]
+
+[lsp.servers.solargraph]
+command = "/Users/george/.rbenv/shims/solargraph"
+args = ["stdio"]
+root_markers = ["Gemfile", ".git"]
+
+[[lsp.servers.solargraph.documents]]
+language_id = "ruby"
+file_extensions = ["rb", "rake", "ru", "gemspec", "builder", "jbuilder"]
+filenames = ["Gemfile", "Rakefile", "Guardfile", "Capfile", "Vagrantfile"]
+
+[lsp.servers.solargraph.settings.solargraph]
+autoformat = false
+formatting = false
+completion = true
+diagnostic = true
+folding = true
+references = true
+rename = true
+symbols = true
+
+[lsp.servers.solargraph.initialization_options]
+formatting = true
+
+# Neovim muscle memory from GogoNvim keymaps.lua. Space chords that Red already
+# uses as a single action are nested only when Neovim binds children there.
+# Features Red does not have (DAP, neotest, trouble, flash, which-key, todo,
+# git permalink, call hierarchy) are not bound.
+[keys.insert]
+"Ctrl-b" = [{ EnterMode = "Normal" }, "MoveToFirstLineChar", { EnterMode = "Insert" }]
+"Ctrl-e" = ["MoveToLineEnd", "MoveRight"]
+"Ctrl-h" = "MoveLeft"
+"Ctrl-j" = "MoveDown"
+"Ctrl-k" = "MoveUp"
+"Ctrl-l" = "MoveRight"
+
+[keys.normal]
+Esc = "ClearSearchHighlight"
+"Ctrl-h" = "MoveWindowLeft"
+"Ctrl-j" = "MoveWindowDown"
+"Ctrl-k" = "MoveWindowUp"
+"Ctrl-l" = "MoveWindowRight"
+j = "MoveScreenLineDown"
+k = "MoveScreenLineUp"
+
+[keys.normal.g.r]
+d = "GoToDefinition"
+
+[keys.normal." "]
+e = "ShowLineDiagnostics"
+F = "FilePicker"
+
+# Explore used to live on Space e. Neovim uses that chord for the diagnostic float.
+[keys.normal." ".E]
+e = { ExploreCommand = "toggle" }
+f = { ExploreCommand = "follow" }
+"*" = { ExploreCommand = "follow" }
+s = { ExploreCommand = "skeleton" }
+d = { ExploreCommand = "definition" }
+t = { ExploreCommand = "type" }
+j = { ExploreCommand = "next" }
+k = { ExploreCommand = "prev" }
+b = { ExploreCommand = "back" }
+n = { ExploreCommand = "forward" }
+r = { ExploreCommand = "refresh" }
+R = { ExploreCommand = "index" }
+p = { ExploreCommand = "pr" }
+"?" = { ExploreCommand = "help" }
+q = { ExploreCommand = "close" }
+
+[keys.normal." ".b]
+n = "NewBuffer"
+c = { DeleteBuffer = false }
+f = "FormatDocument"
+
+[keys.normal." ".f]
+a = "FilePicker"
+w = { PluginCommand = "ProjectSearch" }
+W = { PluginCommand = "ProjectSearch" }
+b = { PluginCommand = "BufferPicker" }
+h = "KeyboardShortcuts"
+
+[keys.normal." ".s]
+v = "SplitVertical"
+h = "SplitHorizontal"
+s = "OpenStatuslineManager"
+
+[keys.normal." ".t]
+n = "NextBuffer"
+p = "PreviousBuffer"
+h = { PluginCommand = "ThemeBrowser" }
+a = "CommandPalette"
+
+[keys.normal." ".g]
+s = { PluginCommand = "GitDashboard" }
+
+[keys.normal." ".n]
+f = { PluginCommand = "NeoTree" }
+
+[keys.normal." ".l]
+r = { PluginCommand = "LspReferences" }
+
+[keys.normal." ".l.d]
+w = { PluginCommand = "LspWorkspaceSymbols" }
+
+[keys.normal." ".l.c]
+a = "CodeAction"
+
+[keys.normal." ".l.w]
+d = "OpenDiagnosticsPicker"

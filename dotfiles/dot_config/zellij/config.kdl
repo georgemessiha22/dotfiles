@@ -5,6 +5,12 @@
 keybinds clear-defaults=true {
     normal {
         bind "Ctrl Alt U" { GoToNextTab; }
+        bind "Ctrl Alt a" {
+            LaunchOrFocusPlugin "zj-agents-sidebar" {
+                floating true
+                move_to_focused_tab true
+            }
+        }
     }
     locked {
         bind "Ctrl Alt g" { SwitchToMode "normal"; }
@@ -327,6 +333,9 @@ plugins {
         welcome_screen false
     }
     room location="file:~/.config/zellij/plugins/room.wasm"
+
+    zj-agents-engine location="https://github.com/kaankoken/zj-agents/releases/latest/download/zj-agents-engine.wasm"
+    zj-agents-sidebar location="https://github.com/kaankoken/zj-agents/releases/latest/download/zj-agents-sidebar.wasm"
 }
 
 // Plugins to load in the background when a new session starts
@@ -334,6 +343,11 @@ plugins {
 // eg. "https://example.com/my-plugin.wasm"
 load_plugins {
     zellij:link
+    zj-agents-engine {
+        notify true
+        // notify_command "[\"notify-send\",\"--\",\"{title}\",\"{body}\"]"
+        // manifest_dir "~/…/custom-agent-detection"
+    }
 }
 web_client {
     font "monospace"

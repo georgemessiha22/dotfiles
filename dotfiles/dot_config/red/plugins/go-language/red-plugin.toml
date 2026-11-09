@@ -1,0 +1,34 @@
+schema_version = 1
+
+[plugin]
+id = "go-language"
+name = "Go language support"
+version = "0.4.0"
+red_api = "^0.12.0"
+description = "Go syntax highlighting, module and workspace detection, and gopls"
+repository = "https://github.com/codersauce/red-language-packs"
+license = "MIT"
+
+[languages.go]
+extensions = ["go"]
+aliases = ["golang"]
+comment = "// %s"
+indent_width = 4
+
+[languages.go.grammar]
+path = "grammars/go.so"
+symbol = "tree_sitter_go"
+highlights = [
+    "queries/arborium-highlights.scm",
+    "queries/highlights.scm",
+]
+indents = ["queries/indents.scm"]
+
+[languages.go.lsp]
+command = "gopls"
+root_markers = ["go.work", "go.mod", ".git"]
+
+[languages.go.formatter]
+name = "gofumpt"
+command = "gofumpt"
+root_markers = ["go.work", "go.mod", ".git"]

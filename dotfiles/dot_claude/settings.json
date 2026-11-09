@@ -1,34 +1,38 @@
 {
   "$schema": "https://www.schemastore.org/claude-code-settings.json",
-  "permissions": {
-    "defaultMode": "plan"
-  },
-  "model": "sonnet[1m]",
-  "hooks": {
-    "SessionStart": [
-      {
-        "matcher": "^(startup|resume|clear|compact|fork)$",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bash '/Users/george/.claude/hooks/herdr-agent-state.sh' session",
-            "timeout": 10
-          }
-        ]
-      }
-    ]
-  },
-  "worktree": {
-    "baseRef": "fresh"
-  },
+  "autoCompactEnabled": true,
+  "autoMemoryDirectory": "~/HungerStation/Hungerstation.wiki/memory",
+  "autoMemoryEnabled": true,
   "enabledPlugins": {
     "gopls-lsp@claude-plugins-official": true,
     "lua-lsp@claude-plugins-official": true,
     "postman@claude-plugins-official": true
   },
-  "tui": "fullscreen",
-  "autoMemoryEnabled": true,
-  "autoMemoryDirectory": "~/HungerStation/Hungerstation.wiki/memory",
+  "hooks": {
+    "PostToolUse": [
+    ],
+    "PreToolUse": [
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "command": "bash '/Users/george/.claude/hooks/herdr-agent-state.sh' session",
+            "timeout": 10,
+            "type": "command"
+          }
+        ],
+        "matcher": "^(startup|resume|clear|compact|fork)$"
+      }
+    ]
+  },
+  "model": "sonnet[1m]",
+  "permissions": {
+    "defaultMode": "plan"
+  },
   "theme": "auto",
-  "autoCompactEnabled": true
+  "tui": "fullscreen",
+  "worktree": {
+    "baseRef": "fresh"
+  }
 }

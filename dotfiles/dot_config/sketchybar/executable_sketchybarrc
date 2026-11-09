@@ -51,7 +51,7 @@ sketchybar -m --add item yabai_mode left \
               --set yabai_mode click_script="$PLUGIN_DIR/yabai_mode_click.sh" \
               --subscribe yabai_mode space_change
 
-source "$PLUGIN_DIR/workspaces.sh"
+source "$PLUGIN_DIR/workspaces_yabairc.sh"
 
 sketchybar --add item front_app left \
     --set front_app \
