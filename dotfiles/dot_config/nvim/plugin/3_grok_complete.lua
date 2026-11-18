@@ -336,4 +336,4 @@ local function setup_minuet()
 	end, { desc = "Show the extracted project map" })
 end
 
-setup_minuet()
+-- setup_minuet()

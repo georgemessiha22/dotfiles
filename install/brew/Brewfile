@@ -1,6 +1,7 @@
 tap "anomalyco/tap", trusted: true
 tap "asmvik/formulae", trusted: true
 tap "can1357/tap"
+tap "codersauce/tap"
 tap "daptify14/tap", trusted: true
 tap "deliveryhero/dp-tap", trusted: true
 tap "derailed/k9s"
@@ -49,6 +50,8 @@ brew "ffmpeg"
 brew "fish"
 # Command-line fuzzy finder written in Go
 brew "fzf"
+# CLI for managing Grafana Cloud resources
+brew "gcx"
 # GitHub command-line tool
 brew "gh"
 # Distributed revision control system
@@ -109,8 +112,6 @@ brew "opentofu"
 brew "pkgconf"
 # PDF rendering library (based on the xpdf-3.0 code base)
 brew "poppler"
-# Object-relational database system
-brew "postgresql@18"
 # Pyenv plugin to manage virtualenv
 brew "pyenv-virtualenv"
 # Interpreted, interactive, object-oriented programming language
@@ -159,12 +160,16 @@ brew "asmvik/formulae/skhd", trusted: true
 brew "asmvik/formulae/yabai", trusted: true
 # Coding agent with the IDE wired in
 brew "can1357/tap/omp", trusted: true
+# Modern, modal text editor built in Rust
+brew "codersauce/tap/red", trusted: true
 # CLI for interacting with Delivery Hero Platform infrastructure
 brew "deliveryhero/dp-tap/dp-devinfra", trusted: true
 # Kubernetes CLI To Manage Your Clusters In Style!
 brew "derailed/k9s/k9s", trusted: true
 # Custom macOS statusbar with shell plugin, interaction and graph support
 brew "felixkratz/formulae/sketchybar"
+# AeroSpace is an i3-like tiling window manager for macOS
+cask "nikitabobko/tap/aerospace", trusted: true
 # Terminal UI for chezmoi dotfile management
 cask "daptify14/tap/chezit"
 # Free app that makes your Internet safer
@@ -185,6 +190,7 @@ go "golang.org/x/tools/cmd/callgraph"
 go "github.com/go-delve/delve/cmd/dlv"
 go "github.com/davidrjenni/reftools/cmd/fillswitch"
 go "github.com/onsi/ginkgo/v2/ginkgo"
+go "github.com/fe3dback/go-arch-lint"
 go "github.com/abice/go-enum"
 go "github.com/Gelio/go-global-update"
 go "github.com/jstemmer/go-junit-report/v2"

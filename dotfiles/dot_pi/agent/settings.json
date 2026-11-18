@@ -1,9 +1,9 @@
 {
-  "lastChangelogVersion": "1.5.0",
+  "lastChangelogVersion": "1.5.2",
   "theme": "opencode",
   "defaultProvider": "xai",
   "defaultModel": "grok-4.7",
-  "defaultThinkingLevel": "medium",
+  "defaultThinkingLevel": "high",
   "showHardwareCursor": true,
   "editorPaddingX": 2,
   "steeringMode": "one-at-a-time",
@@ -12,19 +12,6 @@
   "markdown": {
     "mermaid": "streaming"
   },
-  "enableInstallTelemetry": false,
-  "warnings": {
-    "anthropicExtraUsage": true
-  },
-  "packages": [
-    "npm:pi-hermes-memory",
-    "npm:@juanibiapina/pi-powerbar",
-    "npm:pi-mcp-adapter",
-    "npm:pi-subagents",
-    "./local/pi-sidebar-tui",
-    "npm:pi-lsp-adapter",
-    "git:github.com/obra/superpowers"
-  ],
   "terminal": {
     "showTerminalProgress": true
   },
@@ -33,20 +20,38 @@
   "fullscreenExitOutput": "resume-hint",
   "doubleEscapeAction": "tree",
   "externalEditor": "nvim",
-  "extensions": [
-    "-builtin:mcp",
-    "./local/claude-project-config.ts",
-    "./local/plan-mode/index.ts"
-  ],
-  "skills": [
-    "~/.agents/skills",
-    "~/.config/opencode/skills"
-  ],
   "quietStartup": false,
   "collapseChangelog": true,
   "autocompleteMaxVisible": 8,
+  "enableInstallTelemetry": false,
+  "warnings": {
+    "anthropicExtraUsage": true
+  },
+  "defaultTools": [
+    "+codemode"
+  ],
+  "compaction": {
+    "reserveTokens": 50000
+  },
+  "packages": [
+    "npm:pi-hermes-memory",
+    "npm:@juanibiapina/pi-powerbar",
+    "npm:pi-mcp-adapter",
+    "npm:pi-subagents",
+    "./local/pi-sidebar-tui",
+    "npm:pi-lsp-adapter",
+    "git:github.com/obra/superpowers",
+    "npm:@adeildo/pi-ask-questions"
+  ],
+  "extensions": [
+    "-builtin:mcp",
+    "./local/plan-mode/index.ts"
+  ],
+  "skills": [
+    "~/.agents/skills"
+  ],
   "extensionChangelogVersions": {
     "{\"source\":\"npm:pi-mcp-adapter\",\"scope\":\"user\"}": "7.0.1",
-    "{\"source\":\"npm:pi-subagents\",\"scope\":\"user\"}": "0.84.0"
+    "{\"source\":\"npm:pi-subagents\",\"scope\":\"user\"}": "0.88.1"
   }
 }

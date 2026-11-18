@@ -1,0 +1,5 @@
+{
+	"powerbar": {
+		"left": "plan-mode,git-branch,tokens,context-usage"
+	}
+}
