@@ -36,7 +36,6 @@ clipman
 coreutils
 cryptsetup
 curlftpfs
-cursor-appimage
 dconf-editor
 deluge-gtk
 dex
@@ -44,9 +43,6 @@ dialog
 direnv
 dmidecode
 dmraid
-docker
-docker-buildx
-docker-compose
 dosfstools
 downgrade
 dracut
@@ -95,8 +91,6 @@ gettext
 ghostty
 git
 glibc
-gnome-calculator
-gnome-disk-utility
 gnome-firmware
 gnome-keyring
 gnome-logs
@@ -120,9 +114,6 @@ gvfs-mtp
 gvfs-nfs
 gvfs-smb
 gzip
-helix
-helm
-herdr-bin
 htop
 inetutils
 input-devices-support
@@ -135,11 +126,9 @@ jq
 k6-bin
 k9s
 kanshi
-kitty
 kubectl
 kvantum
 kvantum-theme-nordic-git
-lazydocker
 lazygit
 lhasa
 lib32-libcap
@@ -173,7 +162,6 @@ mdadm
 meld
 memtest86+
 mercurial
-minikube
 mkcert
 modem-manager-gui
 mtools
@@ -187,7 +175,6 @@ nfs-utils
 nilfs-utils
 nmap
 noise-suppression-for-voice
-nordic-darker-theme
 noto-fonts
 noto-fonts-cjk
 noto-fonts-emoji
@@ -285,8 +272,7 @@ unzip
 update-grub
 usbutils
 util-linux
-vlc
-vulkan-amdgpu-pro
+vulkan-amdgpu-pro-legacy
 waybar
 wdisplays
 wf-recorder
@@ -314,4 +300,3 @@ xz
 yazi
 zellij
 zip
-zoxide
