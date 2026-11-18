@@ -19,7 +19,7 @@ vim.pack.add({
 
 	{
 		src = "https://github.com/avante-corp/avante.nvim",
-		version = "v1.2.1", -- use the latest tagged releases x-release-please-version
+		version = "v0.5.0", -- use the latest tagged releases x-release-please-version
 	},
 })
 
