@@ -7,9 +7,14 @@
 install-qtgreet:
 	@echo "🎮 Installing QTGreet"
 	sudo paru -S --noconfirm greetd
+	sudo cp ./dev/scripts/greetd/config.toml /etc/greetd/config.toml
+	sudo cp ./dev/scripts/greetd/swayconfig /etc/greetd/swayconfig
+	sudo cp ./dev/scripts/greetd/pam /etc/pam.d/greetd
+	sudo cp ./dev/scripts/greetd/pam /etc/pam.d/login
+	sudo cp ./dev/scripts/greetd/portal /usr/share/xdg-desktop-portal/portals/gnome-keyring.portal 
 	sudo cp ./dev/scripts/qtgreet/Christmas.svg /usr/share/qtgreet/backgrounds/
 	sudo cp ./dev/scripts/qtgreet/config.ini /etc/qtgreet/config.ini
-	sudo cp ./dev/scripts/qtgreet/wayfire.ini /etc/qtgreet/wayfire.ini
+	git config --global credential.helper /usr/lib/git-core/git-credential-libsecret
 
 ## install my custom sway entrypoint
 install-sway:
@@ -46,7 +51,7 @@ install-tools:
 install-packages:
 	@echo "📦 Installing Needed packages for Developer workspace"
 	paru -Syuu --noconfirm
-	paru -S --noconfirm `cat /home/gmessiha/backup/linux-workspace/install/arch/packages.txt`
+	paru -S --noconfirm `cat ${HOME}/backup/linux-workspace/install/arch/packages.txt`
 	@echo "✅ Tools Installation Finished"
 
 ## Applying Workspace configurations
@@ -54,8 +59,14 @@ apply-chezmoi:
 	@echo "☸️ 🎌 applying chezmoi configuration files"
 	chezmoi apply --force
 
+## applying all custom systemd daemons
+apply-systemd:
+	@echo " enable services autostartup"
+	systemctl daemon-reload --user
+	systemctl enable --now --user gnome-keyring-daemon
+
 ## Setup Arch Workspaces 
-setup: install-tools install-packages install-sway install-qtgreet install-chezmoi apply-chezmoi
+setup: install-tools install-packages install-sway install-qtgreet install-chezmoi apply-chezmoi apply-systemd
 
 ## backup currently installed packages
 backup-packages:

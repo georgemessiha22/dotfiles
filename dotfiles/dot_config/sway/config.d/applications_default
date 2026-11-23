@@ -17,6 +17,7 @@ for_window [app_id="wdisplays"] floating enable
 for_window [app_id="nwg-displays"] floating enable
 for_window [app_id="nm-connection-editor"] floating enable
 for_window [app_id="seahorse"] floating enable
+for_window [app_id="org.gnome.Calculator"] floating enable
 # set floating for window roles
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="bubble"] floating enable
@@ -30,7 +31,7 @@ for_window [app_id="firedragon" title="Library"] floating enable, border pixel 1
 for_window [app_id="floating_shell_portrait"] floating enable, border pixel 1, sticky enable, resize set width 30 ppt height 40 ppt
 for_window [title="Picture in picture"] floating enable, sticky enable
 for_window [title="nmtui"] floating enable,  resize set width 50 ppt height 70 ppt
-for_window [title="htop"] floating enable, resize set width 30 ppt height 90 ppt, move position 0 px 0 px
+# for_window [title="htop"] floating enable, resize set width 30 ppt height 90 ppt, move position 0 px 0 px
 for_window [app_id="xsensors"] floating enable
 for_window [title="Save File"] floating enable
 for_window [app_id="orage"] floating enable
@@ -42,4 +43,3 @@ for_window [app_id="protonvpn"] floating enable
 for_window [app_id="firedragon"] inhibit_idle fullscreen
 for_window [app_id="Chromium"] inhibit_idle fullscreen
 
-for_window [title="conky"] floating enable, resize set width 30 ppt height 90 ppt, move position 0 px 0 px

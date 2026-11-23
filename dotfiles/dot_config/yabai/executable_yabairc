@@ -1,17 +1,28 @@
 #!/usr/bin/env zsh
 
+YABAIRC="${HOME}/.config/yabai/yabairc"
+
 # helper functions {{{
 function get_display_aspect_ratio {
-    case $(yabai -m query --displays --display mouse | jq '.frame | (.w)/(.h) | floor') in
-            (2) echo "16:9" ;;
-            (4) echo "32:9" ;;
-            (*) echo "something:whacky" ;;
-    esac
+    for x in $(yabai -m query --displays --display mouse | jq 'if type=="array" then .[].frame else .frame end | (.w)/(.h) | floor')
+    do
+        case $x in
+            2)
+                echo "ultrawide"
+                ;;
+            4)
+                echo "wide"
+                ;;
+            *)
+                echo "something:whacky"
+                ;;
+        esac
+    done
 }
 
 function get_space_num_managed_windows {
-    yabai -m query --windows --space mouse | \
-        jq 'map(select(."is-visible" == true and ."is-floating" == false)) |
+	yabai -m query --windows --space mouse |
+		jq 'map(select(."is-visible" == true and ."is-floating" == false)) |
     # deal with how hidden applications apparently still
     # have "visible" windows
     if all(."split-type" == "none") then
@@ -22,97 +33,139 @@ function get_space_num_managed_windows {
 }
 
 function maybe_center_space {
-    if [[ $(get_display_aspect_ratio) == "32:9" ]]; then
-        case $(get_space_num_managed_windows) in
-                (<0-1>) yabai -m space --padding abs:3:3:800:800 ;;
-                (<2-4>) yabai -m space --padding abs:3:3:400:400 ;;
-                (*)     yabai -m space --padding abs:3:3:3:3     ;;
-        esac
-    elif [[ $(get_display_aspect_ratio) == "16:9" ]]; then
-        case $(get_space_num_managed_windows) in
-                (<0-1>) yabai -m space --padding abs:3:3:600:600 ;;
-                (<2-4>) yabai -m space --padding abs:3:3:300:300 ;;
-                (*)     yabai -m space --padding abs:3:3:3:3     ;;
-        esac
-    else
-        yabai -m space --padding abs:3:3:3:3
 
-    fi
+    for aspect_ratio in $(get_display_aspect_ratio)
+    do
+	    managed_spaces=$(get_space_num_managed_windows)
+        if [[ $aspect_ratio == "ultrawide" ]]; then
+            if ((managed_spaces < 1)); then 
+                yabai -m space --padding abs:3:90:800:800
+            elif ((managed_spaces < 4)); then
+                yabai -m space --padding abs:3:90:400:400
+            else
+                yabai -m space --padding abs:3:60:3:3
+            fi
+        elif [[ $aspect_ratio == "wide" ]]; then
+            if ((managed_spaces < 1)); then
+                yabai -m space --padding abs:3:3:600:600
+            elif ((managed_spaces < 4)); then
+                yabai -m space --padding abs:3:3:300:300
+            else
+                yabai -m space --padding abs:3:3:3:3
+            fi
+        else
+            yabai -m space --padding abs:3:3:3:3
+        fi
+    done
+}
+
+function add_rule {
+	yabai -m rule --add "$@"
+	yabai -m rule --apply "$@"
 }
 
 function config_rules {
-    # Application specific rules
-    yabai -m rule --add app=SideNotes manage=off
-    yabai -m rule --add app=Session   manage=off
-    yabai -m rule --add app=Slidepad  manage=off
+	# Application specific rules
+	add_rule app=SideNotes manage=off
+	add_rule app=Session manage=off
+	add_rule app=Slidepad manage=off
+	add_rule app="^System Settings$" manage=off
+	add_rule app="^Calculator$" manage=off
+	add_rule app="^Karabiner-Elements$" manage=off
+	add_rule app="^Keymapp" manage=off
+	add_rule app="^qemu-system" manage=off
+	add_rule app="^cloudflare WARP" manage=off
 
-    yabai -m rule --add app="^System Settings$" manage=off
-    yabai -m rule --add app="^Calculator$" manage=off
-    yabai -m rule --add app="^Karabiner-Elements$" manage=off
-    yabai -m rule --add app="^Keymapp" manage=off
+	# Default Spaces
+
+	add_rule app="^Slack" space=1 manage=on
+	add_rule app="^Google Chrome" space=2 manage=on
+	add_rule app="^Alacritty" space=3 manage=on
+	add_rule app="^Ghostty" space=3 manage=on
+    add_rule app="^Obsidian" space=4 manage=on
+	# add_rule app="^Spotify" space=5 manage=on
+
+    yabai -m config window_shadow off
+	yabai -m config window_opacity on
+	yabai -m config active_window_opacity        1.0
+	yabai -m config normal_window_opacity        0.5
+
+	yabai -m config insert_feedback_color 0xffd75f5f
+	
+	# center mouse on window with focus
+	yabai -m config mouse_follows_focus on
+
+	# modifier for clicking and dragging with mouse
+	yabai -m config mouse_modifier fn
+	# set modifier + left-click drag to move window
+	yabai -m config mouse_action1 move
+	# set modifier + right-click drag to resize window
+	yabai -m config mouse_action2 resize
+
+	# set focus follows mouse mode (default: off, options: off, autoraise, autofocus)
+	yabai -m config focus_follows_mouse autofocus
+
+	# default layout (can be bsp, stack or float)
+	yabai -m config layout bsp
+
+	# New window spawns to the right if vertical split, or bottom if horizontal split
+	yabai -m config window_placement second_child
+
+	# leave space for sketchybar on external screen without notch
+	yabai -m config external_bar all:30:0
+
+	# Auto balance makes it so all windows always occupy the same space, independent of how deeply nested they are in the window tree. When a new window is inserted or a window is removed, the split ratios will be automatically adjusted.
+	yabai -m config auto_balance on
+
+	yabai -m config debug_output off
+
+	# spaces between window
+	yabai -m config window_gap 3
 }
 
 function config_signals {
-    for signal (
-        application_launched application_terminated
-        application_hidden application_visible
-        window_created window_destroyed window_minimized window_deminimized
-        space_changed
-        display_resized system_woke
-        ); do
-        yabai -m signal --add event=$signal \
-            action="$YABAIRC maybe_center_space" \
-            label="maybe_center_space-on-$signal"
-    done
+	for signal in application_launched application_terminated application_hidden application_visible window_created window_destroyed window_minimized window_deminimized space_changed display_resized display_changed display_added; do
+		yabai -m signal --add event="$signal" \
+			action="$YABAIRC maybe_center_space" \
+			label="maybe_center_space-on-$signal"
+	done
+
+	yabai -m signal --add event=window_focused action="sketchybar -m --trigger window_focus &> /dev/null"
+	yabai -m signal --add event=window_title_changed action="sketchybar -m --trigger title_change &> /dev/null"
+	# yabai -m signal --add event=window_created action"$YABAIRC config_rules"
 }
 # }}}
 
 function config_main {
+	
+	# ref https://github.com/koekeishiya/yabai/wiki/Installing-yabai-(latest-release)#configure-scripting-addition
+	# yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+	# sudo yabai --load-sa
+	
+	config_rules
 
-    # default layout (can be bsp, stack or float)
-    yabai -m config layout bsp
+	# Dynamic left & right gaps on wide screen & Paddings {{{
+	# maybe_center_space
+	config_signals
+	# }}}
+}
 
-    # New window spawns to the right if vertical split, or bottom if horizontal split
-    yabai -m config window_placement second_child
+function setup_space {
+	local idx="$1"
+	local name="$2"
+	local space=
+	echo "setup space $idx : $name"
 
-    # leave space for sketchybar on external screen without notch
-    yabai -m config external_bar all:33:0
+	space=$(yabai -m query --spaces --space "$idx")
+	if [ "$space" = "" ]; then
+		yabai -m space --create
+	fi
 
-    # Auto balance makes it so all windows always occupy the same space, independent of how deeply nested they are in the window tree. When a new window is inserted or a window is removed, the split ratios will be automatically adjusted.
-    yabai -m config auto_balance on
-
-    # center mouse on window with focus
-    yabai -m config mouse_follows_focus off
-
-    # modifier for clicking and dragging with mouse
-    yabai -m config mouse_modifier fn
-    # set modifier + left-click drag to move window
-    yabai -m config mouse_action1 move
-    # set modifier + right-click drag to resize window
-    yabai -m config mouse_action2 resize
-
-    # set focus follows mouse mode (default: off, options: off, autoraise, autofocus)
-    yabai -m config focus_follows_mouse off
-
-    # when window is dropped in center of another window, swap them (on edges it will split it)
-    yabai -m mouse_drop_action swap
-
-    config_rules
-
-    # something releated to the bar
-    osascript -e 'tell application id "tracesOf.Uebersicht" to refresh'
-
-    # spaces between window
-    yabai -m config window_gap 3
-
-    # Dynamic left & right gaps on wide screen & Paddings {{{
-    maybe_center_space
-    config_signals
-    # }}}
+	yabai -m space "$idx" --label "$name"
 }
 
 if [[ $# == 0 ]]; then
-    config_main
+	config_main
 else
-    $1
+	"$1"
 fi

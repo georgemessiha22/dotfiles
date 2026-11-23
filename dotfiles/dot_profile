@@ -1,5 +1,5 @@
-export EDITOR=/usr/bin/micro
-export BROWSER=firedragon
+export EDITOR=nvim
+export BROWSER=firefox
 export TERM=alacritty
 export MAIL=geary
 export QT_QPA_PLATFORMTHEME="qt5ct"
@@ -38,8 +38,7 @@ export QT_QPA_PLATFORM=wayland
 #export QT_WAYLAND_FORCE_DPI=physical
 #export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
 
-
-# Added by Toolbox App
-export PATH="$PATH:/home/gmessiha/.local/share/JetBrains/Toolbox/scripts"
-
-[[ -f "$HOME/.cargo/env" ]] && . "$HOME/.cargo/env"
+# Rust
+export CARGO_HOME=$HOME/.local/cargo
+export RUSTUP_HOME=$HOME/.local/rustup
+[[ -f $HOME/.local/cargo/env ]] && . "$HOME/.local/cargo/env"

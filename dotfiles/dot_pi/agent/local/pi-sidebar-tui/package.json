@@ -1,0 +1,39 @@
+{
+  "name": "pi-sidebar-tui",
+  "version": "1.7.8",
+  "description": "Sidebar TUI extension for pi coding agent",
+  "type": "module",
+  "files": [
+    "*.ts",
+    "panels/**/*.ts"
+  ],
+  "keywords": [
+    "pi-package",
+    "pi",
+    "coding-agent",
+    "sidebar",
+    "tui"
+  ],
+  "author": "bi0h4z4rd88",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bi0h4z4rd88/pi-sidebar-tui.git"
+  },
+  "license": "MIT",
+  "scripts": {
+    "test": "node --experimental-strip-types --test 'tests/**/*.test.ts'"
+  },
+  "peerDependencies": {
+    "@earendil-works/pi-coding-agent": ">=0.74.0",
+    "@earendil-works/pi-tui": ">=0.74.0"
+  },
+  "devDependencies": {
+    "@earendil-works/pi-coding-agent": ">=0.74.0",
+    "@earendil-works/pi-tui": ">=0.74.0"
+  },
+  "pi": {
+    "extensions": [
+      "./index.ts"
+    ]
+  }
+}

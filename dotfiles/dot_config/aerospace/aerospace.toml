@@ -1,0 +1,162 @@
+# AeroSpace config. Replaces yabai + skhd. Sketchybar stays and is notified from here.
+# AeroSpace reads this file via XDG (~/.config/aerospace/aerospace.toml).
+# Do not also create ~/.aerospace.toml; two configs are an error.
+#
+# Not replicated: window opacity, window shadow, fn-drag move/resize, tree rotate/mirror.
+# Wide-screen side pads are applied by center-space.sh (yabai maybe_center_space).
+
+config-version = 2
+
+after-startup-command = [
+    'exec-and-forget sketchybar',
+    'exec-and-forget /Users/george/.config/aerospace/center-space.sh',
+]
+
+start-at-login = true
+auto-reload-config = true
+
+# Off so `split` can prepare the next window. Flattening deletes the
+# single-child container that remembers the chosen direction.
+enable-normalization-flatten-containers = false
+enable-normalization-opposite-orientation-for-nested-containers = false
+
+accordion-padding = 30
+default-root-container-layout = 'tiles'
+default-root-container-orientation = 'auto'
+
+on-focused-monitor-changed = [
+    'move-mouse monitor-lazy-center',
+    'exec-and-forget /Users/george/.config/aerospace/center-space.sh',
+]
+on-focus-changed = [
+    'move-mouse window-lazy-center',
+    'exec-and-forget sketchybar --trigger aerospace_focus_change',
+    'exec-and-forget /Users/george/.config/aerospace/center-space.sh',
+]
+
+exec-on-workspace-change = [
+    '/bin/bash',
+    '-c',
+    'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE; /Users/george/.config/aerospace/center-space.sh',
+]
+
+automatically-unhide-macos-hidden-apps = false
+persistent-workspaces = ['1', '2', '3', '4', '5', '6', '7']
+focus-follows-mouse.enabled = false
+
+key-mapping.preset = 'qwerty'
+
+# Floating apps from yabai manage=off. Name matches are case-insensitive regex.
+# Bundle IDs were resolved from the apps installed on this machine.
+on-window-detected = [
+    { if = 'test %{app-bundle-id} = com.apple.systempreferences', run = 'layout floating' },
+    { if = 'test %{app-bundle-id} = com.apple.calculator', run = 'layout floating' },
+    { if = 'test %{app-bundle-id} = com.cloudflare.1dot1dot1dot1.macos', run = 'layout floating' },
+    { if = 'test %{app-name} ~= "^SideNotes$"', run = 'layout floating' },
+    { if = 'test %{app-name} ~= "^Session$"', run = 'layout floating' },
+    { if = 'test %{app-name} ~= "^Slidepad$"', run = 'layout floating' },
+    { if = 'test %{app-name} ~= "^Karabiner"', run = 'layout floating' },
+    { if = 'test %{app-name} ~= "^Keymapp"', run = 'layout floating' },
+    { if = 'test %{app-name} ~= "^qemu-system"', run = 'layout floating' },
+
+    { if = 'test %{app-bundle-id} = com.tinyspeck.slackmacgap', run = 'move-node-to-workspace 1' },
+    { if = 'test %{app-bundle-id} = com.google.Chrome', run = 'move-node-to-workspace 2' },
+    { if = 'test %{app-bundle-id} = org.alacritty', run = 'move-node-to-workspace 3' },
+    { if = 'test %{app-bundle-id} = com.mitchellh.ghostty', run = 'move-node-to-workspace 3' },
+    { if = 'test %{app-bundle-id} = md.obsidian', run = 'move-node-to-workspace 4' },
+]
+
+# BEGIN dynamic-gaps
+[gaps]
+inner.horizontal = 3
+inner.vertical = 3
+outer.top = 40
+outer.bottom = [{ monitor."^LG ULTRAWIDE$" = 90 }, 2]
+outer.left = [{ monitor."^LG ULTRAWIDE$" = 400 }, 2]
+outer.right = [{ monitor."^LG ULTRAWIDE$" = 400 }, 2]
+# END dynamic-gaps
+
+[mode.main.binding]
+    alt-slash = 'layout tiles horizontal vertical'
+    alt-comma = 'layout accordion horizontal vertical'
+
+    alt-h = 'focus left'
+    alt-j = 'focus down'
+    alt-k = 'focus up'
+    alt-l = 'focus right'
+    alt-w = 'focus dfs-next'
+    alt-shift-w = 'focus dfs-prev'
+
+    alt-shift-h = 'move left'
+    alt-shift-j = 'move down'
+    alt-shift-k = 'move up'
+    alt-shift-l = 'move right'
+
+    alt-shift-minus = 'resize smart -50'
+    alt-shift-equal = 'resize smart +50'
+
+    alt-p = 'workspace --wrap-around prev'
+    alt-n = 'workspace --wrap-around next'
+    alt-shift-p = 'move-node-to-workspace --focus-follows-window --wrap-around prev'
+    alt-shift-n = 'move-node-to-workspace --focus-follows-window --wrap-around next'
+
+    alt-1 = 'workspace 1'
+    alt-2 = 'workspace 2'
+    alt-3 = 'workspace 3'
+    alt-4 = 'workspace 4'
+    alt-5 = 'workspace 5'
+    alt-6 = 'workspace 6'
+    alt-7 = 'workspace 7'
+    alt-8 = 'workspace 8'
+    alt-9 = 'workspace 9'
+
+    alt-shift-1 = 'move-node-to-workspace 1'
+    alt-shift-2 = 'move-node-to-workspace 2'
+    alt-shift-3 = 'move-node-to-workspace 3'
+    alt-shift-4 = 'move-node-to-workspace 4'
+    alt-shift-5 = 'move-node-to-workspace 5'
+    alt-shift-6 = 'move-node-to-workspace 6'
+    alt-shift-7 = 'move-node-to-workspace 7'
+    alt-shift-8 = 'move-node-to-workspace 8'
+    alt-shift-9 = 'move-node-to-workspace 9'
+
+    # yabai stack / bsp / float / balance
+    alt-shift-s = 'layout accordion'
+    alt-shift-d = 'layout tiles'
+    alt-shift-t = 'layout floating tiling'
+    alt-shift-b = 'flatten-workspace-tree'
+
+    ctrl-alt-h = 'focus-monitor left'
+    ctrl-alt-j = 'focus-monitor down'
+    ctrl-alt-k = 'focus-monitor up'
+    ctrl-alt-l = 'focus-monitor right'
+
+    ctrl-alt-shift-h = 'move-node-to-monitor --focus-follows-window left'
+    ctrl-alt-shift-j = 'move-node-to-monitor --focus-follows-window down'
+    ctrl-alt-shift-k = 'move-node-to-monitor --focus-follows-window up'
+    ctrl-alt-shift-l = 'move-node-to-monitor --focus-follows-window right'
+
+    ctrl-alt-r = 'reload-config'
+
+    alt-t = 'exec-and-forget open -n -a Alacritty'
+    alt-s = 'exec-and-forget open -a Slack'
+    alt-b = 'exec-and-forget open -a "Google Chrome"'
+
+    alt-tab = 'workspace-back-and-forth'
+    alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
+    alt-shift-semicolon = 'mode service'
+
+[mode.service.binding]
+    esc = ['reload-config', 'mode main']
+    r = ['flatten-workspace-tree', 'mode main']
+    f = ['layout floating tiling', 'mode main']
+    backspace = ['close-all-windows-but-current', 'mode main']
+
+    alt-shift-h = ['join-with left', 'mode main']
+    alt-shift-j = ['join-with down', 'mode main']
+    alt-shift-k = ['join-with up', 'mode main']
+    alt-shift-l = ['join-with right', 'mode main']
+
+    down = 'volume down'
+    up = 'volume up'
+    shift-down = ['volume set 0', 'mode main']

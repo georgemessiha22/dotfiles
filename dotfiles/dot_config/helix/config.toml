@@ -1,8 +1,8 @@
-theme = "catppuccin_frappe"
+theme = "catppuccin_mocha"
 
 [editor]
 line-number = "absolute"
-mouse = false
+mouse = true
 cursorline = true
 cursorcolumn = true
 auto-save = true
@@ -24,6 +24,6 @@ display-messages=true
 
 [editor.soft-wrap]
 enable = true
-max-wrap = 60 # increase value to reduce forced mid-word wrapping
+max-wrap = 120 # increase value to reduce forced mid-word wrapping
 max-indent-retain = 0
-wrap-indicator = ""  # set wrap-indicator to "" to hide it
+wrap-indicator = ">>"  # set wrap-indicator to "" to hide it

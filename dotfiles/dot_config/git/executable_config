@@ -1,24 +1,82 @@
-[user]
-	email = georgemessiha22@gmail.com
-	name = George Messiha
-	signingkey = 38978058BF4371AF
 [core]
-	editor = "nano"
+	editor = "nvim"
+	excludesfile = ~/.config/git/ignore_global
+	pager = delta
+	hooksPath = .githooks/
+
+[blame]
+    pager = delta
+
+[interactive]
+	diffFilter = delta --color-only --diff-so-fancy
+
+[delta]
+	navigate = true
+	side-by-side = false
+	line-number = true
+	dark = true
+    hyperlinks = true
+
+[merge]
+	conflictstyle = zdiff3
+
+[diff]
+	colorMoved = default
+
+[commit]
+	gpgSign = true
+
 [push]
+    default = current
 	autoSetupRemote = true
+
+
 [init]
-    defaultBranch = main
+	defaultBranch = master
+
+[user]
+	name = George Messiha
+
+[status]
+	submoduleSummary = true
+
+[pull]
+	rebase = true
 
 [url "git@github.com:"]
 	insteadOf = https://github.com/
 
 [url "git@gitlab.com:"]
-   insteadOf = https://gitlab.com/
+	insteadOf = https://gitlab.com/
 
-# [url "ssh://git@github.com/"]
-#   insteadOf = "https://github.com/"
+[url "https://github.com/rust-lang/crates.io-index"]
+	insteadOf = https://github.com/rust-lang/crates.io-index
 
-#[url "ssh://git@gitlab.com/"]
-#   insteadOf = "https://gitlab.com/"
-[status]
-	submodulesummary = 1
+# when working with HungerStation
+[includeIf "gitdir:**/HungerStation/"]
+	path = ~/.config/git/hungerstation
+
+# when working with test projects workspace
+[includeIf "gitdir:**/projects/"]
+	path = ~/.config/git/default
+
+# when working with test projects workspace
+[includeIf "gitdir:**/.local/"]
+	path = ~/.config/git/default
+
+# when working with test projects workspace
+[includeIf "gitdir:**/.config/"]
+	path = ~/.config/git/default
+
+# when working with test projects workspace
+[includeIf "gitdir:**/Desktop/"]
+	path = ~/.config/git/default
+
+[includeIf "gitdir:**/backup/"]
+	path = ~/.config/git/default
+[credential "https://github.com"]
+	helper = 
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/opt/homebrew/bin/gh auth git-credential

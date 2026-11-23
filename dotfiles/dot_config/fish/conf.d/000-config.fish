@@ -1,3 +1,5 @@
+# enable vi mode
+fish_vi_key_bindings insert
 ## Set values
 
 # Hide welcome message
@@ -14,47 +16,85 @@ end
 set -U __done_min_cmd_duration 10000
 set -U __done_notification_urgency_level low
 
-
 ## Environment setup
-# Apply .profile: use this to put fish compatible .profile stuff in
-if test -f ~/.fish_profile
-    source ~/.fish_profile
-end
+set -x EDITOR nvim
 
 # Add ~/.local/bin to PATH
 if test -d ~/.local/bin
     if not contains -- ~/.local/bin $PATH
-        set -p PATH ~/.local/bin
+        fish_add_path -a ~/.local/bin
+    end
+end
+
+# Add mason installed tools to PATH
+if test -d ~/.local/share/nvim/mason/bin
+    if not contains -- ~/.local/share/nvim/mason/bin $PATH
+        fish_add_path -a ~/.local/share/nvim/mason/bin
     end
 end
 
 # Add depot_tools to PATH
 if test -d ~/Applications/depot_tools
     if not contains -- ~/Applications/depot_tools $PATH
-        set -p PATH ~/Applications/depot_tools
+        fish_add_path -a ~/Applications/depot_tools
     end
 end
 
 ## Add golang from .local
 if test -d ~/.local/go/bin
     if not contains -- ~/.local/go/bin $PATH
-        set -p PATH ~/.local/go/bin
-        set -p PATH ~/.local/gopkgs/bin
-        set GOPATH ~/.local/gopkgs
+        fish_add_path -a ~/.local/go/bin
     end
 end
 
-## Add rust from .local
-if test -d ~/.cargo/bin
-    if not contains -- ~/.cargo/bin $PATH
-        set -p PATH ~/.cargo/bin
-    end
+if test -d "$HOME/.local/gopkgs/"
+    fish_add_path -a "$HOME/.local/gopkgs/bin"
 end
 
 ## Add bun
-set --export BUN_INSTALL "$HOME/.bun"
-if test -d $BUN_INSTALL/bin 
-	fish_add_path -a $BUN_INSTALL/bin
+set --export BUN_INSTALL "$HOME/.local/bun"
+if test -d $BUN_INSTALL/bin
+    fish_add_path -a $BUN_INSTALL/bin
+end
+
+## Add Zig
+set --export ZIG_PATH "$HOME/.local/zig"
+if test -d $ZIG_PATH
+    fish_add_path -a $ZIG_PATH
+end
+
+# Add gcloud auth
+if test -d $HOME/google-cloud-sdk/bin
+    fish_add_path -a "$HOME/google-cloud-sdk/bin"
+end
+
+# proto
+if test -d "$HOME/.proto"
+    set -gx PROTO_HOME "$HOME/.proto"
+    set -gx __ORIG_PATH $PATH
+
+    fish_add_path -a "$PROTO_HOME/shims"
+    fish_add_path -a "$PROTO_HOME/bin"
+    function __proto_hook --on-variable PWD
+        proto activate fish --export | source
+    end
+end
+
+# flutter
+if test -d "$HOME/.local/flutter/"
+    fish_add_path -a "$HOME/.local/flutter/bin"
+end
+
+# if using custom build of neovim
+if test -d $HOME/.local/neovim
+    fish_add_path -a $HOME/.local/neovim/bin
+end
+
+# kubectl krew
+set KREW_PATH "$KREW_ROOT"
+test -z "$KREW_PATH"; and set KREW_PATH "$HOME/.krew"
+if test -d "$KREW_PATH"
+    fish_add_path -a "$KREW_PATH/bin"
 end
 
 ## Functions
@@ -96,30 +136,10 @@ function backup --argument filename
     cp $filename $filename.bak
 end
 
-# Copy DIR1 DIR2
-function copy
-    set count (count $argv | tr -d \n)
-    if test "$count" = 2; and test -d "$argv[1]"
-        set from (echo $argv[1] | trim-right /)
-        set to (echo $argv[2])
-        command cp -r $from $to
-    else
-        command cp $argv
-    end
-end
+## Aliases
 
-## Useful aliases
-# Replace ls with exa
-alias ls='exa -agxT -L 1' # preferred listing
-alias la='exa -algxT -L 1' # all files and dirs
-alias ll='exa -lgxT -L 1' # long format
-alias lt='exa -aT -L 1' # tree listing
-alias l.='exa -ald' # show only dotfiles
+# ip table coloured
 alias ip='ip -color'
-
-# Replace some more things with better alternatives
-# alias cat='bat -p'
-[ ! -x /usr/bin/yay ] && [ -x /usr/bin/paru ] && alias yay='paru'
 
 # Common use
 alias grubup="sudo update-grub"
@@ -145,17 +165,7 @@ alias hw='hwinfo --short' # Hardware Info
 alias big="expac -H M '%m\t%n' | sort -h | nl" # Sort installed packages according to size in MB
 alias gitpkg='pacman -Q | grep -i "\-git" | wc -l' # List amount of -git packages
 
-# Get fastest mirrors
-alias mirror="sudo reflector -f 30 -l 30 --number 10 --verbose --save /etc/pacman.d/mirrorlist"
-alias mirrord="sudo reflector --latest 50 --number 20 --sort delay --save /etc/pacman.d/mirrorlist"
-alias mirrors="sudo reflector --latest 50 --number 20 --sort score --save /etc/pacman.d/mirrorlist"
-alias mirrora="sudo reflector --latest 50 --number 20 --sort age --save /etc/pacman.d/mirrorlist"
-
-# Help people new to Arch
-alias apt='man pacman'
-alias apt-get='man pacman'
-alias please='sudo'
-alias tb='nc termbin.com 9999'
+alias cat="bat --style=grid,snip,header-filename,header-filesize"
 
 # Cleanup orphaned packages
 alias cleanup='sudo pacman -Rns $(pacman -Qtdq)'
@@ -168,6 +178,10 @@ alias rip="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -200 | nl"
 
 alias edit="nvim" # set favorite editor
 alias e="nvim"
+
+# Taskwarrior abbrv
+alias tt="taskwarrior-tui"
+
 alias zshconfig="edit ~/.zshrc"
 alias ohmyzsh="edit ~/.local/share/oh-my-zsh"
 alias swayconfig="edit ~/.config/sway"
@@ -175,120 +189,74 @@ alias swayconfig="edit ~/.config/sway"
 ## create backup
 alias backitup="tar -cvzf ~/backup/backup.tar.gz --exclude .docker-cache --exclude .vs-code --exclude venv ~/Desktop ~/Documents ~/Pictures ~/.ssh ~/.gnupg"
 
-# snap 
-alias snapd-start="sudo systemctl start snapd snapd.socket"
-alias snapd-status="sudo systemctl status snapd snapd.socket"
-alias snapd-stop="sudo systemctl stop snapd snapd.socket"
+# Kubectl abbreviation
+alias kc="kubectl"
 
-# docker control
-alias dockerd-start="sudo systemctl start docker"
-alias dockerd-status="sudo systemctl status docker"
-alias dockerd-stop="sudo systemctl stop docker && sudo systemctl status docker"
-
-set -x SSH_AUTH_SOCK {$XDG_RUNTIME_DIR}/ssh-agent.socket
-
-# if using custom build of neovim
-if test -d $HOME/.local/neovim
-    fish_add_path $HOME/.local/neovim/bin
-end
+set -x SSH_AUTH_SOCK {$XDG_RUNTIME_DIR}/gcr/ssh
 
 # Some default behaviour on mac vs linux
 switch (uname)
     case Darwin
-        # HOMEBREW SETUP
-        set -gx HOMEBREW_PREFIX /opt/homebrew
-        set -gx HOMEBREW_CELLAR /opt/homebrew/Cellar
-        set -gx HOMEBREW_REPOSITORY /opt/homebrew
-        ! set -q PATH; and set PATH ''
-        set -gx PATH /opt/homebrew/bin /opt/homebrew/sbin $PATH
-        ! set -q MANPATH; and set MANPATH ''
-        set -gx MANPATH /opt/homebrew/share/man $MANPATH
-        ! set -q INFOPATH; and set INFOPATH ''
-        set -gx INFOPATH /opt/homebrew/share/info $INFOPATH
-        set --export GPG_TTY $(tty)
-
-        # The next line updates PATH for the Google Cloud SDK.
-        if [ -f '/Users/george/google-cloud-sdk/path.fish.inc' ]
-            . /Users/george/google-cloud-sdk/path.fish.inc
-        end
-
-        # The next line for ruby
-        # set CC compiler location this causes so many troubles
-        set -gx CC /usr/bin/gcc
-
-        if test -d /opt/homebrew/opt/ruby/bin/
-            fish_add_path -a /opt/homebrew/opt/ruby/bin/
-            fish_add_path -a $(gem environment gemdir)"/bin"
-            set -gx CPPFLAGS -I/opt/homebrew/opt/ruby/include
-            set -gx LDFLAGS -L/opt/homebrew/opt/ruby/lib
-        end
-
-        # OpenSSL postinstall
-        if test -d /opt/homebrew/opt/openssl@1.1/
-            fish_add_path /opt/homebrew/opt/openssl@1.1/bin
-            set -gx LDFLAGS "-L/opt/homebrew/opt/openssl@1.1/lib"
-            set -gx CPPFLAGS "-I/opt/homebrew/opt/openssl@1.1/include"
-            set -gx PKG_CONFIG_PATH "/opt/homebrew/opt/openssl@1.1/lib/pkgconfig"
-        end
-        # libressl
-        # fish_add_path /opt/homebrew/opt/libressl/bin
-        # set -gx LDFLAGS "-L/opt/homebrew/opt/libressl/lib"
-        # set -gx CPPFLAGS "-I/opt/homebrew/opt/libressl/include"
-        # set -gx PKG_CONFIG_PATH "/opt/homebrew/opt/libressl/lib/pkgconfig"
-
-        if test -d /opt/homebrew/opt/llvm/
-            set -gx LDFLAGS -L/opt/homebrew/opt/llvm/lib
-            set -gx CPPFLAGS -I/opt/homebrew/opt/llvm/include
-            fish_add_path -a /opt/homebrew/opt/llvm/bin
-        end
-        if test -d /opt/homebrew/opt/readline/
-            set -gx LDFLAGS -L/opt/homebrew/opt/readline/lib
-            set -gx CPPFLAGS -I/opt/homebrew/opt/readline/include
-            set -gx PKG_CONFIG_PATH /opt/homebrew/opt/readline/lib/pkgconfig
-        end
-
-				if test -d $HOME/.docker/cli-plugins/
-					if not test -f $HOME/.docker/cli-plugins/docker-compose
-						curl -SL https://github.com/docker/compose/releases/download/v2.23.3/docker-compose-darwin-x86_64 -o $HOME/.docker/cli-plugins/docker-compose
-						chmod +x $HOME/.docker/cli-plugins/docker-compose
-					end
-				end
-        # adding go path
-        fish_add_path -a /Users/george/go/bin/
-
-        # docker add to path
-        fish_add_path -a "/Users/george/.docker/bin"
-
         # Add home dir XDG
         set -gx XDG_CONFIG_HOME "/Users/george/.config"
 
-        set -gx RUBY_CONFIGURE_OPTS "--with-openssl-dir=$(brew --prefix openssl@1.1)"
+        # HOMEBREW SETUP
+        if status is-login
+            eval "$(/opt/homebrew/bin/brew shellenv)"
+        end
+        set --export GPG_TTY $(tty)
 
-        status --is-interactive; and rbenv init - fish | source
+        # adding python path
+        if test -d "$HOME/Library/Python/3.12/bin"
+            fish_add_path -a "$HOME/Library/Python/3.12/bin"
+        end
 
-        alias colima-start="colima start --cpu 6 --memory 10 --vm-type=vz --vz-rosetta --mount-type=virtiofs --kubernetes --profile k8s"
-        # copy gpg
-        alias gpg-pass="printf '%s' (cat ~/Documents/recovery/gpg) | pbcopy"
+        if status is-login && test -d $HOME/.rbenv/versions/
+            status is-interactive; and rbenv init - --no-rehash fish | source
+            fish_add_path -a "$HOME/.rbenv/shims"
+        end
+
+        if test -d /Library/Frameworks/Python.framework/Versions/Current/bin
+            fish_add_path -a /Library/Frameworks/Python.framework/Versions/Current/bin
+        end
+
+        # Yabai logs
+        alias yabaiLogs="tail -f /tmp/yabai_$USER.out.log | sed 's/^/out: /' & tail -f /tmp/yabai_$USER.err.log | sed 's/^/err: /'"
+
+        # skhd logs
+        alias skhdLogs="tail -f /tmp/skhd_$USER.out.log | sed 's/^/out: /' & tail -f /tmp/skhd_$USER.err.log | sed 's/^/err: /'"
 
     case '*'
-        # copy gpg
-        alias gpg-pass="printf '%s' (cat ~/Documents/recovery/gpg) | wl-copy"
         alias hx="helix"
 
-				# opam configuration
-				source /home/gmessiha/.opam/opam-init/init.fish > /dev/null 2> /dev/null; or true
+        # opam configuration oCaml
+        if test "$HOME/.opam/opam-init/init.fish"
+            source "$HOME/.opam/opam-init/init.fish" >/dev/null 2>/dev/null; or true
+        end
 end
 
-# FZF because everyone is fuzzy about it.
-# fzf_key_bindings
-
-## Direnv support
-direnv hook fish | source
-
-starship init fish | source
-
-## Run fastfetch if session is interactive
-if status --is-interactive && type -q fastfetch
-    fastfetch
+if status is-interactive
+    ## Direnv support
+    direnv hook fish | source
+    starship init fish | source
 end
 
+if status is-interactive && status is-login && command -q pyenv
+    set -gx PYENV_ROOT $HOME/.pyenv
+    fish_add_path -m "$PYENV_ROOT/bin" "$PYENV_ROOT/shims"
+    pyenv init - --no-rehash fish | source
+end
+
+# fish_config theme choose rose-pine-moon
+fish_config theme choose catppuccin-macchiato
+# fish_config theme choose nord
+
+alias dev="zellij --layout dev"
+alias config="zellij --layout config"
+alias reward="cd ~/HungerStation/reward && zellij --layout dev"
+alias offer="cd ~/HungerStation/offer && zellij --layout dev"
+alias gogoNvim="zellij -n gogoNvim"
+
+if status is-interactive
+    zoxide init fish | source
+end

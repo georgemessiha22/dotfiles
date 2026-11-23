@@ -1,48 +1,105 @@
-command_timeout = 9999
-[aws]
-symbol = "  "
+format = """
+$os\
+$username\
+$directory\
+$git_branch\
+$git_status\
+$fill \
+$all\
+$line_break\
+$shell\
+$cmd_duration\
+$character"""
 
-[buf]
-symbol = " "
+command_timeout = 9
 
-[c]
-symbol = " "
+# palette = 'gruvbox_dark'
 
-[conda]
-symbol = " "
+[palettes.gruvbox_dark]
+color_fg0 = '#fbf1c7'
+color_bg1 = '#3c3836'
+color_bg3 = '#665c54'
+color_blue = '#458588'
+color_aqua = '#689d6a'
+color_green = '#98971a'
+color_orange = '#d65d0e'
+color_purple = '#b16286'
+color_red = '#cc241d'
+color_yellow = '#d79921'
 
-[dart]
-symbol = " "
+[os]
+format = '[$symbol]($style)'
+disabled = false
+
+[os.symbols]
+Alpine = " "
+Amazon = " "
+Android = " "
+Arch = " "
+Artix = " "
+CentOS = " "
+Debian = " "
+Fedora = " "
+FreeBSD = " "
+Garuda = " "
+Gentoo = " "
+Linux = " "
+Mabox = " "
+Macos = " "
+Manjaro = " "
+NixOS = " "
+OpenBSD = "󰈺 "
+openSUSE = " "
+Raspbian = " "
+Redhat = " "
+RedHatEnterprise = " "
+SUSE = " "
+Ubuntu = " "
+Unknown = " "
+Windows = "󰍲 "
 
 [directory]
 read_only = " 󰌾"
+format = "[$path ]($style)"
+truncation_length = 3
+truncation_symbol = "…/"
 
-[docker_context]
-symbol = " "
-
-[elixir]
-symbol = " "
-
-[elm]
-symbol = " "
-
-[fossil_branch]
-symbol = " "
+[battery]
+full_symbol = "• "
+charging_symbol = "⇡ "
+discharging_symbol = "⇣ "
+unknown_symbol = "❓ "
+empty_symbol = "❗ "
 
 [git_branch]
-symbol = " "
+format = "[$symbol $branch(:$remote_branch)]($style) "
+symbol = ""
 
-[golang]
-symbol = " "
+[git_status]
+format = '[$all_status$ahead_behind ]($style)'
 
 [guix_shell]
 symbol = " "
 
-[haskell]
-symbol = " "
+[docker_context]
+symbol = " "
+format = '[$symbol($context) ]($style)'
+disabled = true
+
+[kubernetes]
+format = '[$symbol($context) ]($style)'
+disabled = false
+contexts = [
+  { context_pattern = "dev.local.cluster.k8s", symbol = "💔 " },
+]
+style = 'blue bold'
+
+[gcloud]
+disabled = true
 
 [haxe]
 symbol = " "
+disabled = true
 
 [hg_branch]
 symbol = " "
@@ -50,14 +107,13 @@ symbol = " "
 [hostname]
 ssh_symbol = " "
 
-[java]
-symbol = " "
-
 [julia]
 symbol = " "
+disabled = true
 
 [lua]
 symbol = " "
+disabled = true
 
 [memory_usage]
 symbol = "󰍛 "
@@ -67,71 +123,146 @@ symbol = "󰔷 "
 
 [nim]
 symbol = "󰆥 "
+disabled = true
 
 [nix_shell]
 symbol = " "
 
-[nodejs]
-symbol = " "
+[aws]
+symbol = " "
+disabled = true
 
-[os.symbols]
-Alpaquita = " "
-Alpine = " "
-Amazon = " "
-Android = " "
-Arch = " "
-Artix = " "
-CentOS = " "
-Debian = " "
-DragonFly = " "
-Emscripten = " "
-EndeavourOS = " "
-Fedora = " "
-FreeBSD = " "
-Garuda = "󰛓 "
-Gentoo = " "
-HardenedBSD = "󰞌 "
-Illumos = "󰈸 "
-Linux = " "
-Mabox = " "
-Macos = " "
-Manjaro = " "
-Mariner = " "
-MidnightBSD = " "
-Mint = " "
-NetBSD = " "
-NixOS = " "
-OpenBSD = "󰈺 "
-openSUSE = " "
-OracleLinux = "󰌷 "
-Pop = " "
-Raspbian = " "
-Redhat = " "
-RedHatEnterprise = " "
-Redox = "󰀘 "
-Solus = "󰠳 "
-SUSE = " "
-Ubuntu = " "
-Unknown = " "
-Windows = "󰍲 "
+[buf]
+symbol = " "
+
+[cmake]
+disabled = true
+
+[bun]
+disabled = true
+
+
+[dart]
+symbol = " "
+disabled = true
+
+[direnv]
+disabled = true
 
 [package]
 symbol = "󰏗 "
+disabled = true
 
 [pijul_channel]
 symbol = " "
 
-[python]
-symbol = " "
-
 [rlang]
 symbol = "󰟔 "
+disabled = true
 
 [ruby]
 symbol = " "
-
-[rust]
-symbol = " "
+disabled = true
 
 [scala]
 symbol = " "
+disabled = true
+
+[elixir]
+symbol = " "
+disabled = true
+
+[elm]
+symbol = " "
+disabled = true
+
+[fossil_branch]
+symbol = " "
+
+[time]
+disabled = true
+time_format = "%R"
+format = '[ $time ]($style)'
+
+[username]
+show_always = false
+format = '[$user ]($style)'
+
+[nodejs]
+symbol = ""
+format = '[$symbol $version ]($style)'
+disabled = true
+
+[c]
+symbol = " "
+format = '[$symbol $version ]($style)'
+disabled = true
+
+[rust]
+symbol = ""
+format = '[$symbol $version ]($style)'
+disabled = true
+
+[golang]
+symbol = ""
+format = '[$symbol $version ]($style)'
+version_format = '${major}.${minor}'
+disabled = true
+
+[php]
+symbol = ""
+format = '[$symbol $version ]($style)'
+disabled = true
+
+[java]
+symbol = ""
+format = '[$symbol $version ]($style)'
+disabled = true
+
+[kotlin]
+symbol = ""
+format = '[$symbol $version ]($style)'
+disabled = true
+
+[haskell]
+symbol = ""
+format = '[$symbol $version ]($style)'
+disabled = true
+
+[python]
+symbol = ""
+format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
+disabled = true
+
+[conda]
+format = '[$symbol $version ]($style)'
+disabled = true
+
+[status]
+disabled = false
+format = '[$symbol $version ]($style)'
+
+[line_break]
+disabled = false
+
+[shell]
+disabled = false
+fish_indicator = "󰈺"
+zsh_indicator = "󰫫"
+bash_indicator = ""
+nu_indicator = ""
+
+[cmd_duration]
+disabled = false
+format = "[$duration]($style) "
+min_time = 100
+# show_milliseconds = true
+
+[character]
+disabled = false
+success_symbol = '[](bold fg:color_green)'
+error_symbol = '[](bold fg:color_red)'
+vimcmd_symbol = '[](bold fg:color_green)'
+vimcmd_replace_one_symbol = '[](bold fg:color_purple)'
+vimcmd_replace_symbol = '[](bold fg:color_purple)'
+vimcmd_visual_symbol = '[](bold fg:color_yellow)'

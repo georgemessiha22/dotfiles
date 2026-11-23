@@ -1,0 +1,57 @@
+[font]
+size = 16
+
+[font.normal]
+family = "JetBrainsMonoNL Nerd Font Mono"
+style = "Thin"
+[font.bold]
+family = "JetBrainsMonoNL Nerd Font Mono"
+style = "ExtraLight"
+[font.bold_italic]
+family = "JetBrainsMonoNL Nerd Font Mono"
+style = "Thin Italic"
+
+[[keyboard.bindings]]
+action = "SpawnNewInstance"
+key = "Return"
+mods = "Control|Shift"
+
+[[keyboard.bindings]]
+key= "p"
+mods= "Control|Shift"
+action= "ToggleViMode"
+
+[window]
+opacity = 0.9888
+decorations =  "buttonless"
+blur = false
+option_as_alt = "Both"
+
+[window.padding]
+x = 5
+y = 5
+
+[terminal]
+osc52 = "CopyPaste"
+
+[general]
+live_config_reload = true
+# dynamic_padding = true
+
+import = [
+    # "~/.config/alacritty/themes/tokyonight.toml",
+    # "~/.config/alacritty/themes/github_dark_tritanopia.yml",
+    # "~/.config/alacritty/themes/rose-pine-moon.toml",
+    # "~/.config/alacritty/themes/rose-pine.toml",
+	# "~/.config/alacritty/themes/catppuccin/catppuccin-frappe.toml",
+	# "~/.config/alacritty/themes/catppuccin/catppuccin-mocha.toml",
+	"~/.config/alacritty/themes/catppuccin/catppuccin-macchiato.toml",
+	# "~/.config/alacritty/themes/nord.toml",
+	# "~/.config/alacritty/themes/gruvbox.toml",
+	# "~/.config/alacritty/themes/catppuccin/catppuccin-latte.toml",
+]
+
+[[keyboard.bindings]]
+key = "Return"
+mods = "Shift"
+chars = "\u001B\r"

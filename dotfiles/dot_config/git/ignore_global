@@ -1,0 +1,16 @@
+.containers
+npm_modules/
+.DS_STORE
+TODO.md
+*.out
+NOTES.md
+*.pyc
+.envrc
+*.envrc
+coverage/
+rails.txt
+*.prv.*
+*.skip.*
+
+**/.claude/settings.local.json
+.worktrees/

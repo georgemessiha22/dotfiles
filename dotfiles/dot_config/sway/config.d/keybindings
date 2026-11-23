@@ -9,7 +9,7 @@
     bindsym $mod+q kill
 
     # Start your launcher
-    bindsym $mod+d exec $menu
+    bindsym $mod+Space exec $menu
 
     # Launcher
     bindsym $mod+Shift+d exec $launcher
@@ -30,7 +30,7 @@
     # Exit sway (logs you out of your Wayland session)
     #    bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
     bindsym $mod+Shift+e exec $powermenu
-    
+
     #bindsym $mod+Shift+e exec swaynag \
     #    -t warning \
     #    -m "Do You want to exit" \
@@ -100,7 +100,12 @@
     # move workspace around
     bindsym $mod+Control+Shift+Right move workspace to output right
     bindsym $mod+Control+Shift+Left move workspace to output left
+    bindsym $mod+Control+Shift+$right move workspace to output right
+    bindsym $mod+Control+Shift+$left move workspace to output left
 
+    # move to left or right workspace
+    bindsym $mod+Control+$left workspace prev
+    bindsym $mod+Control+$right workspace next
 #
 # Layout stuff:
 #

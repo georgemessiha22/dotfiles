@@ -1,2 +1,6 @@
-GOMODCACHE=/home/gmessiha/.local/go/pkg/mod
-GOPATH=/home/gmessiha/.local/go
+GOMODCACHE=/home/gmessiha/.local/gopkgs/pkg/mod
+GOCACHE=/home/gmessiha/.cache/go-build
+GOPATH=/home/gmessiha/.local/gopkgs
+GOTELEMETRYDIR=/home/gmessiha/.config/go/telemetry
+GONOSUMDB=gitlab.com/startupbuilder
+

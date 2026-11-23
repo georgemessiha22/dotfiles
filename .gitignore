@@ -17,11 +17,18 @@ config/vim/temp_dirs/yankring_history_v2.txt
 config/vim/sources_forked/yankring/doc/tags
 config/vim/sources_non_forked/tlib/doc/tags
 config/vim/sources_non_forked/ctrlp.vim/doc/tags*
-
 config/vim/my_plugins/vim-expand-region/docs/tags
+
+dotfiles/dot_config/fish/fish_variables
+
 .DS_Store
 .vscode
 
 paru/
 
 install/brew/Brewfile.lock.json
+nvim-pack-lock.json
+
+dotfiles/dot_config/fish/conf.d/executable_hungerstation.fish
+dotfiles/dot_config/nushell/hungerstation.nu
+dotfiles/dot_bundle/config

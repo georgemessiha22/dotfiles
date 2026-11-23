@@ -9,3 +9,16 @@ Makefile has everything you might need to get workspace up and running.
 
 OS supported:
 - Arch (Garuda based)
+- MacOS
+
+## Install
+
+```bash
+mkdir -p ${HOME}/backup
+git clone https://github.com/georgemessiha22/dotfiles.git ${HOME}/backup/linux-workspace
+```
+
+For help
+```bash
+make help
+```

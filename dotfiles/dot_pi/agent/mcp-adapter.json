@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "dp-devinfra": {
+      "lifecycle": "keep-alive",
+      "directTools": "search"
+    },
+    "atlassian": {
+      "directTools": "search"
+    }
+  }
+}

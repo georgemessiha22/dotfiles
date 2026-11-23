@@ -1,50 +1,43 @@
+# Same Space configuration {{{
+
 # change window focus within space
-alt - j : yabai -m window --focus south
-alt - k : yabai -m window --focus north
-alt - h : yabai -m window --focus west
-alt - l : yabai -m window --focus east
-
-#change focus between external displays (left and right)
-alt - s: yabai -m display --focus west
-alt - g: yabai -m display --focus east
-
-# rotate layout clockwise
-shift + alt - r : yabai -m space --rotate 270
-
-# flip along y-axis
-shift + alt - y : yabai -m space --mirror y-axis
-
-# flip along x-axis
-shift + alt - x : yabai -m space --mirror x-axis
-
-# toggle window float
-shift + alt - t : yabai -m window --toggle float --grid 4:4:1:1:2:2
-
-# maximize a window
-shift + alt - m : yabai -m window --toggle zoom-fullscreen
-
-# balance out tree of windows (resize to occupy same area)
-shift + alt - e : yabai -m space --balance
+alt - j : yabai -m window --focus south;
+alt - k : yabai -m window --focus north;
+alt - h : yabai -m window --focus west;
+alt - l : yabai -m window --focus east;
+alt - w : yabai -m window --focus next;
+alt - W : yabai -m window --focus perv;
 
 # swap windows
-shift + alt - j : yabai -m window --swap south
-shift + alt - k : yabai -m window --swap north
-shift + alt - h : yabai -m window --swap west
-shift + alt - l : yabai -m window --swap east
+# shift + alt - j : yabai -m window --swap south
+# shift + alt - k : yabai -m window --swap north
+# shift + alt - h : yabai -m window --swap west
+# shift + alt - l : yabai -m window --swap east
 
 # move window and split
-ctrl + alt - j : yabai -m window --warp south
-ctrl + alt - k : yabai -m window --warp north
-ctrl + alt - h : yabai -m window --warp west
-ctrl + alt - l : yabai -m window --warp east
+shift + alt - j : yabai -m window --warp south
+shift + alt - k : yabai -m window --warp north
+shift + alt - h : yabai -m window --warp west
+shift + alt - l : yabai -m window --warp east
+# }}}
 
-# move window to display left and right
-shift + alt - s : yabai -m window --display west; yabai -m display --focus west;
-shift + alt - g : yabai -m window --display east; yabai -m display --focus east;
+# Multi Space control {{{
+# change focus to prev and next space
+alt - p : yabai -m space --focus prev
+alt - n : yabai -m space --focus next
 
-#move window to prev and next space
-shift + alt - p : yabai -m window --space prev;
-shift + alt - n : yabai -m window --space next;
+# move window to prev and next space
+shift + alt - p : yabai -m window --space prev
+shift + alt - n : yabai -m window --space next
+
+# change focus to space #
+alt - 1 : yabai -m space --focus 1;
+alt - 2 : yabai -m space --focus 2;
+alt - 3 : yabai -m space --focus 3;
+alt - 4 : yabai -m space --focus 4;
+alt - 5 : yabai -m space --focus 5;
+alt - 6 : yabai -m space --focus 6;
+alt - 7 : yabai -m space --focus 7;
 
 # move window to space #
 shift + alt - 1 : yabai -m window --space 1;
@@ -54,9 +47,58 @@ shift + alt - 4 : yabai -m window --space 4;
 shift + alt - 5 : yabai -m window --space 5;
 shift + alt - 6 : yabai -m window --space 6;
 shift + alt - 7 : yabai -m window --space 7;
+# }}}
 
-# stop/start/restart yabai
-ctrl + alt - q : yabai --stop-service
-ctrl + alt - s : yabai --start-service
+# Layout orentiation {{{
+# rotate layout clockwise
+shift + alt - r : yabai -m space --rotate 270;
+
+# flip along y-axis
+shift + alt - y : yabai -m space --mirror y-axis;
+
+# flip along x-axis
+shift + alt - x : yabai -m space --mirror x-axis;
+
+# toggle window float
+shift + alt - t : yabai -m window --toggle float --grid 4:4:1:1:2:2;
+
+# balance out tree of windows (resize to occupy same area)
+shift + alt - b : yabai -m space --balance;
+
+# switch layout to stack
+shift + alt - s : yabai -m space --layout stack;
+
+# switch layout to bsp (default)
+shift + alt - d : yabai -m space --layout bsp;
+# }}}
+
+
+# Display control {{{
+# Change focus to display
+ctrl + alt - h: yabai -m display --focus west;
+ctrl + alt - l: yabai -m display --focus east;
+ctrl + alt - k: yabai -m display --focus north;
+ctrl + alt - j: yabai -m display --focus south;
+
+# move window to display left and right
+shift + ctrl + alt - h: yabai -m window --display west;
+shift + ctrl + alt - l : yabai -m window --display east;
+shift + ctrl + alt - j : yabai -m window --display south;
+shift + ctrl + alt - k : yabai -m window --display north;
+
+# }}}
+
+# Apps Control {{{
+# restart yabai
 ctrl + alt - r : yabai --restart-service
 
+# open alacritty
+alt - t : open -n -a Alacritty
+# alt - t : open -a Ghostty
+
+# open Slack
+alt - s : open -a Slack
+
+# open Chrome
+alt - b : open -a 'Google Chrome'
+# }}}
