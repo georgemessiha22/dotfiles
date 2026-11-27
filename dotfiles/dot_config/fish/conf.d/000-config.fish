@@ -257,6 +257,3 @@ alias reward="cd ~/HungerStation/reward && zellij --layout dev"
 alias offer="cd ~/HungerStation/offer && zellij --layout dev"
 alias gogoNvim="zellij -n gogoNvim"
 
-if status is-interactive
-    zoxide init fish | source
-end

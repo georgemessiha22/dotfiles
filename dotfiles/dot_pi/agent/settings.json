@@ -1,8 +1,8 @@
 {
-  "lastChangelogVersion": "1.5.2",
+  "lastChangelogVersion": "1.6.1",
   "theme": "opencode",
-  "defaultProvider": "anthropic",
-  "defaultModel": "claude-opus-4-5",
+  "defaultProvider": "xai",
+  "defaultModel": "grok-4.7",
   "defaultThinkingLevel": "high",
   "showHardwareCursor": true,
   "editorPaddingX": 2,
@@ -15,7 +15,6 @@
   "terminal": {
     "showTerminalProgress": true
   },
-  "showCacheMissNotices": true,
   "tuiMode": "fullscreen",
   "fullscreenExitOutput": "resume-hint",
   "doubleEscapeAction": "tree",
@@ -52,6 +51,12 @@
   ],
   "extensionChangelogVersions": {
     "{\"source\":\"npm:pi-mcp-adapter\",\"scope\":\"user\"}": "7.0.1",
-    "{\"source\":\"npm:pi-subagents\",\"scope\":\"user\"}": "0.89.1"
+    "{\"source\":\"npm:pi-subagents\",\"scope\":\"user\"}": "0.90.0"
+  },
+  "notices": {
+    "cacheMisses": true,
+    "cacheWarming": true,
+    "compactionCosts": true,
+    "reasoningDrops": true
   }
 }

@@ -11,15 +11,11 @@ tap "homebrew/services"
 tap "jorgerojas26/lazysql", trusted: true
 tap "kanriapp/cask", trusted: true
 tap "nikitabobko/tap", trusted: true
-tap "tcarac/taskboard"
 tap "tnk-studio/tools", trusted: true
-tap "unhinged/dev"
 # Tool for generating GNU Standards-compliant Makefiles
 brew "automake"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
-# Yet another cross-platform graphical process/system monitor
-brew "bottom"
 # Manage your dotfiles across multiple diverse machines, securely
 brew "chezmoi"
 # Cloudflare Tunnel client (formerly Argo Tunnel)
@@ -40,8 +36,6 @@ brew "docker"
 brew "dotenv-linter"
 # Command-line client for the Drone continuous integration server
 brew "drone-cli"
-# Modern, maintained replacement for ls
-brew "eza"
 # Simple, fast and user-friendly alternative to find
 brew "fd"
 # Play, record, convert, and stream select audio and video codecs
@@ -58,16 +52,12 @@ brew "gh"
 brew "git"
 # Syntax-highlighting pager for git and diff output
 brew "git-delta"
-# Tcl/Tk UI for the git revision control system
-brew "git-gui"
 # GNU Privacy Guard (OpenPGP)
 brew "gnupg@1.4"
 # Open source programming language to build simple/reliable/efficient software
 brew "go"
 # Next generation open source RPC library and framework
 brew "grpc"
-# Post-modern modal text editor
-brew "helix"
 # Agent multiplexer that lives in your terminal
 brew "herdr"
 # Improved top (interactive process viewer)
@@ -76,14 +66,8 @@ brew "htop"
 brew "imagemagick"
 # Lightweight and flexible command-line JSON processor
 brew "jq"
-# Little helper to run CNCF's k3s in Docker
-brew "k3d"
-# Lazier way to manage everything docker
-brew "lazydocker"
 # Simple terminal UI for git commands
 brew "lazygit"
-# Cross-platform TUI database management tool
-brew "lazysql"
 # Additional guest agents for Lima
 brew "lima-additional-guestagents"
 # Clone of ls with colorful output, file type icons, and more
@@ -92,8 +76,6 @@ brew "lsd"
 brew "lua-language-server"
 # Package manager for the Lua programming language
 brew "luarocks"
-# System information fetcher, with an emphasis on performance and minimalism
-brew "macchina"
 # Open-source, cross-platform JavaScript runtime environment
 brew "node"
 # Easily convert Marp Markdown files into static HTML/CSS, PDF, PPT and images
@@ -110,6 +92,8 @@ brew "openjdk@17"
 brew "opentofu"
 # Package compiler and linker metadata toolkit
 brew "pkgconf"
+# Paste PNG into files
+brew "pngpaste"
 # PDF rendering library (based on the xpdf-3.0 code base)
 brew "poppler"
 # Pyenv plugin to manage virtualenv
@@ -128,8 +112,6 @@ brew "ripgrep"
 brew "shared-mime-info"
 # Static analysis and lint tool, for (ba)sh scripts
 brew "shellcheck"
-# Fuzzy Finder in rust!
-brew "sk"
 # Fast SQL formatter/linter
 brew "sqruff"
 # Cross-shell prompt for astronauts
@@ -138,8 +120,8 @@ brew "starship"
 brew "terraform"
 # Command-line time tracking application
 brew "timewarrior"
-# Markup-based typesetting system
-brew "typst"
+# Terminal multiplexer
+brew "tmux"
 # Vi 'workalike' with many additional features
 brew "vim"
 # Internet file retriever
@@ -150,42 +132,32 @@ brew "yarn"
 brew "yazi"
 # Pluggable terminal workspace, with terminal multiplexer as the base feature
 brew "zellij"
-# Shell extension to navigate your filesystem faster
-brew "zoxide"
 # OpenCode V2 - the AI coding agent for the terminal
 brew "anomalyco/tap/opencode-v2", trusted: true
 # Simple hotkey-daemon for macOS.
 brew "asmvik/formulae/skhd", trusted: true
 # A tiling window manager for macOS based on binary space partitioning.
 brew "asmvik/formulae/yabai", trusted: true
-# Coding agent with the IDE wired in
-brew "can1357/tap/omp", trusted: true
-# Modern, modal text editor built in Rust
-brew "codersauce/tap/red", trusted: true
 # CLI for interacting with Delivery Hero Platform infrastructure
 brew "deliveryhero/dp-tap/dp-devinfra", trusted: true
 # Kubernetes CLI To Manage Your Clusters In Style!
 brew "derailed/k9s/k9s", trusted: true
 # Custom macOS statusbar with shell plugin, interaction and graph support
 brew "felixkratz/formulae/sketchybar"
-# AeroSpace is an i3-like tiling window manager for macOS
-cask "nikitabobko/tap/aerospace", trusted: true
 # Terminal UI for chezmoi dotfile management
 cask "daptify14/tap/chezit"
 # Free app that makes your Internet safer
 cask "cloudflare-warp"
-# Brings the power of Copilot coding agent directly to your terminal
-cask "copilot-cli"
 # Set of tools to manage resources and applications hosted on Google Cloud
 cask "gcloud-cli"
 # Terminal emulator that uses platform-native UI and GPU acceleration
 cask "ghostty"
-# Offline Kanban board app
-cask "kanriapp/cask/kanri"
 # Open-source keystroke visualiser
 cask "keycastr"
-# Music streaming service
-cask "spotify"
+# Knowledge base that works on top of a local folder of plain text Markdown files
+cask "obsidian"
+# Multiplayer code editor
+cask "zed"
 go "golang.org/x/tools/cmd/callgraph"
 go "github.com/go-delve/delve/cmd/dlv"
 go "github.com/davidrjenni/reftools/cmd/fillswitch"
@@ -226,7 +198,6 @@ cargo "kdlfmt"
 cargo "pbls"
 cargo "tree-sitter-cli"
 uv "trafilatura"
-npm "@google/gemini-cli"
 npm "mcp-hub"
 npm "neovim"
 npm "vscode-json-languageservice"

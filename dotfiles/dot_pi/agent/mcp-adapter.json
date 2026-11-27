@@ -4,8 +4,17 @@
       "lifecycle": "keep-alive",
       "directTools": "search"
     },
-    "atlassian": {
-      "directTools": "search"
+    "slack": {
+      "command": "/Users/george/projects/pd-mcp-servers/pd-slack-mcp-server/slack-mcp",
+      "directTools": true
+    },
+    "atlassian-hungerstation": {
+      "url": "https://mcp.atlassian.com/v2/mcp",
+      "directTools": true
+    },
+    "atlassian-deliveryhero": {
+      "url": "https://mcp.atlassian.com/v2/mcp",
+      "directTools": true
     }
   }
 }

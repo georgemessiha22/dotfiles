@@ -13,7 +13,10 @@
                 "mcp"
             ]
         },
-        "atlassian": {
+        "atlassian-hungerstation": {
+            "url": "https://mcp.atlassian.com/v2/mcp"
+        },
+        "atlassian-deliveryhero": {
             "url": "https://mcp.atlassian.com/v2/mcp"
         },
         "kubernetes": {
